@@ -79,6 +79,24 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wystąpił błąd pobierania danych z serwerów Riot Games,spróbuj ponownie później.
+        /// </summary>
+        internal static string Error_DownloadingData {
+            get {
+                return ResourceManager.GetString("Error_DownloadingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wystąpił nieznany błąd,spróbuj ponownie później.
+        /// </summary>
+        internal static string Error_Undefined {
+            get {
+                return ResourceManager.GetString("Error_Undefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wybierz interesującą Cię funkcję:.
         /// </summary>
         internal static string Main_ChooseFunction {

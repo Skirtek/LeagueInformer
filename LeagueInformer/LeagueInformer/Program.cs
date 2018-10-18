@@ -1,4 +1,6 @@
-using System;
+﻿using System;
+using LeagueInformer.Api;
+using LeagueInformer.Enums;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
 
@@ -7,6 +9,8 @@ namespace LeagueInformer
     public class Program
     {
         private static readonly ConnectionService ConnectionService = new ConnectionService();
+        private static readonly GetSummonerService GetSummonerService = new GetSummonerService();
+        private static readonly ApiClient ApiClient = new ApiClient();
 
         public static void Main(string[] args)
         {
@@ -23,6 +27,7 @@ namespace LeagueInformer
                     switch (option)
                     {
                         case "1":
+                            FirstOption();
                             break;
                         case "2":
                             break;
@@ -35,6 +40,7 @@ namespace LeagueInformer
                             break;
                     }
                 } while (option != null && (!option.Equals("1") || !option.Equals("2") || !option.Equals("3")));
+
             }
             else
             {
@@ -48,6 +54,15 @@ namespace LeagueInformer
             Console.WriteLine(AppResources.Common_ExitApp);
             Console.ReadLine();
             Environment.Exit(1);
+        }
+
+        private static void FirstOption()
+        {
+            //TODO do podmiany na funkcję w programie
+            var response = GetSummonerService.GetInformationAboutSummoner("Skirtek").Result;
+            Console.WriteLine(response.IsSuccess ?
+                response.AccountId : ApiClient.MapErrorToString(ErrorEnum.DownloadingError));
+            ExitApp();
         }
     }
 }
