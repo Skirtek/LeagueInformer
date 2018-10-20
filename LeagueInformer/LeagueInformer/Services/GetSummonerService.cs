@@ -34,6 +34,13 @@ namespace LeagueInformer.Services
             }
         }
 
-        public string GetChampionForId(string id) => ((Champions)int.Parse(id)).ToString();
+        public string GetChampionForId(string id)
+        {
+            return id != null
+                ? int.TryParse(id, out var championId) && Enum.IsDefined(typeof(Champions), championId)
+                    ? ((Champions) championId).ToString()
+                    : Champions.Nieznany.ToString()
+                : Champions.Nieznany.ToString();
+        }
     }
 }

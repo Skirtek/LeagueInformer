@@ -143,5 +143,6 @@
         Zilean = 26,
         Zoe = 142,
         Zyra = 143,
+        Nieznany = 0
     }
 }
