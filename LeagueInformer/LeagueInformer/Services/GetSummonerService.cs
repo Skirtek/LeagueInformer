@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
+using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
 using Newtonsoft.Json.Linq;
@@ -31,6 +32,15 @@ namespace LeagueInformer.Services
                 Console.WriteLine(ex);
                 return new Summoner {IsSuccess = false};
             }
+        }
+
+        public string GetChampionForId(string id)
+        {
+            return id != null
+                ? int.TryParse(id, out var championId) && Enum.IsDefined(typeof(Champions), championId)
+                    ? ((Champions) championId).ToString()
+                    : Champions.Nieznany.ToString()
+                : Champions.Nieznany.ToString();
         }
     }
 }
