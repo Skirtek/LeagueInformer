@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Enums\Champions.cs" />
     <Compile Include="Enums\ErrorEnum.cs" />
     <Compile Include="Interfaces\IConnection.cs" />
     <Compile Include="Interfaces\IGetSummoner.cs" />

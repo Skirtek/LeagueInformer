@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
+using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
 using Newtonsoft.Json.Linq;
@@ -32,5 +33,7 @@ namespace LeagueInformer.Services
                 return new Summoner {IsSuccess = false};
             }
         }
+
+        public string GetChampionForId(string id) => ((Champions)int.Parse(id)).ToString();
     }
 }
