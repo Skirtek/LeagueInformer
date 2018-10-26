@@ -20,6 +20,16 @@ namespace LeagueInformer.Api
             {
                 case ErrorEnum.DownloadingError:
                     return AppResources.Error_DownloadingData;
+                case ErrorEnum.NotFound:
+                    return AppResources.Error_PlayerNotFound;
+                case ErrorEnum.PlayerHasNotMatchHistory:
+                    return AppResources.Error_PlayerWithoutGamesHistory;
+                case ErrorEnum.RequestTimeout:
+                    return string.Format(AppResources.Error_RequestTimedOut,AppResources.Common_TryAgainLater);
+                case ErrorEnum.InternalServerError:
+                    return string.Format(AppResources.Error_RiotServersAreDown, AppResources.Common_TryAgainLater);
+                case ErrorEnum.RequestAppError:
+                    return string.Format(AppResources.Error_RequestAppError, AppResources.Common_TryAgainLater);
                 default:
                     return AppResources.Error_Undefined;
             }
