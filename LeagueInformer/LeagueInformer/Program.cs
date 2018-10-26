@@ -1,6 +1,4 @@
 ﻿using System;
-using LeagueInformer.Api;
-using LeagueInformer.Enums;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
 
@@ -10,7 +8,6 @@ namespace LeagueInformer
     {
         private static readonly ConnectionService ConnectionService = new ConnectionService();
         private static readonly GetSummonerService GetSummonerService = new GetSummonerService();
-        private static readonly ApiClient ApiClient = new ApiClient();
 
         public static void Main(string[] args)
         {
