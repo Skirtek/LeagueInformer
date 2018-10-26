@@ -61,7 +61,7 @@ namespace LeagueInformer
             //TODO do podmiany na funkcję w programie
             var response = GetSummonerService.GetInformationAboutSummoner("Skirtek").Result;
             Console.WriteLine(response.IsSuccess ?
-                response.AccountId : ApiClient.MapErrorToString(ErrorEnum.DownloadingError));
+                response.AccountId : response.Message);
             ExitApp();
         }
     }

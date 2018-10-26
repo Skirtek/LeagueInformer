@@ -79,11 +79,65 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \nSpróbuj ponownie później :).
+        /// </summary>
+        internal static string Common_TryAgainLater {
+            get {
+                return ResourceManager.GetString("Common_TryAgainLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wystąpił błąd pobierania danych z serwerów Riot Games,spróbuj ponownie później.
         /// </summary>
         internal static string Error_DownloadingData {
             get {
                 return ResourceManager.GetString("Error_DownloadingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie znaleziono przywoływacza o podanym nicku.
+        /// </summary>
+        internal static string Error_PlayerNotFound {
+            get {
+                return ResourceManager.GetString("Error_PlayerNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wybrany gracz nie posiada historii gier.
+        /// </summary>
+        internal static string Error_PlayerWithoutGamesHistory {
+            get {
+                return ResourceManager.GetString("Error_PlayerWithoutGamesHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ups!\nAplikacja nie może przetworzyć danych.
+        /// </summary>
+        internal static string Error_RequestAppError {
+            get {
+                return ResourceManager.GetString("Error_RequestAppError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upłynął czas przetwarzania żądania.\nPrawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}.
+        /// </summary>
+        internal static string Error_RequestTimedOut {
+            get {
+                return ResourceManager.GetString("Error_RequestTimedOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serwery Riot Games nie odpowiadają..
+        /// </summary>
+        internal static string Error_RiotServersAreDown {
+            get {
+                return ResourceManager.GetString("Error_RiotServersAreDown", resourceCulture);
             }
         }
         
