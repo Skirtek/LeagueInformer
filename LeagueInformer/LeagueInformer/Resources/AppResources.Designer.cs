@@ -88,6 +88,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Błont aplikacji. {0}.
+        /// </summary>
+        internal static string Error_AppError {
+            get {
+                return ResourceManager.GetString("Error_AppError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wystąpił błąd pobierania danych z serwerów Riot Games,spróbuj ponownie później.
         /// </summary>
         internal static string Error_DownloadingData {

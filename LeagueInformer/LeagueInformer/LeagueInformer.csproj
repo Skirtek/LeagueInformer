@@ -59,6 +59,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Challengers.cs" />
+    <Compile Include="Services\ChallengerService.cs" />
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\GetSummonerService.cs" />
   </ItemGroup>

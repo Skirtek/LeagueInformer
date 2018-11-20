@@ -126,6 +126,9 @@
   <data name="Common_TryAgainLater" xml:space="preserve">
     <value>\nSpróbuj ponownie później :)</value>
   </data>
+  <data name="Error_AppError" xml:space="preserve">
+    <value>Błont aplikacji. {0}</value>
+  </data>
   <data name="Error_DownloadingData" xml:space="preserve">
     <value>Wystąpił błąd pobierania danych z serwerów Riot Games,spróbuj ponownie później</value>
   </data>

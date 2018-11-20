@@ -8,6 +8,7 @@ namespace LeagueInformer
     {
         private static readonly ConnectionService ConnectionService = new ConnectionService();
         private static readonly GetSummonerService GetSummonerService = new GetSummonerService();
+        private static readonly ChallengerService challengerService = new ChallengerService();
 
         public static void Main(string[] args)
         {
@@ -27,6 +28,7 @@ namespace LeagueInformer
                             FirstOption();
                             break;
                         case "2":
+                            SecondOption();
                             break;
                         case "3":
                             Environment.Exit(1);
@@ -59,6 +61,14 @@ namespace LeagueInformer
             var response = GetSummonerService.GetInformationAboutSummoner("Skirtek").Result;
             Console.WriteLine(response.IsSuccess ?
                 response.AccountId : response.Message);
+            ExitApp();
+        }
+
+        private static void SecondOption()
+        {
+            //TODO do podmiany na funkcję w programie
+            var response = challengerService.GetInformationAboutChallangerList("RANKED_SOLO_5x5").Result;
+            Console.WriteLine();
             ExitApp();
         }
     }

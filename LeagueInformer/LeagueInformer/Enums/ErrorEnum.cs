@@ -7,6 +7,7 @@
         NotFound = 404,
         PlayerHasNotMatchHistory = 422,
         InternalServerError = 500,
-        RequestTimeout = 504
+        RequestTimeout = 504,
+        AppError = 997
     }
 }
