@@ -69,7 +69,9 @@ namespace LeagueInformer
         private static void AboutApp()
         {
             //TODO dopisanie informacji o aplikacji
-            Console.WriteLine("App version 1.0.0");
+            Console.WriteLine("App version 1.0.0\n");
+            Console.WriteLine("LeagueInformer");
+            Console.WriteLine("Project Owner: Bartosz Mróz");
         }
     }
 }
