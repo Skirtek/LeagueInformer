@@ -1,6 +1,4 @@
-﻿using LeagueInformer.Interfaces;
-using LeagueInformer.Services;
-using Moq;
+﻿using LeagueInformer.Services;
 using Xunit;
 
 namespace LeagueInformer_UnitTests.Services
@@ -14,10 +12,10 @@ namespace LeagueInformer_UnitTests.Services
             _connection = new ConnectionService();
         }
 
-
         [Fact]
         public void ConnectionService_RequestReturnedSuccess()
         {
+            //Assert
             Assert.True(_connection.HasInternetConnection());
         }
     }

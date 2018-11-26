@@ -17,7 +17,8 @@ namespace LeagueInformer
                 Console.WriteLine(AppResources.Main_WelcomeUser);
                 Console.WriteLine(AppResources.Main_ChooseFunction);
                 Console.WriteLine("1. Opcja nr 1");
-                Console.WriteLine("2. Opcja nr 2");
+                Console.WriteLine("2. Wyswietlenie listy wszystkich challengerow na EUNE");
+                Console.WriteLine("3. O aplikacj");
                 Console.WriteLine(AppResources.Main_Quit);
                 var option = Console.ReadLine();
                 do
@@ -31,6 +32,9 @@ namespace LeagueInformer
                             SecondOption();
                             break;
                         case "3":
+                            AboutApp();
+                            break;
+                        case "4":
                             Environment.Exit(1);
                             break;
                         default:
@@ -62,6 +66,12 @@ namespace LeagueInformer
             Console.WriteLine(response.IsSuccess ?
                 response.AccountId : response.Message);
             ExitApp();
+        }
+
+        private static void AboutApp()
+        {
+            //TODO dopisanie informacji o aplikacji
+
         }
 
         private static void SecondOption()
