@@ -17,7 +17,7 @@ namespace LeagueInformer
                 Console.WriteLine(AppResources.Main_ChooseFunction);
                 Console.WriteLine("1. Opcja nr 1");
                 Console.WriteLine("2. Opcja nr 2");
-                Console.WriteLine("3. O aplikacj");
+                Console.WriteLine(AppResources.MainManu_AboutApp);
                 Console.WriteLine(AppResources.Main_Quit);
                 var option = Console.ReadLine();
                 do

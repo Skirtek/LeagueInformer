@@ -186,5 +186,14 @@ namespace LeagueInformer.Resources {
                 return ResourceManager.GetString("Main_WelcomeUser", resourceCulture);
             }
         }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 3. O aplikacji.
+        /// </summary>
+        internal static string MainManu_AboutApp {
+            get {
+                return ResourceManager.GetString("MainManu_AboutApp", resourceCulture);
+            }
+        }
     }
 }
