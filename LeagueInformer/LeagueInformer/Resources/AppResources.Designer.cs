@@ -215,7 +215,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3. Wyjdź.
+        ///   Looks up a localized string similar to 4. Wyjdź.
         /// </summary>
         internal static string Main_Quit {
             get {
@@ -229,6 +229,15 @@ namespace LeagueInformer.Resources {
         internal static string Main_WelcomeUser {
             get {
                 return ResourceManager.GetString("Main_WelcomeUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. O aplikacji.
+        /// </summary>
+        internal static string MainManu_AboutApp {
+            get {
+                return ResourceManager.GetString("MainManu_AboutApp", resourceCulture);
             }
         }
         
