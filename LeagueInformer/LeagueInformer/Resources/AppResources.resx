@@ -155,7 +155,7 @@
 Do zobaczenia!</value>
   </data>
   <data name="Main_Quit" xml:space="preserve">
-    <value>3. Wyjdź</value>
+    <value>4. Wyjdź</value>
   </data>
   <data name="Main_WelcomeUser" xml:space="preserve">
     <value>Witaj w League Informer!</value>
