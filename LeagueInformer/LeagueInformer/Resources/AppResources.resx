@@ -147,6 +147,9 @@
   <data name="Error_Undefined" xml:space="preserve">
     <value>Wystąpił nieznany błąd,spróbuj ponownie później</value>
   </data>
+  <data name="MainManu_AboutApp" xml:space="preserve">
+    <value>3. O aplikacji</value>
+  </data>
   <data name="Main_ChooseFunction" xml:space="preserve">
     <value>Wybierz interesującą Cię funkcję:</value>
   </data>
@@ -155,7 +158,7 @@
 Do zobaczenia!</value>
   </data>
   <data name="Main_Quit" xml:space="preserve">
-    <value>3. Wyjdź</value>
+    <value>4. Wyjdź</value>
   </data>
   <data name="Main_WelcomeUser" xml:space="preserve">
     <value>Witaj w League Informer!</value>

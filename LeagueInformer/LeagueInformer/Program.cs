@@ -17,6 +17,7 @@ namespace LeagueInformer
                 Console.WriteLine(AppResources.Main_ChooseFunction);
                 Console.WriteLine("1. Opcja nr 1");
                 Console.WriteLine("2. Opcja nr 2");
+                Console.WriteLine(AppResources.MainManu_AboutApp);
                 Console.WriteLine(AppResources.Main_Quit);
                 var option = Console.ReadLine();
                 do
@@ -29,6 +30,9 @@ namespace LeagueInformer
                         case "2":
                             break;
                         case "3":
+                            AboutApp();
+                            break;
+                        case "4":
                             Environment.Exit(1);
                             break;
                         default:
@@ -36,7 +40,7 @@ namespace LeagueInformer
                             option = Console.ReadLine();
                             break;
                     }
-                } while (option != null && (!option.Equals("1") || !option.Equals("2") || !option.Equals("3")));
+                } while (option != null && (!option.Equals("1") || !option.Equals("2") || !option.Equals("3") || !option.Equals("4")));
 
             }
             else
@@ -59,6 +63,27 @@ namespace LeagueInformer
             var response = GetSummonerService.GetInformationAboutSummoner("Skirtek").Result;
             Console.WriteLine(response.IsSuccess ?
                 response.AccountId : response.Message);
+            ExitApp();
+        }
+
+        private static void AboutApp()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\tLeague Informer");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\n\tApp version \n\t1.0.0\n");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("\tProject Owner\n\tBartosz Mróz\n");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\tCEO\n\tBartosz Mróz\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\tUX Designer\n\tBartosz Mróz\n");
+            Console.WriteLine("\tUI Designer\nBartosz Mróz\tFilip Nowicki\n");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n\tDevelopers\nBartosz Mróz\tFilip Nowicki\nRobert Dobiała\tIgor Drążkowski\n");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("\tTesters\nBartosz Mróz\t Filip Nowicki");
+            Console.ResetColor();
             ExitApp();
         }
     }
