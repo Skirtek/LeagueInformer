@@ -151,6 +151,51 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gracz ma gorącą serię.
+        /// </summary>
+        internal static string GetBestChallengers_HasHotStreak {
+            get {
+                return ResourceManager.GetString("GetBestChallengers_HasHotStreak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gracz nie ma gorącej serii.
+        /// </summary>
+        internal static string GetBestChallengers_HasNotHotStreak {
+            get {
+                return ResourceManager.GetString("GetBestChallengers_HasNotHotStreak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gracz nie jest weteranem w tej lidze.
+        /// </summary>
+        internal static string GetBestChallengers_IsNotVeteran {
+            get {
+                return ResourceManager.GetString("GetBestChallengers_IsNotVeteran", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gracz jest weteranem w tej lidze.
+        /// </summary>
+        internal static string GetBestChallengers_IsVeteran {
+            get {
+                return ResourceManager.GetString("GetBestChallengers_IsVeteran", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}. {1}, {2} wygranych meczów, {3} przegranych meczów, {4}LP.
+        /// </summary>
+        internal static string GetBestChallengers_StatisticsPatten {
+            get {
+                return ResourceManager.GetString("GetBestChallengers_StatisticsPatten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wybierz interesującą Cię funkcję:.
         /// </summary>
         internal static string Main_ChooseFunction {
@@ -184,6 +229,15 @@ namespace LeagueInformer.Resources {
         internal static string Main_WelcomeUser {
             get {
                 return ResourceManager.GetString("Main_WelcomeUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Zobacz statystyki 10 najlepszych Challengerów na serwerze EUNE.
+        /// </summary>
+        internal static string MainMenu_GetChallengerList {
+            get {
+                return ResourceManager.GetString("MainMenu_GetChallengerList", resourceCulture);
             }
         }
     }

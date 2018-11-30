@@ -6,6 +6,6 @@ namespace LeagueInformer.Interfaces
 {
     public interface IGetChallengers
     {
-        Task<List<Challengers>> GetListOfChallengers();
+        Task<ChallengersList> GetListOfChallengers();
     }
 }

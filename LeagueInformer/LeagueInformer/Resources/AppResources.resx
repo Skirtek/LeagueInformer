@@ -147,6 +147,9 @@
   <data name="Error_Undefined" xml:space="preserve">
     <value>Wystąpił nieznany błąd,spróbuj ponownie później</value>
   </data>
+  <data name="MainMenu_GetChallengerList" xml:space="preserve">
+    <value>2. Zobacz statystyki 10 najlepszych Challengerów na serwerze EUNE</value>
+  </data>
   <data name="Main_ChooseFunction" xml:space="preserve">
     <value>Wybierz interesującą Cię funkcję:</value>
   </data>
@@ -159,5 +162,20 @@ Do zobaczenia!</value>
   </data>
   <data name="Main_WelcomeUser" xml:space="preserve">
     <value>Witaj w League Informer!</value>
+  </data>
+  <data name="GetBestChallengers_StatisticsPatten" xml:space="preserve">
+    <value>{0}. {1}, {2} wygranych meczów, {3} przegranych meczów, {4}LP</value>
+  </data>
+  <data name="GetBestChallengers_HasHotStreak" xml:space="preserve">
+    <value>Gracz ma gorącą serię</value>
+  </data>
+  <data name="GetBestChallengers_HasNotHotStreak" xml:space="preserve">
+    <value>Gracz nie ma gorącej serii</value>
+  </data>
+  <data name="GetBestChallengers_IsNotVeteran" xml:space="preserve">
+    <value>Gracz nie jest weteranem w tej lidze</value>
+  </data>
+  <data name="GetBestChallengers_IsVeteran" xml:space="preserve">
+    <value>Gracz jest weteranem w tej lidze</value>
   </data>
 </root>
