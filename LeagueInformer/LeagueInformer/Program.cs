@@ -61,5 +61,11 @@ namespace LeagueInformer
                 response.AccountId : response.Message);
             ExitApp();
         }
+
+        private static void SecondOption()
+        {
+            //TODO :     spis wszystkich challengerów i informacji o nich
+            //TODO 2 :   sortowanie  -->  wypisanie tylko 10 najlepszych
+        }
     }
 }
