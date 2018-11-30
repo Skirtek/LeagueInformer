@@ -27,6 +27,7 @@ namespace LeagueInformer
                             FirstOption();
                             break;
                         case "2":
+                            SecondOption();
                             break;
                         case "3":
                             Environment.Exit(1);
@@ -65,6 +66,7 @@ namespace LeagueInformer
         private static void SecondOption()
         {
             //TODO :     spis wszystkich challengerów i informacji o nich
+            var response = GetChallengersService.GetListOfChallengers().Result;
             //TODO 2 :   sortowanie  -->  wypisanie tylko 10 najlepszych
         }
     }

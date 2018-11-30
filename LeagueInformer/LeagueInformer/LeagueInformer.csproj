@@ -50,7 +50,9 @@
     <Compile Include="Enums\Champions.cs" />
     <Compile Include="Enums\ErrorEnum.cs" />
     <Compile Include="Interfaces\IConnection.cs" />
+    <Compile Include="Interfaces\IGetChallengerscs.cs" />
     <Compile Include="Interfaces\IGetSummoner.cs" />
+    <Compile Include="Models\Challengers.cs" />
     <Compile Include="Models\Summoner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +62,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
+    <Compile Include="Services\GetChallengersService.cs" />
     <Compile Include="Services\GetSummonerService.cs" />
   </ItemGroup>
   <ItemGroup>
