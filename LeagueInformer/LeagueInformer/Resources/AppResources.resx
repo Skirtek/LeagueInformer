@@ -173,10 +173,10 @@ Do zobaczenia!</value>
     <value>Gracz nie ma gorącej serii</value>
   </data>
   <data name="GetBestChallengers_IsNotVeteran" xml:space="preserve">
-    <value>Gracz nie jest weteranem w tej lidze</value>
+    <value>Gracz nie rozegrał ponad 100 gier w tej lidze</value>
   </data>
   <data name="GetBestChallengers_IsVeteran" xml:space="preserve">
-    <value>Gracz jest weteranem w tej lidze</value>
+    <value>Gracz rozegrał ponad 100 gier w tej lidze</value>
   </data>
   <data name="MainManu_AboutApp" xml:space="preserve">
     <value>3. O aplikacji</value>

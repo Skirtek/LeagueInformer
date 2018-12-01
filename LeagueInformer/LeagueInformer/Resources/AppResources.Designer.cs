@@ -169,7 +169,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gracz nie jest weteranem w tej lidze.
+        ///   Looks up a localized string similar to Gracz nie rozegrał ponad 100 gier w tej lidze.
         /// </summary>
         internal static string GetBestChallengers_IsNotVeteran {
             get {
@@ -178,7 +178,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gracz jest weteranem w tej lidze.
+        ///   Looks up a localized string similar to Gracz rozegrał ponad 100 gier w tej lidze.
         /// </summary>
         internal static string GetBestChallengers_IsVeteran {
             get {
