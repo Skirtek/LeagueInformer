@@ -17,14 +17,15 @@ namespace LeagueInformer.Services
             try
             {
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/summoner/v3/summoners/by-name/{nickname}?api_key={AppSettings.AuthorizationApiKey}"));
+                    $"https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{nickname}?api_key={AppSettings.AuthorizationApiKey}"));
 
                 return response == null ? new Summoner {IsSuccess = false} : 
                     new Summoner
                     {
                         IsSuccess = true,
-                        AccountId = (string)response.GetValue("accountId"),
-                        Id = (string)response.GetValue("id")
+                        Name = response.GetValue("name").ToString(),
+                        Puuid = response.GetValue("puuid").ToString(),
+                        Id = response.GetValue("id").ToString()
                     };
             }
             catch (Exception ex)
@@ -42,7 +43,7 @@ namespace LeagueInformer.Services
                 : Champions.Nieznany.ToString();
         }
 
-        public string Error_Handler(string message)
+        private string Error_Handler(string message)
         {
             switch (message)
             {
