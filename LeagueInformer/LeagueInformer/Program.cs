@@ -66,7 +66,7 @@ namespace LeagueInformer
             //TODO do podmiany na funkcję w programie
             var response = SummonerService.GetInformationAboutSummoner("Skirtek").Result;
             Console.WriteLine(response.IsSuccess ?
-                response.AccountId : response.Message);
+                $"{response.Id}, {response.Name}" : response.Message);
             ExitApp();
         }
 
