@@ -14,44 +14,53 @@ namespace LeagueInformer
 
         public static void Main(string[] args)
         {
-            if (ConnectionService.HasInternetConnection())
+            while (true)
             {
-                Console.WriteLine(AppResources.Main_WelcomeUser);
-                Console.WriteLine(AppResources.Main_ChooseFunction);
-                Console.WriteLine("1. Opcja nr 1");
-                Console.WriteLine(AppResources.MainMenu_GetChallengerList);
-                Console.WriteLine(AppResources.MainManu_AboutApp);
-                Console.WriteLine(AppResources.Main_Quit);
-                var option = Console.ReadLine();
-                while (option != null && (!option.Equals("1") || !option.Equals("2") || !option.Equals("3") || !option.Equals("4")))
+                if (ConnectionService.HasInternetConnection())
                 {
-                    switch (option)
+                    MainMenu();
+                    var option = Console.ReadLine();
+                    while (option != null && (!option.Equals("1") || !option.Equals("2") || !option.Equals("3") || !option.Equals("4")))
                     {
-                        case "1":
-                            FirstOption();
-                            break;
-                        case "2":
-                            GetBestChallengers().Wait();
-                            break;
-                        case "3":
-                            AboutApp();
-                            break;
-                        case "4":
-                            Environment.Exit(1);
-                            break;
-                        default:
-                            Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
-                            option = Console.ReadLine();
-                            break;
+                        switch (option)
+                        {
+                            case "1":
+                                FirstOption();
+                                break;
+                            case "2":
+                                GetBestChallengers().Wait();
+                                break;
+                            case "3":
+                                AboutApp();
+                                break;
+                            case "4":
+                                Environment.Exit(1);
+                                break;
+                            default:
+                                Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
+                                option = Console.ReadLine();
+                                break;
+                        }
+                        break;
                     }
                 }
+                else
+                {
+                    Console.WriteLine(AppResources.Main_NoInternetConnection);
+                    ExitApp();
+                }
+            }
+        }
 
-            }
-            else
-            {
-                Console.WriteLine(AppResources.Main_NoInternetConnection);
-                ExitApp();
-            }
+        private static void MainMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine(AppResources.Main_WelcomeUser);
+            Console.WriteLine(AppResources.Main_ChooseFunction);
+            Console.WriteLine("1. Opcja nr 1");
+            Console.WriteLine(AppResources.MainMenu_GetChallengerList);
+            Console.WriteLine(AppResources.MainManu_AboutApp);
+            Console.WriteLine(AppResources.Main_Quit);
         }
 
         private static void ExitApp()
@@ -67,7 +76,7 @@ namespace LeagueInformer
             var response = SummonerService.GetInformationAboutSummoner("Skirtek").Result;
             Console.WriteLine(response.IsSuccess ?
                 response.AccountId : response.Message);
-            ExitApp();
+            Console.WriteLine();
         }
 
         private static async Task GetBestChallengers()
@@ -102,7 +111,7 @@ namespace LeagueInformer
             {
                 Console.WriteLine(AppResources.Error_Undefined);
             }
-            ExitApp();
+            Console.WriteLine();
         }
 
         private static void AboutApp()
@@ -122,8 +131,11 @@ namespace LeagueInformer
             Console.WriteLine("\n\tDevelopers\nBartosz Mróz\tFilip Nowicki\nRobert Dobiała\tIgor Drążkowski\n");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\tTesters\nBartosz Mróz\t Filip Nowicki");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("* * * Wciśnij dowolny klawisz aby kontynuować * * *");
             Console.ResetColor();
-            ExitApp();
+            Console.ReadKey();
+            Console.WriteLine();
         }
     }
 }
