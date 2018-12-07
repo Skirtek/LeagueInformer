@@ -8,45 +8,38 @@ using Newtonsoft.Json.Linq;
 
 namespace LeagueInformer.Services
 {
-    public class GetSummonerService: IGetSummoner
+    public class GetLeagueOfSummoner : IGetLeagueOfSummonerInformation
     {
         private readonly ApiClient _apiClient = new ApiClient();
 
-        public async Task<Summoner> GetInformationAboutSummoner(string nickname)
+        public async Task<LeagueOfSummoner> GetLeagueOfSummonerInformation(string id)
         {
             try
             {
-                //TODO Do naprawy pobieranie w ramach bugfixa
                 //JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                //    $"https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{nickname}?api_key={AppSettings.AuthorizationApiKey}"));
+                //    $"https://eun1.api.riotgames.com/lol/league/v4/positions/by-summoner/{id}?api_key={AppSettings.AuthorizationApiKey}"));
 
-                JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Skirtek?api_key=RGAPI-10da1cca-dedc-4293-9c4d-2754a8497acf"));
-                return response == null ? new Summoner {IsSuccess = false} : 
-                    new Summoner
+                JArray response = JArray.Parse(await _apiClient.GetJsonFromUrl(
+                    $"https://eun1.api.riotgames.com/lol/league/v4/positions/by-summoner/7n5j9NtjR5MO6gCvlmYfQWnxD6mhCrHD43Q8CJ3SVCksbns?api_key=RGAPI-10da1cca-dedc-4293-9c4d-2754a8497acf"));
+                var data = JObject.FromObject(response[0]);
+                return response == null ? new LeagueOfSummoner { IsSuccess = false } :
+                    new LeagueOfSummoner
                     {
                         IsSuccess = true,
-                        Name = response.GetValue("name").ToString(),
-                        Puuid = response.GetValue("puuid").ToString(),
-                        Id = response.GetValue("id").ToString()
+                        summonerName = data.GetValue("summonerName").ToString(),
+                        tier = data.GetValue("tier").ToString(),
+                        wins = data.GetValue("wins").ToString(),
+                        losses = data.GetValue("losses").ToString(),
+                        leagueName = data.GetValue("leagueName").ToString(),
+                        queueType = data.GetValue("queueType").ToString()
                     };
             }
             catch (Exception ex)
             {
-                return new Summoner {IsSuccess = false,Message = Error_Handler(ex.Message)};
+                return new LeagueOfSummoner { IsSuccess = false, Message = Error_Handler(ex.Message) };
             }
         }
 
-        public static string GetChampionForId(string id)
-        {
-            return id != null
-                ? int.TryParse(id, out var championId) && Enum.IsDefined(typeof(Champions), championId)
-                    ? ((Champions) championId).ToString()
-                    : Champions.Nieznany.ToString()
-                : Champions.Nieznany.ToString();
-        }
-
-        //TODO W ramach sprzątania zrobić z tego metodę generyczną
         private string Error_Handler(string message)
         {
             switch (message)
@@ -59,8 +52,8 @@ namespace LeagueInformer.Services
                     return _apiClient.MapErrorToString(ErrorEnum.RequestTimeout);
                 case string error when error.Contains("500") || error.Contains("502") || error.Contains("503"):
                     return _apiClient.MapErrorToString(ErrorEnum.InternalServerError);
-                case string error when error.Contains("400") || error.Contains("401") 
-                                                             || error.Contains("403") || error.Contains("404") 
+                case string error when error.Contains("400") || error.Contains("401")
+                                                             || error.Contains("403") || error.Contains("404")
                                                              || error.Contains("415") || error.Contains("429"):
                     return _apiClient.MapErrorToString(ErrorEnum.RequestAppError);
                 default:
