@@ -260,7 +260,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 1. Informacje o przywoływaczu na EUNE.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu 1. Informacje o przywoływaczu na serwerze EUNE.
         /// </summary>
         internal static string MainMenu_GetLeagueOfSummoner {
             get {

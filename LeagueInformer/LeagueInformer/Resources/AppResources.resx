@@ -185,6 +185,6 @@ Do zobaczenia!</value>
     <value>Podaj nazwe Przywoływacza: </value>
   </data>
   <data name="MainMenu_GetLeagueOfSummoner" xml:space="preserve">
-    <value>1. Informacje o przywoływaczu na EUNE</value>
+    <value>1. Informacje o przywoływaczu na serwerze EUNE</value>
   </data>
 </root>

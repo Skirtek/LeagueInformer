@@ -16,6 +16,7 @@ namespace LeagueInformer.Services
         {
             try
             {
+                //TODO Do naprawy pobieranie w ramach bugfixa
                 //JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
                 //    $"https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{nickname}?api_key={AppSettings.AuthorizationApiKey}"));
 
@@ -45,6 +46,7 @@ namespace LeagueInformer.Services
                 : Champions.Nieznany.ToString();
         }
 
+        //TODO W ramach sprzątania zrobić z tego metodę generyczną
         private string Error_Handler(string message)
         {
             switch (message)
