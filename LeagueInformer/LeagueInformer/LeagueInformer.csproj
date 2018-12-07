@@ -54,6 +54,7 @@
     <Compile Include="Interfaces\IGetSummoner.cs" />
     <Compile Include="Models\Challengers.cs" />
     <Compile Include="Models\ChallengersList.cs" />
+    <Compile Include="Models\LeagueOfSummoner.cs" />
     <Compile Include="Models\Summoner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,7 @@
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\GetChallengersService.cs" />
+    <Compile Include="Services\GetLeagueOfSummonerService.cs" />
     <Compile Include="Services\GetSummonerService.cs" />
   </ItemGroup>
   <ItemGroup>
