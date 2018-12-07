@@ -11,53 +11,51 @@ namespace LeagueInformer
         private static readonly ConnectionService ConnectionService = new ConnectionService();
         private static readonly GetSummonerService SummonerService = new GetSummonerService();
         private static readonly GetChallengersService ChallengersService = new GetChallengersService();
+        private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
 
         public static void Main(string[] args)
         {
-            while (true)
+            if (ConnectionService.HasInternetConnection())
             {
-                if (ConnectionService.HasInternetConnection())
+                string option;
+                do
                 {
+                    Console.WriteLine();
                     MainMenu();
-                    var option = Console.ReadLine();
-                    while (option != null && (!option.Equals("1") || !option.Equals("2") || !option.Equals("3") || !option.Equals("4")))
+                    option = Console.ReadLine();
+                    switch (option)
                     {
-                        switch (option)
-                        {
-                            case "1":
-                                FirstOption();
-                                break;
-                            case "2":
-                                GetBestChallengers().Wait();
-                                break;
-                            case "3":
-                                AboutApp();
-                                break;
-                            case "4":
-                                Environment.Exit(1);
-                                break;
-                            default:
-                                Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
-                                option = Console.ReadLine();
-                                break;
-                        }
-                        break;
+                        case "1":
+                            GetLeagueOfSummoner().Wait();
+                            break;
+                        case "2":
+                            GetBestChallengers().Wait();
+                            break;
+                        case "3":
+                            AboutApp();
+                            break;
+                        case "4":
+                            Environment.Exit(1);
+                            break;
+                        default:
+                            Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
+                            option = Console.ReadLine();
+                            break;
                     }
-                }
-                else
-                {
-                    Console.WriteLine(AppResources.Main_NoInternetConnection);
-                    ExitApp();
-                }
+                } while (option != null && option != "4");
+            }
+            else
+            {
+                Console.WriteLine(AppResources.Main_NoInternetConnection);
+                ExitApp();
             }
         }
 
         private static void MainMenu()
         {
-            Console.WriteLine();
             Console.WriteLine(AppResources.Main_WelcomeUser);
             Console.WriteLine(AppResources.Main_ChooseFunction);
-            Console.WriteLine("1. Opcja nr 1");
+            Console.WriteLine(AppResources.MainMenu_GetLeagueOfSummoner);
             Console.WriteLine(AppResources.MainMenu_GetChallengerList);
             Console.WriteLine(AppResources.MainManu_AboutApp);
             Console.WriteLine(AppResources.Main_Quit);
@@ -70,13 +68,40 @@ namespace LeagueInformer
             Environment.Exit(1);
         }
 
-        private static void FirstOption()
+        private async static Task GetLeagueOfSummoner()
         {
-            //TODO do podmiany na funkcję w programie
-            var response = SummonerService.GetInformationAboutSummoner("Skirtek").Result;
-            Console.WriteLine(response.IsSuccess ?
-                response.AccountId : response.Message);
-            Console.WriteLine();
+            Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
+            string summonerName = Console.ReadLine();
+
+            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            if (!summonerResponse.IsSuccess || summonerResponse == null)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(summonerResponse.Message)
+                    ? AppResources.Error_Undefined
+                    : summonerResponse.Message);
+                return;
+            }
+
+            string summonerId = summonerResponse.Id;
+            var result = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summonerId);
+
+            if (!result.IsSuccess || result == null)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(result.Message)
+                    ? AppResources.Error_Undefined
+                    : result.Message);
+                return;
+            }
+
+            Console.WriteLine(result.IsSuccess ?
+                $" Nazwa Ligi: {result.leagueName} " +
+                $"\n Summoner Name: {result.summonerName} " +
+                $"\n Tier: {result.tier} " +
+                $"\n Wygrane: {result.wins} " +
+                $"\n Przegrane: {result.losses} " +
+                $"\n Typ Kolejki: {result.queueType}" : result.Message);
         }
 
         private static async Task GetBestChallengers()
@@ -111,7 +136,6 @@ namespace LeagueInformer
             {
                 Console.WriteLine(AppResources.Error_Undefined);
             }
-            Console.WriteLine();
         }
 
         private static void AboutApp()
@@ -132,10 +156,10 @@ namespace LeagueInformer
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\tTesters\nBartosz Mróz\t Filip Nowicki");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("* * * Wciśnij dowolny klawisz aby kontynuować * * *");
+            Console.WriteLine();
+            Console.WriteLine(AppResources.ClickToContinue);
             Console.ResetColor();
             Console.ReadKey();
-            Console.WriteLine();
         }
     }
 }

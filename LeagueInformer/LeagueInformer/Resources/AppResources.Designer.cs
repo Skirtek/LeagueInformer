@@ -61,6 +61,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to * * * Wciśnij dowolny klawisz aby kontynuować * * *.
+        /// </summary>
+        internal static string ClickToContinue {
+            get {
+                return ResourceManager.GetString("ClickToContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Naciśnij ENTER, aby zakończyć działanie programu.
         /// </summary>
         internal static string Common_ExitApp {
@@ -196,6 +205,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Podaj nazwe Przywoływacza: .
+        /// </summary>
+        internal static string GetLeagueOfSummoner_EnterName {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_EnterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wybierz interesującą Cię funkcję:.
         /// </summary>
         internal static string Main_ChooseFunction {
@@ -247,6 +265,15 @@ namespace LeagueInformer.Resources {
         internal static string MainMenu_GetChallengerList {
             get {
                 return ResourceManager.GetString("MainMenu_GetChallengerList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Informacje o przywoływaczu na serwerze EUNE.
+        /// </summary>
+        internal static string MainMenu_GetLeagueOfSummoner {
+            get {
+                return ResourceManager.GetString("MainMenu_GetLeagueOfSummoner", resourceCulture);
             }
         }
     }
