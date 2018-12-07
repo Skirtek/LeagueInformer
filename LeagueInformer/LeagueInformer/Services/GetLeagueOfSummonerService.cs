@@ -8,32 +8,35 @@ using Newtonsoft.Json.Linq;
 
 namespace LeagueInformer.Services
 {
-    public class GetSummonerService : IGetSummoner
+    public class GetLeagueOfSummoner : IGetLeagueOfSummonerInformation
     {
         private readonly ApiClient _apiClient = new ApiClient();
 
-        public async Task<Summoner> GetInformationAboutSummoner(string id)
+        public async Task<LeagueOfSummoner> GetLeagueOfSummonerInformation(string id)
         {
             try
             {
-                JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/league/v4/positions/by-summoner/{id}?api_key={AppSettings.AuthorizationApiKey}"));
+                //JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
+                //    $"https://eun1.api.riotgames.com/lol/league/v4/positions/by-summoner/{id}?api_key={AppSettings.AuthorizationApiKey}"));
 
-                return response == null ? new Summoner { IsSuccess = false } :
-                    new Summoner
+                JArray response = JArray.Parse(await _apiClient.GetJsonFromUrl(
+                    $"https://eun1.api.riotgames.com/lol/league/v4/positions/by-summoner/7n5j9NtjR5MO6gCvlmYfQWnxD6mhCrHD43Q8CJ3SVCksbns?api_key=RGAPI-10da1cca-dedc-4293-9c4d-2754a8497acf"));
+                var data = JObject.FromObject(response[0]);
+                return response == null ? new LeagueOfSummoner { IsSuccess = false } :
+                    new LeagueOfSummoner
                     {
                         IsSuccess = true,
-                        summonerName = response.GetValue("summonerName").ToString(),
-                        tier = response.GetValue("tier").ToString(),
-                        wins = response.GetValue("wins").ToString(),
-                        losses = response.GetValue("losses").ToString(),
-                        leagueName = response.GetValue("leagueName").ToString(),
-                        queueType = response.GetValue("queueType").ToString()
+                        summonerName = data.GetValue("summonerName").ToString(),
+                        tier = data.GetValue("tier").ToString(),
+                        wins = data.GetValue("wins").ToString(),
+                        losses = data.GetValue("losses").ToString(),
+                        leagueName = data.GetValue("leagueName").ToString(),
+                        queueType = data.GetValue("queueType").ToString()
                     };
             }
             catch (Exception ex)
             {
-                return new Summoner { IsSuccess = false, Message = Error_Handler(ex.Message) };
+                return new LeagueOfSummoner { IsSuccess = false, Message = Error_Handler(ex.Message) };
             }
         }
 

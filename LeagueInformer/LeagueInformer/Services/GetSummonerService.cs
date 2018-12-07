@@ -16,9 +16,11 @@ namespace LeagueInformer.Services
         {
             try
             {
-                JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{nickname}?api_key={AppSettings.AuthorizationApiKey}"));
+                //JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
+                //    $"https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{nickname}?api_key={AppSettings.AuthorizationApiKey}"));
 
+                JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
+                    $"https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Skirtek?api_key=RGAPI-10da1cca-dedc-4293-9c4d-2754a8497acf"));
                 return response == null ? new Summoner {IsSuccess = false} : 
                     new Summoner
                     {

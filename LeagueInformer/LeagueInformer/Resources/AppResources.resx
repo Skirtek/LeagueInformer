@@ -181,4 +181,10 @@ Do zobaczenia!</value>
   <data name="MainManu_AboutApp" xml:space="preserve">
     <value>3. O aplikacji</value>
   </data>
+  <data name="GetLeagueOfSummoner_EnterName" xml:space="preserve">
+    <value>Podaj nazwe Przywoływacza: </value>
+  </data>
+  <data name="MainMenu_GetLeagueOfSummoner" xml:space="preserve">
+    <value>1. Informacje o przywoływaczu na EUNE</value>
+  </data>
 </root>

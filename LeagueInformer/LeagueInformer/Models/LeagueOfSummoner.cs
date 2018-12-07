@@ -1,11 +1,16 @@
 ﻿namespace LeagueInformer.Models
 {
-    public class Summoner
+    public class LeagueOfSummoner
     {
 
         /// <summary>
         /// necessery data for LeagueOfSummoner
         /// </summary>
+         
+        public bool IsSuccess { get; set; }
+        
+        public string Message { get; set; }
+
         public string summonerName { get; set; }
 
         public string tier { get; set; }

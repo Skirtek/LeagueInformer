@@ -11,6 +11,7 @@ namespace LeagueInformer
         private static readonly ConnectionService ConnectionService = new ConnectionService();
         private static readonly GetSummonerService SummonerService = new GetSummonerService();
         private static readonly GetChallengersService ChallengersService = new GetChallengersService();
+        private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
 
         public static void Main(string[] args)
         {
@@ -18,7 +19,7 @@ namespace LeagueInformer
             {
                 Console.WriteLine(AppResources.Main_WelcomeUser);
                 Console.WriteLine(AppResources.Main_ChooseFunction);
-                Console.WriteLine("1. Opcja nr 1");
+                Console.WriteLine(AppResources.MainMenu_GetLeagueOfSummoner);
                 Console.WriteLine(AppResources.MainMenu_GetChallengerList);
                 Console.WriteLine(AppResources.MainManu_AboutApp);
                 Console.WriteLine(AppResources.Main_Quit);
@@ -28,7 +29,7 @@ namespace LeagueInformer
                     switch (option)
                     {
                         case "1":
-                            FirstOption();
+                            GetLeagueOfSummoner().Wait();
                             break;
                         case "2":
                             GetBestChallengers().Wait();
@@ -61,12 +62,42 @@ namespace LeagueInformer
             Environment.Exit(1);
         }
 
-        private static void FirstOption()
+        private async static Task GetLeagueOfSummoner()
         {
-            //TODO do podmiany na funkcję w programie
-            var response = SummonerService.GetInformationAboutSummoner("Skirtek").Result;
-            Console.WriteLine(response.IsSuccess ?
-                $"{response.Id}, {response.Name}" : response.Message);
+            Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
+            string summonerName = Console.ReadLine();
+           
+            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            if (!summonerResponse.IsSuccess || summonerResponse == null)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(summonerResponse.Message)
+                    ? AppResources.Error_Undefined
+                    : summonerResponse.Message);
+                ExitApp();
+                return;
+            }
+
+            string summonerId = summonerResponse.Id;
+            var result = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summonerId);
+
+            if (!result.IsSuccess || result == null)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(result.Message)
+                    ? AppResources.Error_Undefined
+                    : result.Message);
+                ExitApp();
+                return;
+            }
+
+            Console.WriteLine(result.IsSuccess ?
+                $" Nazwa Ligi: {result.leagueName} " +
+                $"\n Summoner Name: {result.summonerName} " +
+                $"\n Tier: {result.tier} " +
+                $"\n Wygrane: {result.wins} " +
+                $"\n Przegrane: {result.losses} " +
+                $"\n Typ Kolejki: {result.queueType}" : result.Message);
             ExitApp();
         }
 
