@@ -17,15 +17,12 @@ namespace LeagueInformer
         {
             if (ConnectionService.HasInternetConnection())
             {
-                Console.WriteLine(AppResources.Main_WelcomeUser);
-                Console.WriteLine(AppResources.Main_ChooseFunction);
-                Console.WriteLine(AppResources.MainMenu_GetLeagueOfSummoner);
-                Console.WriteLine(AppResources.MainMenu_GetChallengerList);
-                Console.WriteLine(AppResources.MainManu_AboutApp);
-                Console.WriteLine(AppResources.Main_Quit);
-                var option = Console.ReadLine();
-                while (option != null && (!option.Equals("1") || !option.Equals("2") || !option.Equals("3") || !option.Equals("4")))
+                string option;
+                do
                 {
+                    Console.WriteLine();
+                    MainMenu();
+                    option = Console.ReadLine();
                     switch (option)
                     {
                         case "1":
@@ -45,14 +42,23 @@ namespace LeagueInformer
                             option = Console.ReadLine();
                             break;
                     }
-                }
-
+                } while (option != null && option != "4");
             }
             else
             {
                 Console.WriteLine(AppResources.Main_NoInternetConnection);
                 ExitApp();
             }
+        }
+
+        private static void MainMenu()
+        {
+            Console.WriteLine(AppResources.Main_WelcomeUser);
+            Console.WriteLine(AppResources.Main_ChooseFunction);
+            Console.WriteLine(AppResources.MainMenu_GetLeagueOfSummoner);
+            Console.WriteLine(AppResources.MainMenu_GetChallengerList);
+            Console.WriteLine(AppResources.MainManu_AboutApp);
+            Console.WriteLine(AppResources.Main_Quit);
         }
 
         private static void ExitApp()
@@ -66,7 +72,7 @@ namespace LeagueInformer
         {
             Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
             string summonerName = Console.ReadLine();
-           
+
             var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
             if (!summonerResponse.IsSuccess || summonerResponse == null)
             {
@@ -74,7 +80,6 @@ namespace LeagueInformer
                     string.IsNullOrEmpty(summonerResponse.Message)
                     ? AppResources.Error_Undefined
                     : summonerResponse.Message);
-                ExitApp();
                 return;
             }
 
@@ -87,7 +92,6 @@ namespace LeagueInformer
                     string.IsNullOrEmpty(result.Message)
                     ? AppResources.Error_Undefined
                     : result.Message);
-                ExitApp();
                 return;
             }
 
@@ -98,7 +102,6 @@ namespace LeagueInformer
                 $"\n Wygrane: {result.wins} " +
                 $"\n Przegrane: {result.losses} " +
                 $"\n Typ Kolejki: {result.queueType}" : result.Message);
-            ExitApp();
         }
 
         private static async Task GetBestChallengers()
@@ -133,7 +136,6 @@ namespace LeagueInformer
             {
                 Console.WriteLine(AppResources.Error_Undefined);
             }
-            ExitApp();
         }
 
         private static void AboutApp()
@@ -153,8 +155,11 @@ namespace LeagueInformer
             Console.WriteLine("\n\tDevelopers\nBartosz Mróz\tFilip Nowicki\nRobert Dobiała\tIgor Drążkowski\n");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\tTesters\nBartosz Mróz\t Filip Nowicki");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine();
+            Console.WriteLine(AppResources.ClickToContinue);
             Console.ResetColor();
-            ExitApp();
+            Console.ReadKey();
         }
     }
 }

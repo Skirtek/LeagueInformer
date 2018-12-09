@@ -187,4 +187,7 @@ Do zobaczenia!</value>
   <data name="MainMenu_GetLeagueOfSummoner" xml:space="preserve">
     <value>1. Informacje o przywoływaczu na serwerze EUNE</value>
   </data>
+  <data name="ClickToContinue" xml:space="preserve">
+    <value>* * * Wciśnij dowolny klawisz aby kontynuować * * *</value>
+  </data>
 </root>
