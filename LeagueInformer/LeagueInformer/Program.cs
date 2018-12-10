@@ -110,7 +110,7 @@ namespace LeagueInformer
 
             if (response.IsSuccess)
             {
-                var bestChallengers = response.ChallengersResponseList.OrderByDescending(x => x.Points).ToList().GetRange(0, 9);
+                var bestChallengers = response.ChallengersResponseList.OrderByDescending(x => x.Points).ToList().GetRange(1, 10);
                 var position = 1;
 
                 foreach (var challenger in bestChallengers)

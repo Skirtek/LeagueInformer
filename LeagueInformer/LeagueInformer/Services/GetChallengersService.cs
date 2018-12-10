@@ -19,7 +19,7 @@ namespace LeagueInformer.Services
             {
                 List<Challengers> challengersList = new List<Challengers>();
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key={AppSettings.AuthorizationApiKey}"));
+                    $"https://eun1.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key={AppSettings.AuthorizationApiKey}"));
 
                 if (response == null || !(response["entries"] is JArray challengersArray))
                 {
