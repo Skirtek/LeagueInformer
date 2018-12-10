@@ -1,14 +1,9 @@
-﻿using LeagueInformer.Enums;
+﻿using System.Collections.Generic;
 
 namespace LeagueInformer.Models
 {
     public class ServerStatusResponse
     {
-        /// <summary>
-        /// Indicates status of response defined in enum
-        /// </summary>
-        public ServerStatus ServerStatusState { get; set; }
-
         /// <summary>
         /// Property which contains name of server
         /// </summary>
@@ -23,5 +18,7 @@ namespace LeagueInformer.Models
         /// String which contains error message
         /// </summary>
         public string Message { get; set; }
+
+        private List<Server> ServicesStatuses { get; set; }
     }
 }

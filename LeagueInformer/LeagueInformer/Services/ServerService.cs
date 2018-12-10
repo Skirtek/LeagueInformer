@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
+using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
+using LeagueInformer.Models;
 using Newtonsoft.Json.Linq;
 
 namespace LeagueInformer.Services
@@ -10,18 +12,41 @@ namespace LeagueInformer.Services
     {
         private readonly ApiClient _apiClient = new ApiClient();
 
-        public async Task<bool> GetServerStatus(string serverName)
+        public async Task<ServerStatusResponse> GetServerStatus(string serverName)
         {
             try
             {
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
                     $"https://eun1.api.riotgames.com/lol/status/v3/shard-data?api_key={AppSettings.AuthorizationApiKey}"));
-                var x = response.GetValue("name").ToString();
-                return true;
+
+                if (response == null)
+                {
+                    return new ServerStatusResponse
+                    {
+                        IsSuccess = false,
+                        Message = ServerStatus.Error.ToString()
+                    };
+                }
+
+                JArray servicesStatus = JArray.FromObject(response.GetValue("services"));
+                foreach (var status in servicesStatus)
+                {
+                    var x = status.ToObject<Server>();
+                }
+
+                return new ServerStatusResponse
+                {
+                    IsSuccess = true,
+                    //Name = response.GetValue("name").ToString()
+                };
             }
             catch (Exception ex)
             {
-                return false;
+                return new ServerStatusResponse
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
             }
         }
     }

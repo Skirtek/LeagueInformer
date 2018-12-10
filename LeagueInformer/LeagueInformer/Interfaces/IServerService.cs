@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using LeagueInformer.Enums;
+using LeagueInformer.Models;
 
 namespace LeagueInformer.Interfaces
 {
@@ -9,6 +11,6 @@ namespace LeagueInformer.Interfaces
         /// </summary>
         /// <param name="serverName"></param>
         /// <returns></returns>
-        Task<bool> GetServerStatus(string serverName);
+        Task<ServerStatusResponse> GetServerStatus(string serverName);
     }
 }

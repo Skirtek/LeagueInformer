@@ -58,6 +58,7 @@
     <Compile Include="Models\LeagueOfSummoner.cs" />
     <Compile Include="Models\Challengers.cs" />
     <Compile Include="Models\ChallengersList.cs" />
+    <Compile Include="Models\Server.cs" />
     <Compile Include="Models\ServerStatusResponse.cs" />
     <Compile Include="Models\Summoner.cs" />
     <Compile Include="Program.cs" />
