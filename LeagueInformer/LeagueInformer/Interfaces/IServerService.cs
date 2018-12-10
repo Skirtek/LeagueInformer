@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using LeagueInformer.Enums; //TODO 2
 using LeagueInformer.Models;
 
 namespace LeagueInformer.Interfaces
