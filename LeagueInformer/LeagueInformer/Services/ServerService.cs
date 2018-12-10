@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
 using LeagueInformer.Enums;
@@ -16,6 +17,7 @@ namespace LeagueInformer.Services
         {
             try
             {
+                var servicesList = new List<Server>();
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
                     $"https://eun1.api.riotgames.com/lol/status/v3/shard-data?api_key={AppSettings.AuthorizationApiKey}"));
 
@@ -31,13 +33,18 @@ namespace LeagueInformer.Services
                 JArray servicesStatus = JArray.FromObject(response.GetValue("services"));
                 foreach (var status in servicesStatus)
                 {
-                    var x = status.ToObject<Server>();
+                    var serverService = status.ToObject<Server>();
+                    serverService.ServerStatusState = serverService.Status == "online" 
+                                                          ? ServerStatus.Online
+                                                          : ServerStatus.Offline;
+                    servicesList.Add(serverService);
                 }
 
                 return new ServerStatusResponse
                 {
                     IsSuccess = true,
-                    //Name = response.GetValue("name").ToString()
+                    Name = response.GetValue("name").ToString(),
+                    ServicesStatuses = servicesList
                 };
             }
             catch (Exception ex)

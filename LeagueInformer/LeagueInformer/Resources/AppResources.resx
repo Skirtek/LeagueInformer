@@ -190,4 +190,7 @@ Do zobaczenia!</value>
   <data name="ClickToContinue" xml:space="preserve">
     <value>* * * Wciśnij dowolny klawisz aby kontynuować * * *</value>
   </data>
+    <data name="GetServerStatus_DataForServer" xml:space="preserve">
+    <value>{0}Dane dla serwera {1}{2}</value>
+  </data>
 </root>

@@ -19,6 +19,7 @@ namespace LeagueInformer.Models
         /// </summary>
         public string Message { get; set; }
 
-        private List<Server> ServicesStatuses { get; set; }
+        //TODO 1
+        public List<Server> ServicesStatuses { get; set; }
     }
 }

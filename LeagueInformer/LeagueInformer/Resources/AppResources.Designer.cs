@@ -214,6 +214,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}Dane dla serwera {1}{2}.
+        /// </summary>
+        internal static string GetServerStatus_DataForServer {
+            get {
+                return ResourceManager.GetString("GetServerStatus_DataForServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wybierz interesującą Cię funkcję:.
         /// </summary>
         internal static string Main_ChooseFunction {

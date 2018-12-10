@@ -63,6 +63,7 @@ namespace LeagueInformer
             Console.WriteLine(AppResources.MainMenu_GetChallengerList);
             Console.WriteLine(AppResources.MainManu_AboutApp);
             Console.WriteLine(AppResources.Main_Quit);
+            //TODO 3
         }
 
         private static void ExitApp()
@@ -112,39 +113,53 @@ namespace LeagueInformer
         {
             var response = await ChallengersService.GetListOfChallengers();
 
-            if (response.IsSuccess)
-            {
-                var bestChallengers = response.ChallengersResponseList.OrderByDescending(x => x.Points).ToList().GetRange(1, 10);
-                var position = 1;
-
-                foreach (var challenger in bestChallengers)
-                {
-                    Console.WriteLine(
-                        AppResources.GetBestChallengers_StatisticsPatten,
-                        position,
-                        challenger.SummonerName,
-                        challenger.Wins,
-                        challenger.Losses,
-                        challenger.Points);
-                    Console.WriteLine(challenger.Veteran
-                        ? AppResources.GetBestChallengers_IsVeteran
-                        : AppResources.GetBestChallengers_IsNotVeteran);
-                    Console.WriteLine(challenger.HotStreak
-                        ? AppResources.GetBestChallengers_HasHotStreak
-                        : AppResources.GetBestChallengers_HasNotHotStreak);
-                    Console.WriteLine();
-                    position++;
-                }
-            }
-            else
+            if (!response.IsSuccess)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
+                return;
+            }
+
+            var bestChallengers = response.ChallengersResponseList.OrderByDescending(x => x.Points).ToList()
+                .GetRange(1, 10);
+            var position = 1;
+
+            foreach (var challenger in bestChallengers)
+            {
+                Console.WriteLine(
+                    AppResources.GetBestChallengers_StatisticsPatten,
+                    position,
+                    challenger.SummonerName,
+                    challenger.Wins,
+                    challenger.Losses,
+                    challenger.Points);
+                Console.WriteLine(challenger.Veteran
+                    ? AppResources.GetBestChallengers_IsVeteran
+                    : AppResources.GetBestChallengers_IsNotVeteran);
+                Console.WriteLine(challenger.HotStreak
+                    ? AppResources.GetBestChallengers_HasHotStreak
+                    : AppResources.GetBestChallengers_HasNotHotStreak);
+                Console.WriteLine();
+                position++;
             }
         }
 
         private static async Task GetServerStatus()
         {
-            await ServerService.GetServerStatus("eune");
+            var response = await ServerService.GetServerStatus("eune");
+            if (!response.IsSuccess)
+            {
+                Console.WriteLine(AppResources.Error_Undefined);
+                return;
+            }
+
+            Console.WriteLine(AppResources.GetServerStatus_DataForServer, Environment.NewLine, response.Name, Environment.NewLine);
+
+            foreach (var serviceStatus in response.ServicesStatuses)
+            {
+                Console.WriteLine(serviceStatus.Name);
+                Console.WriteLine(serviceStatus.ServerStatusState);
+                Console.WriteLine();
+            }
         }
 
         private static void AboutApp()
