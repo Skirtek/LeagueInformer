@@ -12,6 +12,7 @@ namespace LeagueInformer
         private static readonly GetSummonerService SummonerService = new GetSummonerService();
         private static readonly GetChallengersService ChallengersService = new GetChallengersService();
         private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
+        private static readonly ServerService ServerService = new ServerService();
 
         public static void Main(string[] args)
         {
@@ -32,9 +33,12 @@ namespace LeagueInformer
                             GetBestChallengers().Wait();
                             break;
                         case "3":
-                            AboutApp();
+                            GetServerStatus().Wait();
                             break;
                         case "4":
+                            AboutApp();
+                            break;
+                        case "5":
                             Environment.Exit(1);
                             break;
                         default:
@@ -42,7 +46,7 @@ namespace LeagueInformer
                             option = Console.ReadLine();
                             break;
                     }
-                } while (option != null && option != "4");
+                } while (option != null && option != "5");
             }
             else
             {
@@ -57,6 +61,7 @@ namespace LeagueInformer
             Console.WriteLine(AppResources.Main_ChooseFunction);
             Console.WriteLine(AppResources.MainMenu_GetLeagueOfSummoner);
             Console.WriteLine(AppResources.MainMenu_GetChallengerList);
+            Console.WriteLine(AppResources.MainMenu_GetServerStatus);
             Console.WriteLine(AppResources.MainManu_AboutApp);
             Console.WriteLine(AppResources.Main_Quit);
         }
@@ -68,13 +73,13 @@ namespace LeagueInformer
             Environment.Exit(1);
         }
 
-        private async static Task GetLeagueOfSummoner()
+        private static async Task GetLeagueOfSummoner()
         {
             Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
             string summonerName = Console.ReadLine();
 
             var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
-            if (!summonerResponse.IsSuccess || summonerResponse == null)
+            if (!summonerResponse.IsSuccess)
             {
                 Console.WriteLine(
                     string.IsNullOrEmpty(summonerResponse.Message)
@@ -86,7 +91,7 @@ namespace LeagueInformer
             string summonerId = summonerResponse.Id;
             var result = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summonerId);
 
-            if (!result.IsSuccess || result == null)
+            if (!result.IsSuccess)
             {
                 Console.WriteLine(
                     string.IsNullOrEmpty(result.Message)
@@ -108,33 +113,52 @@ namespace LeagueInformer
         {
             var response = await ChallengersService.GetListOfChallengers();
 
-            if (response.IsSuccess)
-            {
-                var bestChallengers = response.ChallengersResponseList.OrderByDescending(x => x.Points).ToList().GetRange(1, 10);
-                var position = 1;
-
-                foreach (var challenger in bestChallengers)
-                {
-                    Console.WriteLine(
-                        AppResources.GetBestChallengers_StatisticsPatten,
-                        position,
-                        challenger.SummonerName,
-                        challenger.Wins,
-                        challenger.Losses,
-                        challenger.Points);
-                    Console.WriteLine(challenger.Veteran
-                        ? AppResources.GetBestChallengers_IsVeteran
-                        : AppResources.GetBestChallengers_IsNotVeteran);
-                    Console.WriteLine(challenger.HotStreak
-                        ? AppResources.GetBestChallengers_HasHotStreak
-                        : AppResources.GetBestChallengers_HasNotHotStreak);
-                    Console.WriteLine();
-                    position++;
-                }
-            }
-            else
+            if (!response.IsSuccess)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
+                return;
+            }
+
+            var bestChallengers = response.ChallengersResponseList.OrderByDescending(x => x.Points).ToList()
+                .GetRange(1, 10);
+            var position = 1;
+
+            foreach (var challenger in bestChallengers)
+            {
+                Console.WriteLine(
+                    AppResources.GetBestChallengers_StatisticsPatten,
+                    position,
+                    challenger.SummonerName,
+                    challenger.Wins,
+                    challenger.Losses,
+                    challenger.Points);
+                Console.WriteLine(challenger.Veteran
+                    ? AppResources.GetBestChallengers_IsVeteran
+                    : AppResources.GetBestChallengers_IsNotVeteran);
+                Console.WriteLine(challenger.HotStreak
+                    ? AppResources.GetBestChallengers_HasHotStreak
+                    : AppResources.GetBestChallengers_HasNotHotStreak);
+                Console.WriteLine();
+                position++;
+            }
+        }
+
+        private static async Task GetServerStatus()
+        {
+            var response = await ServerService.GetServerStatus("eune");
+            if (!response.IsSuccess)
+            {
+                Console.WriteLine(AppResources.Error_Undefined);
+                return;
+            }
+
+            Console.WriteLine(AppResources.GetServerStatus_DataForServer, Environment.NewLine, response.Name, Environment.NewLine);
+
+            foreach (var serviceStatus in response.ServicesStatuses)
+            {
+                Console.WriteLine(serviceStatus.Name);
+                Console.WriteLine(serviceStatus.ServerStatusState);
+                Console.WriteLine();
             }
         }
 

@@ -49,13 +49,17 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Enums\Champions.cs" />
     <Compile Include="Enums\ErrorEnum.cs" />
+    <Compile Include="Enums\ServerStatus.cs" />
     <Compile Include="Interfaces\IGetLeagueOfSummoner.cs" />
     <Compile Include="Interfaces\IConnection.cs" />
     <Compile Include="Interfaces\IGetChallengerscs.cs" />
     <Compile Include="Interfaces\IGetSummoner.cs" />
+    <Compile Include="Interfaces\IServerService.cs" />
     <Compile Include="Models\LeagueOfSummoner.cs" />
     <Compile Include="Models\Challengers.cs" />
     <Compile Include="Models\ChallengersList.cs" />
+    <Compile Include="Models\Server.cs" />
+    <Compile Include="Models\ServerStatusResponse.cs" />
     <Compile Include="Models\Summoner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +72,7 @@
     <Compile Include="Services\GetChallengersService.cs" />
     <Compile Include="Services\GetLeagueOfSummonerService.cs" />
     <Compile Include="Services\GetSummonerService.cs" />
+    <Compile Include="Services\ServerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
