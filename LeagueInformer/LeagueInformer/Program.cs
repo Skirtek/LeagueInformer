@@ -12,6 +12,7 @@ namespace LeagueInformer
         private static readonly GetSummonerService SummonerService = new GetSummonerService();
         private static readonly GetChallengersService ChallengersService = new GetChallengersService();
         private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
+        private static readonly ServerService ServerService = new ServerService();
 
         public static void Main(string[] args)
         {
@@ -35,6 +36,9 @@ namespace LeagueInformer
                             AboutApp();
                             break;
                         case "4":
+                            GetServerStatus().Wait();
+                            break;
+                        case "5":
                             Environment.Exit(1);
                             break;
                         default:
@@ -42,7 +46,7 @@ namespace LeagueInformer
                             option = Console.ReadLine();
                             break;
                     }
-                } while (option != null && option != "4");
+                } while (option != null && option != "5");
             }
             else
             {
@@ -68,13 +72,13 @@ namespace LeagueInformer
             Environment.Exit(1);
         }
 
-        private async static Task GetLeagueOfSummoner()
+        private static async Task GetLeagueOfSummoner()
         {
             Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
             string summonerName = Console.ReadLine();
 
             var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
-            if (!summonerResponse.IsSuccess || summonerResponse == null)
+            if (!summonerResponse.IsSuccess)
             {
                 Console.WriteLine(
                     string.IsNullOrEmpty(summonerResponse.Message)
@@ -86,7 +90,7 @@ namespace LeagueInformer
             string summonerId = summonerResponse.Id;
             var result = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summonerId);
 
-            if (!result.IsSuccess || result == null)
+            if (!result.IsSuccess)
             {
                 Console.WriteLine(
                     string.IsNullOrEmpty(result.Message)
@@ -136,6 +140,11 @@ namespace LeagueInformer
             {
                 Console.WriteLine(AppResources.Error_Undefined);
             }
+        }
+
+        private static async Task GetServerStatus()
+        {
+            await ServerService.GetServerStatus("eune");
         }
 
         private static void AboutApp()
