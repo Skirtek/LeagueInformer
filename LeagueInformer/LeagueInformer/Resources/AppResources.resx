@@ -158,7 +158,7 @@
 Do zobaczenia!</value>
   </data>
   <data name="Main_Quit" xml:space="preserve">
-    <value>4. Wyjdź</value>
+    <value>5. Wyjdź</value>
   </data>
   <data name="Main_WelcomeUser" xml:space="preserve">
     <value>Witaj w League Informer!</value>
@@ -179,7 +179,7 @@ Do zobaczenia!</value>
     <value>Gracz rozegrał ponad 100 gier w tej lidze</value>
   </data>
   <data name="MainManu_AboutApp" xml:space="preserve">
-    <value>3. O aplikacji</value>
+    <value>4. O aplikacji</value>
   </data>
   <data name="GetLeagueOfSummoner_EnterName" xml:space="preserve">
     <value>Podaj nazwe Przywoływacza: </value>
@@ -190,7 +190,10 @@ Do zobaczenia!</value>
   <data name="ClickToContinue" xml:space="preserve">
     <value>* * * Wciśnij dowolny klawisz aby kontynuować * * *</value>
   </data>
-    <data name="GetServerStatus_DataForServer" xml:space="preserve">
+  <data name="GetServerStatus_DataForServer" xml:space="preserve">
     <value>{0}Dane dla serwera {1}{2}</value>
+  </data>
+  <data name="MainMenu_GetServerStatus" xml:space="preserve">
+    <value>3. Sprawdź status usług wybranego serwera gry</value>
   </data>
 </root>

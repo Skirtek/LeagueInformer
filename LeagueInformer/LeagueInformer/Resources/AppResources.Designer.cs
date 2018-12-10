@@ -242,7 +242,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4. Wyjdź.
+        ///   Looks up a localized string similar to 5. Wyjdź.
         /// </summary>
         internal static string Main_Quit {
             get {
@@ -260,7 +260,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3. O aplikacji.
+        ///   Looks up a localized string similar to 4. O aplikacji.
         /// </summary>
         internal static string MainManu_AboutApp {
             get {
@@ -283,6 +283,15 @@ namespace LeagueInformer.Resources {
         internal static string MainMenu_GetLeagueOfSummoner {
             get {
                 return ResourceManager.GetString("MainMenu_GetLeagueOfSummoner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Sprawdź status usług wybranego serwera gry.
+        /// </summary>
+        internal static string MainMenu_GetServerStatus {
+            get {
+                return ResourceManager.GetString("MainMenu_GetServerStatus", resourceCulture);
             }
         }
     }

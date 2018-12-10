@@ -33,10 +33,10 @@ namespace LeagueInformer
                             GetBestChallengers().Wait();
                             break;
                         case "3":
-                            AboutApp();
+                            GetServerStatus().Wait();
                             break;
                         case "4":
-                            GetServerStatus().Wait();
+                            AboutApp();
                             break;
                         case "5":
                             Environment.Exit(1);
@@ -61,9 +61,9 @@ namespace LeagueInformer
             Console.WriteLine(AppResources.Main_ChooseFunction);
             Console.WriteLine(AppResources.MainMenu_GetLeagueOfSummoner);
             Console.WriteLine(AppResources.MainMenu_GetChallengerList);
+            Console.WriteLine(AppResources.MainMenu_GetServerStatus);
             Console.WriteLine(AppResources.MainManu_AboutApp);
             Console.WriteLine(AppResources.Main_Quit);
-            //TODO 3
         }
 
         private static void ExitApp()

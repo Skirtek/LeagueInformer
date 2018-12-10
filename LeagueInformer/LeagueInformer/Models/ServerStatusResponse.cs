@@ -19,7 +19,9 @@ namespace LeagueInformer.Models
         /// </summary>
         public string Message { get; set; }
 
-        //TODO 1
+        /// <summary>
+        /// List which contains list server service e.g. Game, Store, Client etc. and statuses of this services
+        /// </summary>
         public List<Server> ServicesStatuses { get; set; }
     }
 }
