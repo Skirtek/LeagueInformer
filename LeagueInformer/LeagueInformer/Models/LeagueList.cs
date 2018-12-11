@@ -15,8 +15,13 @@ namespace LeagueInformer.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// List of all passed in JSON masters
+        /// List of all passed in JSON league members
         /// </summary>
         public List<LeagueDetails> LeagueDetailsResponseList { get; set; }
+
+        /// <summary>
+        /// Information about summoner league
+        /// </summary>
+        public LeagueOfSummoner LeagueInfo { get; set; }
     }
 }

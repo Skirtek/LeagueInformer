@@ -43,7 +43,8 @@ namespace LeagueInformer.Services
                 return new LeagueList
                 {
                     IsSuccess = true,
-                    LeagueDetailsResponseList = leagueMembersList
+                    LeagueDetailsResponseList = leagueMembersList,
+                    LeagueInfo = summonerLeague
                 };
             }
             catch (Exception ex)
