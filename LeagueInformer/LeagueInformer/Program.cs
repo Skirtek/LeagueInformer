@@ -102,12 +102,13 @@ namespace LeagueInformer
             }
 
             Console.WriteLine(result.IsSuccess ?
-                $" Nazwa Ligi: {result.leagueName} " +
-                $"\n Summoner Name: {result.summonerName} " +
-                $"\n Tier: {result.tier} " +
-                $"\n Wygrane: {result.wins} " +
-                $"\n Przegrane: {result.losses} " +
-                $"\n Typ Kolejki: {result.queueType}" : result.Message);
+                $"Nazwa przywoływacza: {result.SummonerLeagueInfo.summonerName} " +
+                $"{Environment.NewLine}Nazwa ligi: {result.SummonerLeagueInfo.leagueName} " +
+                $"{Environment.NewLine}Tier: {result.SummonerLeagueInfo.tier} " +
+                $"{Environment.NewLine}Ranga: {result.SummonerLeagueInfo.rank} " +
+                $"{Environment.NewLine}Wygrane: {result.SummonerLeagueInfo.wins} " +
+                $"{Environment.NewLine}Przegrane: {result.SummonerLeagueInfo.losses} " +
+                $"{Environment.NewLine}Typ kolejki: {result.SummonerLeagueInfo.queueType}" : result.Message);
         }
 
         private static async Task GetBestMasters()
