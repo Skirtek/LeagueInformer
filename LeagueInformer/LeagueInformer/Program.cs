@@ -21,9 +21,9 @@ namespace LeagueInformer
                 string option;
                 do
                 {
-                    Console.WriteLine();
                     MainMenu();
                     option = Console.ReadLine();
+                    Console.WriteLine(AppResources.Common_ChosenOption, Environment.NewLine, option);
                     switch (option)
                     {
                         case "1":
@@ -57,13 +57,14 @@ namespace LeagueInformer
 
         private static void MainMenu()
         {
-            Console.WriteLine(AppResources.Main_WelcomeUser);
-            Console.WriteLine(AppResources.Main_ChooseFunction);
-            Console.WriteLine(AppResources.MainMenu_GetLeagueOfSummoner);
-            Console.WriteLine(AppResources.MainMenu_GetChallengerList);
-            Console.WriteLine(AppResources.MainMenu_GetServerStatus);
-            Console.WriteLine(AppResources.MainManu_AboutApp);
-            Console.WriteLine(AppResources.Main_Quit);
+            Console.WriteLine();
+
+            foreach (var menuOption in AppSettings.MenuOptions)
+            {
+                Console.WriteLine(menuOption);
+            }
+
+            Console.WriteLine();
         }
 
         private static void ExitApp()
@@ -145,7 +146,32 @@ namespace LeagueInformer
 
         private static async Task GetServerStatus()
         {
-            var response = await ServerService.GetServerStatus("eune");
+            Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
+            var position = 1;
+            foreach (var serverName in AppSettings.ServerAddresses.Keys)
+            {
+                Console.WriteLine(AppResources.GetServerStatus_PrintServersList,
+                    position,
+                    serverName);
+                position++;
+            }
+
+            bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
+            if (!getPosition)
+            {
+                Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
+                return;
+            }
+
+            bool getValue = AppSettings.ServerAddresses.TryGetValue(
+                AppSettings.ServerAddresses.Keys.ElementAt(pos - 1), out string str);
+            if (!getValue)
+            {
+                Console.WriteLine(AppResources.Error_Undefined);
+                return;
+            }
+
+            var response = await ServerService.GetServerStatus(str);
             if (!response.IsSuccess)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
@@ -164,24 +190,12 @@ namespace LeagueInformer
 
         private static void AboutApp()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\tLeague Informer");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\n\tApp version \n\t1.0.0\n");
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("\tProject Owner\n\tBartosz Mróz\n");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\tCEO\n\tBartosz Mróz\n");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\tUX Designer\n\tBartosz Mróz\n");
-            Console.WriteLine("\tUI Designer\nBartosz Mróz\tFilip Nowicki\n");
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\n\tDevelopers\nBartosz Mróz\tFilip Nowicki\nRobert Dobiała\tIgor Drążkowski\n");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("\tTesters\nBartosz Mróz\t Filip Nowicki");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine();
-            Console.WriteLine(AppResources.ClickToContinue);
+            foreach (var role in AppSettings.AboutAppProjectRoles)
+            {
+                Console.ForegroundColor = role.Value;
+                Console.WriteLine(role.Key);
+            }
+
             Console.ResetColor();
             Console.ReadKey();
         }

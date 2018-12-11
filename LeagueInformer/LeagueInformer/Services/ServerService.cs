@@ -19,7 +19,7 @@ namespace LeagueInformer.Services
             {
                 var servicesList = new List<Server>();
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/status/v3/shard-data?api_key={AppSettings.AuthorizationApiKey}"));
+                    $"https://{serverName}.api.riotgames.com/lol/status/v3/shard-data?api_key={AppSettings.AuthorizationApiKey}"));
 
                 if (response == null)
                 {

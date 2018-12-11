@@ -70,6 +70,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}Wybrałeś opcję nr {1}.
+        /// </summary>
+        internal static string Common_ChosenOption {
+            get {
+                return ResourceManager.GetString("Common_ChosenOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Naciśnij ENTER, aby zakończyć działanie programu.
         /// </summary>
         internal static string Common_ExitApp {
@@ -214,11 +223,38 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}Wybierz z listy numer regionu, dla którego chcesz zobaczyć stan usług{1}.
+        /// </summary>
+        internal static string GetServerStatus_ChooseServerFromList {
+            get {
+                return ResourceManager.GetString("GetServerStatus_ChooseServerFromList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}Dane dla serwera {1}{2}.
         /// </summary>
         internal static string GetServerStatus_DataForServer {
             get {
                 return ResourceManager.GetString("GetServerStatus_DataForServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wystąpił błąd, prawdopodobnie wpisałeś niepoprawną wartość, spróbuj jeszcze raz.
+        /// </summary>
+        internal static string GetServerStatus_ParsingFailed {
+            get {
+                return ResourceManager.GetString("GetServerStatus_ParsingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}. {1}.
+        /// </summary>
+        internal static string GetServerStatus_PrintServersList {
+            get {
+                return ResourceManager.GetString("GetServerStatus_PrintServersList", resourceCulture);
             }
         }
         
