@@ -10,7 +10,7 @@ namespace LeagueInformer
     {
         private static readonly ConnectionService ConnectionService = new ConnectionService();
         private static readonly GetSummonerService SummonerService = new GetSummonerService();
-        private static readonly GetChallengersService ChallengersService = new GetChallengersService();
+        private static readonly GetMastersService MastersService = new GetMastersService();
         private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
         private static readonly ServerService ServerService = new ServerService();
 
@@ -30,7 +30,7 @@ namespace LeagueInformer
                             GetLeagueOfSummoner().Wait();
                             break;
                         case "2":
-                            GetBestChallengers().Wait();
+                            GetBestMasters().Wait();
                             break;
                         case "3":
                             GetServerStatus().Wait();
@@ -110,9 +110,9 @@ namespace LeagueInformer
                 $"\n Typ Kolejki: {result.queueType}" : result.Message);
         }
 
-        private static async Task GetBestChallengers()
+        private static async Task GetBestMasters()
         {
-            var response = await ChallengersService.GetListOfChallengers();
+            var response = await MastersService.GetListOfMasterLeague();
 
             if (!response.IsSuccess)
             {
@@ -120,25 +120,25 @@ namespace LeagueInformer
                 return;
             }
 
-            var bestChallengers = response.ChallengersResponseList.OrderByDescending(x => x.Points).ToList()
+            var bestMasters = response.MastersResponseList.OrderByDescending(x => x.Points).ToList()
                 .GetRange(1, 10);
             var position = 1;
 
-            foreach (var challenger in bestChallengers)
+            foreach (var master in bestMasters)
             {
                 Console.WriteLine(
-                    AppResources.GetBestChallengers_StatisticsPatten,
+                    AppResources.GetBestMasters_StatisticsPatten,
                     position,
-                    challenger.SummonerName,
-                    challenger.Wins,
-                    challenger.Losses,
-                    challenger.Points);
-                Console.WriteLine(challenger.Veteran
-                    ? AppResources.GetBestChallengers_IsVeteran
-                    : AppResources.GetBestChallengers_IsNotVeteran);
-                Console.WriteLine(challenger.HotStreak
-                    ? AppResources.GetBestChallengers_HasHotStreak
-                    : AppResources.GetBestChallengers_HasNotHotStreak);
+                    master.SummonerName,
+                    master.Wins,
+                    master.Losses,
+                    master.Points);
+                Console.WriteLine(master.Veteran
+                    ? AppResources.GetBestMasters_IsVeteran
+                    : AppResources.GetBestMasters_IsNotVeteran);
+                Console.WriteLine(master.HotStreak
+                    ? AppResources.GetBestMasters_HasHotStreak
+                    : AppResources.GetBestMasters_HasNotHotStreak);
                 Console.WriteLine();
                 position++;
             }

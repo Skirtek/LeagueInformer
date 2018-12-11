@@ -30,7 +30,7 @@ namespace LeagueInformer
             AppResources.Main_WelcomeUser,
             AppResources.Main_ChooseFunction,
             AppResources.MainMenu_GetLeagueOfSummoner,
-            AppResources.MainMenu_GetChallengerList,
+            AppResources.MainMenu_GetMasterList,
             AppResources.MainMenu_GetServerStatus,
             AppResources.MainManu_AboutApp,
             AppResources.Main_Quit
