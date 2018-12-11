@@ -196,4 +196,16 @@ Do zobaczenia!</value>
   <data name="MainMenu_GetServerStatus" xml:space="preserve">
     <value>3. Sprawdź status usług wybranego serwera gry</value>
   </data>
+    <data name="GetServerStatus_PrintServersList" xml:space="preserve">
+    <value>{0}. {1}</value>
+  </data>
+    <data name="GetServerStatus_ChooseServerFromList" xml:space="preserve">
+    <value>{0}Wybierz z listy numer regionu, dla którego chcesz zobaczyć stan usług{1}</value>
+  </data>
+    <data name="Common_ChosenOption" xml:space="preserve">
+    <value>{0}Wybrałeś opcję nr {1}</value>
+  </data>
+    <data name="GetServerStatus_ParsingFailed" xml:space="preserve">
+    <value>Wystąpił błąd, prawdopodobnie wpisałeś nieprawidłową wartość, spróbuj jeszcze raz</value>
+  </data>
 </root>
