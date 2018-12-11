@@ -2,7 +2,7 @@
 
 namespace LeagueInformer.Models
 {
-    public class ChallengersList
+    public class MastersList
     {
         /// <summary>
         /// Indicates that response was success or not
@@ -15,8 +15,8 @@ namespace LeagueInformer.Models
         public string Message { get; set; }
 
         /// <summary>
-        /// List of all passed in JSON challengers
+        /// List of all passed in JSON masters
         /// </summary>
-        public List<Challengers> ChallengersResponseList { get; set; }
+        public List<Masters> MastersResponseList { get; set; }
     }
 }

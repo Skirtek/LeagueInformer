@@ -2,7 +2,7 @@
 
 namespace LeagueInformer.Models
 {
-    public class Challengers
+    public class Masters
     {
         [JsonProperty("summonerName")]
         public string SummonerName { get; set; }
