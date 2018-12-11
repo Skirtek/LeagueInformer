@@ -206,6 +206,6 @@ Do zobaczenia!</value>
     <value>{0}Wybrałeś opcję nr {1}</value>
   </data>
     <data name="GetServerStatus_ParsingFailed" xml:space="preserve">
-    <value>Wystąpił błąd, prawdopodobnie wpisałeś niepoprawną wartość, spróbuj jeszcze raz</value>
+    <value>Wystąpił błąd, prawdopodobnie wpisałeś nieprawidłową wartość, spróbuj jeszcze raz</value>
   </data>
 </root>

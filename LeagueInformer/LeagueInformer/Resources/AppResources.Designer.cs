@@ -241,7 +241,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wystąpił błąd, prawdopodobnie wpisałeś niepoprawną wartość, spróbuj jeszcze raz.
+        ///   Looks up a localized string similar to Wystąpił błąd, prawdopodobnie wpisałeś nieprawidłową wartość, spróbuj jeszcze raz.
         /// </summary>
         internal static string GetServerStatus_ParsingFailed {
             get {
