@@ -44,9 +44,15 @@ namespace LeagueInformer.Models
         public string leagueName { get; set; }
 
         /// <summary>
-        /// Queue type where he participates
+        /// Queue type where summoner participates
         /// </summary>
         [JsonProperty("queueType")]
         public string queueType { get; set; }
+
+        /// <summary>
+        /// Id used to recognize summoner's league
+        /// </summary>
+        [JsonProperty("leagueId")]
+        public string LeagueId { get; set; }
     }
 }

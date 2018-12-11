@@ -30,9 +30,9 @@ namespace LeagueInformer.Services
                     };
                 }
                     
-                foreach (var challenger in mastersArray)
+                foreach (var master in mastersArray)
                 {
-                    mastersList.Add(challenger.ToObject<Masters>());
+                    mastersList.Add(master.ToObject<Masters>());
                 }
 
                 return new MastersList
