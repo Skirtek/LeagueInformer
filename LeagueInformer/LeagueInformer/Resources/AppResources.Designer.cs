@@ -162,45 +162,45 @@ namespace LeagueInformer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Gracz ma gorącą serię.
         /// </summary>
-        internal static string GetBestChallengers_HasHotStreak {
+        internal static string GetBestMasters_HasHotStreak {
             get {
-                return ResourceManager.GetString("GetBestChallengers_HasHotStreak", resourceCulture);
+                return ResourceManager.GetString("GetBestMasters_HasHotStreak", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Gracz nie ma gorącej serii.
         /// </summary>
-        internal static string GetBestChallengers_HasNotHotStreak {
+        internal static string GetBestMasters_HasNotHotStreak {
             get {
-                return ResourceManager.GetString("GetBestChallengers_HasNotHotStreak", resourceCulture);
+                return ResourceManager.GetString("GetBestMasters_HasNotHotStreak", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Gracz nie rozegrał ponad 100 gier w tej lidze.
         /// </summary>
-        internal static string GetBestChallengers_IsNotVeteran {
+        internal static string GetBestMasters_IsNotVeteran {
             get {
-                return ResourceManager.GetString("GetBestChallengers_IsNotVeteran", resourceCulture);
+                return ResourceManager.GetString("GetBestMasters_IsNotVeteran", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Gracz rozegrał ponad 100 gier w tej lidze.
         /// </summary>
-        internal static string GetBestChallengers_IsVeteran {
+        internal static string GetBestMasters_IsVeteran {
             get {
-                return ResourceManager.GetString("GetBestChallengers_IsVeteran", resourceCulture);
+                return ResourceManager.GetString("GetBestMasters_IsVeteran", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0}. {1}, {2} wygranych meczów, {3} przegranych meczów, {4}LP.
         /// </summary>
-        internal static string GetBestChallengers_StatisticsPatten {
+        internal static string GetBestMasters_StatisticsPatten {
             get {
-                return ResourceManager.GetString("GetBestChallengers_StatisticsPatten", resourceCulture);
+                return ResourceManager.GetString("GetBestMasters_StatisticsPatten", resourceCulture);
             }
         }
         
@@ -269,20 +269,20 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2. Zobacz statystyki 10 najlepszych Challengerów na serwerze EUNE.
-        /// </summary>
-        internal static string MainMenu_GetChallengerList {
-            get {
-                return ResourceManager.GetString("MainMenu_GetChallengerList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 1. Informacje o przywoływaczu na serwerze EUNE.
         /// </summary>
         internal static string MainMenu_GetLeagueOfSummoner {
             get {
                 return ResourceManager.GetString("MainMenu_GetLeagueOfSummoner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Zobacz statystyki 10 najlepszych Masterów na serwerze EUNE.
+        /// </summary>
+        internal static string MainMenu_GetMasterList {
+            get {
+                return ResourceManager.GetString("MainMenu_GetMasterList", resourceCulture);
             }
         }
         
