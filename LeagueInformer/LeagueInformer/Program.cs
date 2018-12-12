@@ -13,6 +13,7 @@ namespace LeagueInformer
         private static readonly GetMastersService MastersService = new GetMastersService();
         private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
         private static readonly ServerService ServerService = new ServerService();
+        private static readonly GetLeagueInfoService LeagueInfoService = new GetLeagueInfoService();
 
         public static void Main(string[] args)
         {
@@ -33,12 +34,15 @@ namespace LeagueInformer
                             GetBestMasters().Wait();
                             break;
                         case "3":
-                            GetServerStatus().Wait();
+                            GetSummonerLeagueInfo().Wait();                           
                             break;
                         case "4":
-                            AboutApp();
+                            GetServerStatus().Wait();
                             break;
                         case "5":
+                            AboutApp();
+                            break;
+                        case "6":
                             Environment.Exit(1);
                             break;
                         default:
@@ -46,7 +50,7 @@ namespace LeagueInformer
                             option = Console.ReadLine();
                             break;
                     }
-                } while (option != null && option != "5");
+                } while (option != null && option != "6");
             }
             else
             {
@@ -57,11 +61,15 @@ namespace LeagueInformer
 
         private static void MainMenu()
         {
+            int iterator = 1;
             Console.WriteLine();
+            Console.WriteLine(AppResources.Main_WelcomeUser);
+            Console.WriteLine(AppResources.Main_ChooseFunction);
 
             foreach (var menuOption in AppSettings.MenuOptions)
             {
-                Console.WriteLine(menuOption);
+                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot, iterator, menuOption);
+                iterator++;
             }
 
             Console.WriteLine();
@@ -111,6 +119,40 @@ namespace LeagueInformer
                 $"{Environment.NewLine}Typ kolejki: {result.SummonerLeagueInfo.queueType}" : result.Message);
         }
 
+        private static async Task GetSummonerLeagueInfo()
+        {
+            Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
+            string summonerName = Console.ReadLine();
+            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName);
+
+            if (!response.IsSuccess)
+            {
+                Console.WriteLine(AppResources.Error_Undefined);
+                return;
+            }
+
+            var sortedMembers = response.LeagueDetailsResponseList.OrderByDescending(x => x.Points).ToList();
+            int position = 1;
+            Console.WriteLine(AppResources.Common_TwoVerbatimStrings,
+                response.LeagueInfo.SummonerLeagueInfo.leagueName,
+                response.LeagueInfo.SummonerLeagueInfo.rank);
+            foreach (var member in sortedMembers)
+            {
+                Console.ForegroundColor = member.SummonerName == summonerName
+                    ? ConsoleColor.Red
+                    : ConsoleColor.White;    
+                
+                Console.WriteLine(
+                    AppResources.Common_StatisticsPatten,
+                    position,
+                    member.SummonerName,
+                    member.Wins,
+                    member.Losses,
+                    member.Points);
+                position++;
+            }
+        }
+
         private static async Task GetBestMasters()
         {
             var response = await MastersService.GetListOfMasterLeague();
@@ -123,12 +165,12 @@ namespace LeagueInformer
 
             var bestMasters = response.MastersResponseList.OrderByDescending(x => x.Points).ToList()
                 .GetRange(1, 10);
-            var position = 1;
+            int position = 1;
 
             foreach (var master in bestMasters)
             {
                 Console.WriteLine(
-                    AppResources.GetBestMasters_StatisticsPatten,
+                    AppResources.Common_StatisticsPatten,
                     position,
                     master.SummonerName,
                     master.Wins,
@@ -148,10 +190,10 @@ namespace LeagueInformer
         private static async Task GetServerStatus()
         {
             Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
-            var position = 1;
+            int position = 1;
             foreach (var serverName in AppSettings.ServerAddresses.Keys)
             {
-                Console.WriteLine(AppResources.GetServerStatus_PrintServersList,
+                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot,
                     position,
                     serverName);
                 position++;

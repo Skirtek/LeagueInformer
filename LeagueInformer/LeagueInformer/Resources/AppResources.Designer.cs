@@ -97,11 +97,38 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}. {1}, {2} wygranych meczów, {3} przegranych meczów, {4}LP.
+        /// </summary>
+        internal static string Common_StatisticsPatten {
+            get {
+                return ResourceManager.GetString("Common_StatisticsPatten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \nSpróbuj ponownie później :).
         /// </summary>
         internal static string Common_TryAgainLater {
             get {
                 return ResourceManager.GetString("Common_TryAgainLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1}.
+        /// </summary>
+        internal static string Common_TwoVerbatimStrings {
+            get {
+                return ResourceManager.GetString("Common_TwoVerbatimStrings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}. {1}.
+        /// </summary>
+        internal static string Common_TwoVerbatimStringWithDot {
+            get {
+                return ResourceManager.GetString("Common_TwoVerbatimStringWithDot", resourceCulture);
             }
         }
         
@@ -205,15 +232,6 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}. {1}, {2} wygranych meczów, {3} przegranych meczów, {4}LP.
-        /// </summary>
-        internal static string GetBestMasters_StatisticsPatten {
-            get {
-                return ResourceManager.GetString("GetBestMasters_StatisticsPatten", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Podaj nazwe Przywoływacza: .
         /// </summary>
         internal static string GetLeagueOfSummoner_EnterName {
@@ -250,11 +268,11 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}. {1}.
+        ///   Looks up a localized string similar to Podaj nick przywoływacza:.
         /// </summary>
-        internal static string GetServerStatus_PrintServersList {
+        internal static string GetSummonerLeagueInfo_GiveSummonerNick {
             get {
-                return ResourceManager.GetString("GetServerStatus_PrintServersList", resourceCulture);
+                return ResourceManager.GetString("GetSummonerLeagueInfo_GiveSummonerNick", resourceCulture);
             }
         }
         
@@ -278,7 +296,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5. Wyjdź.
+        ///   Looks up a localized string similar to Wyjdź.
         /// </summary>
         internal static string Main_Quit {
             get {
@@ -296,7 +314,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4. O aplikacji.
+        ///   Looks up a localized string similar to O aplikacji.
         /// </summary>
         internal static string MainManu_AboutApp {
             get {
@@ -305,7 +323,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. Informacje o przywoływaczu na serwerze EUNE.
+        ///   Looks up a localized string similar to Informacje o przywoływaczu na serwerze EUNE.
         /// </summary>
         internal static string MainMenu_GetLeagueOfSummoner {
             get {
@@ -314,7 +332,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2. Zobacz statystyki 10 najlepszych Masterów na serwerze EUNE.
+        ///   Looks up a localized string similar to Zobacz statystyki 10 najlepszych Masterów na serwerze EUNE.
         /// </summary>
         internal static string MainMenu_GetMasterList {
             get {
@@ -323,11 +341,20 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3. Sprawdź status usług wybranego serwera gry.
+        ///   Looks up a localized string similar to Sprawdź status usług wybranego serwera gry.
         /// </summary>
         internal static string MainMenu_GetServerStatus {
             get {
                 return ResourceManager.GetString("MainMenu_GetServerStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pobierz informacje o lidze wybranego przywoływacza.
+        /// </summary>
+        internal static string MainMenu_GetSummonerLeagueInfo {
+            get {
+                return ResourceManager.GetString("MainMenu_GetSummonerLeagueInfo", resourceCulture);
             }
         }
     }

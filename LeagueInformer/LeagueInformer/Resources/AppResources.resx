@@ -148,7 +148,7 @@
     <value>Wystąpił nieznany błąd,spróbuj ponownie później</value>
   </data>
   <data name="MainMenu_GetMasterList" xml:space="preserve">
-    <value>2. Zobacz statystyki 10 najlepszych Masterów na serwerze EUNE</value>
+    <value>Zobacz statystyki 10 najlepszych Masterów na serwerze EUNE</value>
   </data>
   <data name="Main_ChooseFunction" xml:space="preserve">
     <value>Wybierz interesującą Cię funkcję:</value>
@@ -158,12 +158,12 @@
 Do zobaczenia!</value>
   </data>
   <data name="Main_Quit" xml:space="preserve">
-    <value>5. Wyjdź</value>
+    <value>Wyjdź</value>
   </data>
   <data name="Main_WelcomeUser" xml:space="preserve">
     <value>Witaj w League Informer!</value>
   </data>
-  <data name="GetBestMasters_StatisticsPatten" xml:space="preserve">
+  <data name="Common_StatisticsPatten" xml:space="preserve">
     <value>{0}. {1}, {2} wygranych meczów, {3} przegranych meczów, {4}LP</value>
   </data>
   <data name="GetBestMasters_HasHotStreak" xml:space="preserve">
@@ -179,13 +179,13 @@ Do zobaczenia!</value>
     <value>Gracz rozegrał ponad 100 gier w tej lidze</value>
   </data>
   <data name="MainManu_AboutApp" xml:space="preserve">
-    <value>4. O aplikacji</value>
+    <value>O aplikacji</value>
   </data>
   <data name="GetLeagueOfSummoner_EnterName" xml:space="preserve">
     <value>Podaj nazwe Przywoływacza: </value>
   </data>
   <data name="MainMenu_GetLeagueOfSummoner" xml:space="preserve">
-    <value>1. Informacje o przywoływaczu na serwerze EUNE</value>
+    <value>Informacje o przywoływaczu na serwerze EUNE</value>
   </data>
   <data name="ClickToContinue" xml:space="preserve">
     <value>* * * Wciśnij dowolny klawisz aby kontynuować * * *</value>
@@ -194,9 +194,9 @@ Do zobaczenia!</value>
     <value>{0}Dane dla serwera {1}{2}</value>
   </data>
   <data name="MainMenu_GetServerStatus" xml:space="preserve">
-    <value>3. Sprawdź status usług wybranego serwera gry</value>
+    <value>Sprawdź status usług wybranego serwera gry</value>
   </data>
-    <data name="GetServerStatus_PrintServersList" xml:space="preserve">
+    <data name="Common_TwoVerbatimStringWithDot" xml:space="preserve">
     <value>{0}. {1}</value>
   </data>
     <data name="GetServerStatus_ChooseServerFromList" xml:space="preserve">
@@ -207,5 +207,14 @@ Do zobaczenia!</value>
   </data>
     <data name="GetServerStatus_ParsingFailed" xml:space="preserve">
     <value>Wystąpił błąd, prawdopodobnie wpisałeś nieprawidłową wartość, spróbuj jeszcze raz</value>
+  </data>
+    <data name="GetSummonerLeagueInfo_GiveSummonerNick" xml:space="preserve">
+    <value>Podaj nick przywoływacza:</value>
+  </data>
+    <data name="Common_TwoVerbatimStrings" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+    <data name="MainMenu_GetSummonerLeagueInfo" xml:space="preserve">
+    <value>Pobierz informacje o lidze wybranego przywoływacza</value>
   </data>
 </root>

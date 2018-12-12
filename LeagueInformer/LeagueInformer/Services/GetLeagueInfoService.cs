@@ -24,7 +24,7 @@ namespace LeagueInformer.Services
                 var summonerLeague = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summoner.Id);
 
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/league/v4/masterleagues/by-queue/{summonerLeague.SummonerLeagueInfo.LeagueId}?api_key={AppSettings.AuthorizationApiKey}"));
+                    $"https://eun1.api.riotgames.com/lol/league/v4/leagues/{summonerLeague.SummonerLeagueInfo.LeagueId}?api_key={AppSettings.AuthorizationApiKey}"));
 
                 if (response == null || !(response["entries"] is JArray leagueMembersArray))
                 {
