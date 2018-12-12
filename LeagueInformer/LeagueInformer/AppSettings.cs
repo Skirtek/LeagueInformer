@@ -27,10 +27,9 @@ namespace LeagueInformer
 
         public static readonly List<string> MenuOptions = new List<string>
         {
-            AppResources.Main_WelcomeUser,
-            AppResources.Main_ChooseFunction,
             AppResources.MainMenu_GetLeagueOfSummoner,
             AppResources.MainMenu_GetMasterList,
+            AppResources.MainMenu_GetSummonerLeagueInfo,
             AppResources.MainMenu_GetServerStatus,
             AppResources.MainManu_AboutApp,
             AppResources.Main_Quit

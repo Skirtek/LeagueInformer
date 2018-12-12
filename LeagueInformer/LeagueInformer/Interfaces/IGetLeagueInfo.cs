@@ -3,12 +3,12 @@ using LeagueInformer.Models;
 
 namespace LeagueInformer.Interfaces
 {
-    public interface IGetMasters
+    public interface IGetLeagueInfo
     {
         /// <summary>
-        /// Returns league details about master league
+        /// Returns league details about given summoner league
         /// </summary>
         /// <returns></returns>
-        Task<MastersList> GetListOfMasterLeague();
+        Task<LeagueList> GetListOfSummonerLeague(string summonerName);
     }
 }
