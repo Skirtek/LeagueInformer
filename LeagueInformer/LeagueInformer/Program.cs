@@ -43,7 +43,6 @@ namespace LeagueInformer
                             break;
                         default:
                             Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
-                            option = Console.ReadLine();
                             break;
                     }
                 } while (option != null && option != "5");
