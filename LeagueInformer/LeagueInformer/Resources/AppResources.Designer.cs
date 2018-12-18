@@ -187,6 +187,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nazwa przywoływacza nie może być pusta.
+        /// </summary>
+        internal static string Error_SummonerNameCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("Error_SummonerNameCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wystąpił nieznany błąd,spróbuj ponownie później.
         /// </summary>
         internal static string Error_Undefined {

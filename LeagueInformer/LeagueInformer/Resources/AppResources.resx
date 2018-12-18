@@ -217,4 +217,7 @@ Do zobaczenia!</value>
     <data name="MainMenu_GetSummonerLeagueInfo" xml:space="preserve">
     <value>Pobierz informacje o lidze wybranego przywoływacza</value>
   </data>
+  <data name="Error_SummonerNameCannotBeEmpty" xml:space="preserve">
+    <value>Nazwa przywoływacza nie może być pusta</value>
+  </data>
 </root>
