@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using LeagueInformer.Models;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
 
@@ -16,6 +17,7 @@ namespace LeagueInformer
         private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
         private static readonly ServerService ServerService = new ServerService();
         private static readonly GetLeagueInfoService LeagueInfoService = new GetLeagueInfoService();
+        private static readonly GetSummonerGame SummonerGameService = new GetSummonerGame();
         private static readonly FileHandler FileHandler = new FileHandler();
 
         public static void Main(string[] args)
@@ -44,16 +46,20 @@ namespace LeagueInformer
                             GetServerStatus().Wait();
                             break;
                         case "5":
-                            AboutApp();
+                            GetSummonerGame().Wait();
                             break;
                         case "6":
+                            AboutApp();
+                            break;
+                        case "7":
                             Environment.Exit(1);
                             break;
+
                         default:
                             Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
                             break;
                     }
-                } while (option != null && option != "6");
+                } while (option != null && option != "7");
             }
             else
             {
@@ -286,13 +292,48 @@ namespace LeagueInformer
             foreach (var serviceStatus in response.ServicesStatuses)
             {
                 Console.WriteLine(serviceStatus.Name);
-                Console.ForegroundColor = serviceStatus.ServerStatusState == Enums.ServerStatus.Online 
+                Console.ForegroundColor = serviceStatus.ServerStatusState == Enums.ServerStatus.Online
                     ? ConsoleColor.Green : ConsoleColor.Red;
 
                 Console.WriteLine(serviceStatus.ServerStatusState);
                 Console.ResetColor();
                 Console.WriteLine();
             }
+        }
+        private static async Task GetSummonerGame()
+        {
+            Console.Write(AppResources.GetSummonerGame_GiveSummonerNick);
+            string summonerName = Console.ReadLine();
+
+            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            if (!summonerResponse.IsSuccess)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(summonerResponse.Message)
+                    ? AppResources.Error_Undefined
+                    : summonerResponse.Message);
+                return;
+            }
+
+            string summonerId = summonerResponse.Id;
+            var result = await SummonerGameService.GetSummonerGameInformation(summonerId);
+
+            if (!result.IsSuccess)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(result.Message)
+                    ? AppResources.Error_Undefined
+                    : AppResources.GetSummonerGame_SummonerDontPlay);
+                return;
+            }
+
+            Console.WriteLine(result.IsSuccess ?
+                $"{Environment.NewLine}Przywoływacz {summonerName} " + 
+                $"jest teraz w grze {result.gameMode} " : result.Message);
+
+            Console.WriteLine(AppResources.ClickToContinue);
+            Console.ReadKey();
+
         }
 
         private static void AboutApp()

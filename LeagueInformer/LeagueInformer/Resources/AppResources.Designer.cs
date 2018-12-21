@@ -277,6 +277,24 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wpisz nazwe przywoływacza na serwerze EUNE: .
+        /// </summary>
+        internal static string GetSummonerGame_GiveSummonerNick {
+            get {
+                return ResourceManager.GetString("GetSummonerGame_GiveSummonerNick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Przywoływacz aktualnie nie uczestniczy w żadnej rozgrywce.
+        /// </summary>
+        internal static string GetSummonerGame_SummonerDontPlay {
+            get {
+                return ResourceManager.GetString("GetSummonerGame_SummonerDontPlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Podaj nick przywoływacza:.
         /// </summary>
         internal static string GetSummonerLeagueInfo_GiveSummonerNick {
@@ -355,6 +373,15 @@ namespace LeagueInformer.Resources {
         internal static string MainMenu_GetServerStatus {
             get {
                 return ResourceManager.GetString("MainMenu_GetServerStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprawdź czy przywoływacz uczestniczy w rozgrywce.
+        /// </summary>
+        internal static string MainMenu_GetSummonerGame {
+            get {
+                return ResourceManager.GetString("MainMenu_GetSummonerGame", resourceCulture);
             }
         }
         
