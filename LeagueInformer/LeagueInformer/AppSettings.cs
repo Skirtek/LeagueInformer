@@ -32,6 +32,7 @@ namespace LeagueInformer
             AppResources.MainMenu_GetSummonerLeagueInfo,
             AppResources.MainMenu_GetServerStatus,
             AppResources.MainManu_AboutApp,
+            AppResources.MainMenu_GetSummonerGame,
             AppResources.Main_Quit
         };
 

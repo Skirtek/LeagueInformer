@@ -45,17 +45,17 @@ namespace LeagueInformer
                             AboutApp();
                             break;
                         case "6":
-                            Environment.Exit(1);
+                            GetSummonerGame().Wait();
                             break;
                         case "7":
-                            GetSummonerGame().Wait();
+                            Environment.Exit(1);
                             break;
 
                         default:
                             Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
                             break;
                     }
-                } while (option != null && option != "6");
+                } while (option != null && option != "7");
             }
             else
             {
@@ -244,7 +244,7 @@ namespace LeagueInformer
         }
         private static async Task GetSummonerGame()
         {
-            Console.Write("wpisz nazwe prywoływacza na serwerze EUNE: ");
+            Console.Write(AppResources.GetSummonerGame_GiveSummonerNick);
             string summonerName = Console.ReadLine();
 
             var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
@@ -265,15 +265,16 @@ namespace LeagueInformer
                 Console.WriteLine(
                     string.IsNullOrEmpty(result.Message)
                     ? AppResources.Error_Undefined
-                    : result.Message);
+                    : AppResources.GetSummonerGame_SummonerDontPlay);
                 return;
             }
 
-            //Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(result.IsSuccess ?
-                $"\nNazwa przywoływacza: {summonerName} " +
-                $"{Environment.NewLine}Rodzaj gry: {result.gameMode} " : result.Message);
-            //Console.ResetColor();
+                $"\nPrzywoływacz {summonerName} " + 
+                $"Jest teraz w grze {result.gameMode} " :result.Message);
+
+            Console.WriteLine(AppResources.ClickToContinue);
+            Console.ReadKey();
 
         }
 
