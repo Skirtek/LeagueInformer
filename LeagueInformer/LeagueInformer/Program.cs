@@ -34,13 +34,16 @@ namespace LeagueInformer
                             GetBestMasters().Wait();
                             break;
                         case "3":
-                            GetSummonerLeagueInfo().Wait();                           
+                            GetSummonerLeagueInfo().Wait();
                             break;
                         case "4":
                             GetServerStatus().Wait();
                             break;
                         case "5":
                             AboutApp();
+                            break;
+                        case "7":
+                            GetSummonetGame();
                             break;
                         case "6":
                             Environment.Exit(1);
@@ -141,8 +144,8 @@ namespace LeagueInformer
             {
                 Console.ForegroundColor = member.SummonerName == summonerName
                     ? ConsoleColor.Red
-                    : ConsoleColor.White;    
-                
+                    : ConsoleColor.White;
+
                 Console.WriteLine(
                     AppResources.Common_StatisticsPatten,
                     position,
@@ -228,13 +231,17 @@ namespace LeagueInformer
             foreach (var serviceStatus in response.ServicesStatuses)
             {
                 Console.WriteLine(serviceStatus.Name);
-                Console.ForegroundColor = serviceStatus.ServerStatusState == Enums.ServerStatus.Online 
+                Console.ForegroundColor = serviceStatus.ServerStatusState == Enums.ServerStatus.Online
                     ? ConsoleColor.Green : ConsoleColor.Red;
 
                 Console.WriteLine(serviceStatus.ServerStatusState);
                 Console.ResetColor();
                 Console.WriteLine();
             }
+        }
+        private static async Task GetSummonetGame()
+        {
+        
         }
 
         private static void AboutApp()
