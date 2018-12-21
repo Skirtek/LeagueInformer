@@ -187,6 +187,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nazwa przywoływacza nie może być pusta.
+        /// </summary>
+        internal static string Error_SummonerNameCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("Error_SummonerNameCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wystąpił nieznany błąd,spróbuj ponownie później.
         /// </summary>
         internal static string Error_Undefined {
@@ -382,6 +391,24 @@ namespace LeagueInformer.Resources {
         internal static string MainMenu_GetSummonerLeagueInfo {
             get {
                 return ResourceManager.GetString("MainMenu_GetSummonerLeagueInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Informacja: Aby wybrać nazwę z listy wpisz żądany numer.
+        /// </summary>
+        internal static string PrintListOfSavedNicknames_Information {
+            get {
+                return ResourceManager.GetString("PrintListOfSavedNicknames_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Wybierz nazwę przywoływacza z listy lub wpisz ją ręcznie:.
+        /// </summary>
+        internal static string PrintListOfSavedNicknames_Instruction {
+            get {
+                return ResourceManager.GetString("PrintListOfSavedNicknames_Instruction", resourceCulture);
             }
         }
     }

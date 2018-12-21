@@ -51,6 +51,7 @@
     <Compile Include="Enums\Champions.cs" />
     <Compile Include="Enums\ErrorEnum.cs" />
     <Compile Include="Enums\ServerStatus.cs" />
+    <Compile Include="Interfaces\IFileHandler.cs" />
     <Compile Include="Interfaces\IGetLeagueInfo.cs" />
     <Compile Include="Interfaces\IGetLeagueOfSummoner.cs" />
     <Compile Include="Interfaces\IConnection.cs" />
@@ -76,6 +77,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
+    <Compile Include="Services\FileHandler.cs" />
     <Compile Include="Services\GetLeagueInfoService.cs" />
     <Compile Include="Services\GetMastersService.cs" />
     <Compile Include="Services\GetLeagueOfSummonerService.cs" />
