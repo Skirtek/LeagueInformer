@@ -328,8 +328,8 @@ namespace LeagueInformer
             }
 
             Console.WriteLine(result.IsSuccess ?
-                $"\nPrzywoływacz {summonerName} " + 
-                $"Jest teraz w grze {result.gameMode} " : result.Message);
+                $"{Environment.NewLine}Przywoływacz {summonerName} " + 
+                $"jest teraz w grze {result.gameMode} " : result.Message);
 
             Console.WriteLine(AppResources.ClickToContinue);
             Console.ReadKey();

@@ -230,9 +230,9 @@ Do zobaczenia!</value>
     <value>Wpisz nazwe przywoływacza na serwerze EUNE: </value>
   </data>
   <data name="GetSummonerGame_SummonerDontPlay" xml:space="preserve">
-    <value>Przywoływacz nie rozgrywa żadnego meczu w tej chwili</value>
+    <value>Przywoływacz aktualnie nie uczestniczy w żadnej rozgrywce</value>
   </data>
   <data name="MainMenu_GetSummonerGame" xml:space="preserve">
-    <value>Sprawdź czy przywoływacz rozgrywa w tej chwili mecz</value>
+    <value>Sprawdź czy przywoływacz uczestniczy w rozgrywce</value>
   </data>
 </root>

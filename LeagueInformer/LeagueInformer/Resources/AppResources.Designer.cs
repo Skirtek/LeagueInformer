@@ -286,7 +286,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Przywoływacz nie rozgrywa żadnego meczu w tej chwili.
+        ///   Looks up a localized string similar to Przywoływacz aktualnie nie uczestniczy w żadnej rozgrywce.
         /// </summary>
         internal static string GetSummonerGame_SummonerDontPlay {
             get {
@@ -377,7 +377,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sprawdź czy przywoływacz rozgrywa w tej chwili mecz.
+        ///   Looks up a localized string similar to Sprawdź czy przywoływacz uczestniczy w rozgrywce.
         /// </summary>
         internal static string MainMenu_GetSummonerGame {
             get {
