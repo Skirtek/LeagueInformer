@@ -48,7 +48,7 @@ namespace LeagueInformer
                             Environment.Exit(1);
                             break;
                         case "7":
-                            GetSummonerGame();
+                            GetSummonerGame().Wait();
                             break;
 
                         default:
@@ -271,8 +271,8 @@ namespace LeagueInformer
 
             //Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(result.IsSuccess ?
-                $"\nNazwa przywoływacza: {result.SummonerGame.summonerName} " +
-                $"{Environment.NewLine}Rodzaj gry: {result.SummonerGame.gameMode} " : result.Message);
+                $"\nNazwa przywoływacza: {summonerName} " +
+                $"{Environment.NewLine}Rodzaj gry: {result.gameMode} " : result.Message);
             //Console.ResetColor();
 
         }

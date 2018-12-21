@@ -16,16 +16,15 @@ namespace LeagueInformer.Services
         {
             try
             {
-                
+
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{id}"));
+                    $"https://eun1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{id}?api_key={AppSettings.AuthorizationApiKey}"));
 
                 return response == null ? new SummonerGame { IsSuccess = false } :
                     new SummonerGame
                     {
                         IsSuccess = true,
-                        summonerName = response.GetValue("summonerName").ToString(),
-                        gameMode = response.GetValue("gameMode").ToString(),
+                        gameMode = response.GetValue("gameMode").ToString()
                     };
             }
             catch (Exception ex)
@@ -57,7 +56,7 @@ namespace LeagueInformer.Services
             }
         }
 
-        
-        
+
+
     }
 }

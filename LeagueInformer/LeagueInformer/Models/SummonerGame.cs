@@ -9,8 +9,6 @@
 
         public string Message { get; set; }
 
-        public string summonerName { get; set; }
-
         public string gameMode { get; set; }
     }
 }
