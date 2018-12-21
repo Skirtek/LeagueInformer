@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\IConnection.cs" />
     <Compile Include="Interfaces\IGetMasters.cs" />
     <Compile Include="Interfaces\IGetSummoner.cs" />
+    <Compile Include="Interfaces\IGetSummonerGame.cs" />
     <Compile Include="Interfaces\IServerService.cs" />
     <Compile Include="Models\LeagueDetails.cs" />
     <Compile Include="Models\LeagueList.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Models\Server.cs" />
     <Compile Include="Models\ServerStatusResponse.cs" />
     <Compile Include="Models\Summoner.cs" />
+    <Compile Include="Models\SummonerGame.cs" />
     <Compile Include="Models\SummonerLeagueInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Services\GetLeagueInfoService.cs" />
     <Compile Include="Services\GetMastersService.cs" />
     <Compile Include="Services\GetLeagueOfSummonerService.cs" />
+    <Compile Include="Services\GetSummonerGameService.cs" />
     <Compile Include="Services\GetSummonerService.cs" />
     <Compile Include="Services\ServerService.cs" />
   </ItemGroup>
