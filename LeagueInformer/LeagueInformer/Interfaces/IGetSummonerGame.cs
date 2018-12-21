@@ -6,7 +6,7 @@ namespace LeagueInformer.Interfaces
     public interface IGetSummonerGame
     {
         /// <summary>
-        /// Gets information about summoner with given nickname
+        /// Gets information about game where is summoner with given nickname
         /// </summary>
         Task<SummonerGame> GetSummonerGameInformation(string id);
     }

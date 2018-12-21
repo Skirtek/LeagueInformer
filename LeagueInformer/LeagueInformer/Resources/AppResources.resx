@@ -218,7 +218,7 @@ Do zobaczenia!</value>
     <value>Pobierz informacje o lidze wybranego przywoływacza</value>
   </data>
   <data name="GetSummonerGame_GiveSummonerNick" xml:space="preserve">
-    <value>Wpisz nazwe prywoływacza na serwerze EUNE: </value>
+    <value>Wpisz nazwe przywoływacza na serwerze EUNE: </value>
   </data>
   <data name="GetSummonerGame_SummonerDontPlay" xml:space="preserve">
     <value>Przywoływacz nie rozgrywa żadnego meczu w tej chwili</value>

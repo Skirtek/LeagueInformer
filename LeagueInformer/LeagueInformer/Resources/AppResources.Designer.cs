@@ -268,7 +268,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wpisz nazwe prywoływacza na serwerze EUNE: .
+        ///   Looks up a localized string similar to Wpisz nazwe przywoływacza na serwerze EUNE: .
         /// </summary>
         internal static string GetSummonerGame_GiveSummonerNick {
             get {

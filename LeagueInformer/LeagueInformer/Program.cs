@@ -42,10 +42,10 @@ namespace LeagueInformer
                             GetServerStatus().Wait();
                             break;
                         case "5":
-                            AboutApp();
+                            GetSummonerGame().Wait();
                             break;
                         case "6":
-                            GetSummonerGame().Wait();
+                            AboutApp();
                             break;
                         case "7":
                             Environment.Exit(1);
@@ -271,7 +271,7 @@ namespace LeagueInformer
 
             Console.WriteLine(result.IsSuccess ?
                 $"\nPrzywoływacz {summonerName} " + 
-                $"Jest teraz w grze {result.gameMode} " :result.Message);
+                $"Jest teraz w grze {result.gameMode} " : result.Message);
 
             Console.WriteLine(AppResources.ClickToContinue);
             Console.ReadKey();
