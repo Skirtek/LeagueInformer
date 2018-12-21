@@ -24,7 +24,7 @@ namespace LeagueInformer
             {
                 string option;
                 do
-                {                  
+                {
                     MaximizeConsoleWindow();
                     MainMenu();
                     option = Console.ReadLine();
@@ -38,7 +38,7 @@ namespace LeagueInformer
                             GetBestMasters().Wait();
                             break;
                         case "3":
-                            GetSummonerLeagueInfo().Wait();                           
+                            GetSummonerLeagueInfo().Wait();
                             break;
                         case "4":
                             GetServerStatus().Wait();
@@ -129,7 +129,7 @@ namespace LeagueInformer
         }
 
         private static async Task GetSummonerLeagueInfo()
-        {         
+        {
             Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
 
             string summonerName = await PrintListOfSavedNicknames();
@@ -157,8 +157,8 @@ namespace LeagueInformer
             {
                 Console.ForegroundColor = member.SummonerName == summonerName
                     ? ConsoleColor.Red
-                    : ConsoleColor.White;    
-                
+                    : ConsoleColor.White;
+
                 Console.WriteLine(
                     AppResources.Common_StatisticsPatten,
                     position,
@@ -177,7 +177,7 @@ namespace LeagueInformer
             try
             {
                 int position = 1;
-                Console.WriteLine($"{Environment.NewLine}Wybierz nazwę przywoływacza z listy lub wpisz ją ręcznie:");
+                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Instruction, Environment.NewLine);
 
                 var nicknamesList = FileHandler.GetListOfLastNicknames();
                 if (nicknamesList.Any())
@@ -189,7 +189,7 @@ namespace LeagueInformer
                     }
                 }
 
-                Console.WriteLine($"{Environment.NewLine}Informacja: Aby wybrać nazwę z listy wpisz żądany numer");
+                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Information, Environment.NewLine);
 
                 string summonerName = Console.ReadLine();
 

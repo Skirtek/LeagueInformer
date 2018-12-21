@@ -220,4 +220,10 @@ Do zobaczenia!</value>
   <data name="Error_SummonerNameCannotBeEmpty" xml:space="preserve">
     <value>Nazwa przywoływacza nie może być pusta</value>
   </data>
+    <data name="PrintListOfSavedNicknames_Information" xml:space="preserve">
+    <value>{0}Informacja: Aby wybrać nazwę z listy wpisz żądany numer</value>
+  </data>
+    <data name="PrintListOfSavedNicknames_Instruction" xml:space="preserve">
+    <value>{0}Wybierz nazwę przywoływacza z listy lub wpisz ją ręcznie:</value>
+  </data>
 </root>

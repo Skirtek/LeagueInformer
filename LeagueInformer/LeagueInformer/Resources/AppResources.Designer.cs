@@ -366,5 +366,23 @@ namespace LeagueInformer.Resources {
                 return ResourceManager.GetString("MainMenu_GetSummonerLeagueInfo", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Informacja: Aby wybrać nazwę z listy wpisz żądany numer.
+        /// </summary>
+        internal static string PrintListOfSavedNicknames_Information {
+            get {
+                return ResourceManager.GetString("PrintListOfSavedNicknames_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Wybierz nazwę przywoływacza z listy lub wpisz ją ręcznie:.
+        /// </summary>
+        internal static string PrintListOfSavedNicknames_Instruction {
+            get {
+                return ResourceManager.GetString("PrintListOfSavedNicknames_Instruction", resourceCulture);
+            }
+        }
     }
 }
