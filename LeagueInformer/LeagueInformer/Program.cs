@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
@@ -14,6 +16,7 @@ namespace LeagueInformer
         private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
         private static readonly ServerService ServerService = new ServerService();
         private static readonly GetLeagueInfoService LeagueInfoService = new GetLeagueInfoService();
+        private static readonly FileHandler FileHandler = new FileHandler();
 
         public static void Main(string[] args)
         {
@@ -22,6 +25,7 @@ namespace LeagueInformer
                 string option;
                 do
                 {
+                    MaximizeConsoleWindow();
                     MainMenu();
                     option = Console.ReadLine();
                     Console.WriteLine(AppResources.Common_ChosenOption, Environment.NewLine, option);
@@ -34,7 +38,7 @@ namespace LeagueInformer
                             GetBestMasters().Wait();
                             break;
                         case "3":
-                            GetSummonerLeagueInfo().Wait();                           
+                            GetSummonerLeagueInfo().Wait();
                             break;
                         case "4":
                             GetServerStatus().Wait();
@@ -84,7 +88,13 @@ namespace LeagueInformer
         private static async Task GetLeagueOfSummoner()
         {
             Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
-            string summonerName = Console.ReadLine();
+            string summonerName = await PrintListOfSavedNicknames();
+
+            if (string.IsNullOrEmpty(summonerName))
+            {
+                Console.WriteLine(AppResources.Error_SummonerNameCannotBeEmpty);
+                return;
+            }
 
             var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
             if (!summonerResponse.IsSuccess)
@@ -123,7 +133,15 @@ namespace LeagueInformer
         private static async Task GetSummonerLeagueInfo()
         {
             Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
-            string summonerName = Console.ReadLine();
+
+            string summonerName = await PrintListOfSavedNicknames();
+
+            if (string.IsNullOrEmpty(summonerName))
+            {
+                Console.WriteLine(AppResources.Error_SummonerNameCannotBeEmpty);
+                return;
+            }
+
             var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName);
 
             if (!response.IsSuccess)
@@ -141,8 +159,8 @@ namespace LeagueInformer
             {
                 Console.ForegroundColor = member.SummonerName == summonerName
                     ? ConsoleColor.Red
-                    : ConsoleColor.White;    
-                
+                    : ConsoleColor.White;
+
                 Console.WriteLine(
                     AppResources.Common_StatisticsPatten,
                     position,
@@ -151,6 +169,46 @@ namespace LeagueInformer
                     member.Losses,
                     member.Points);
                 position++;
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        private static async Task<string> PrintListOfSavedNicknames()
+        {
+            try
+            {
+                int position = 1;
+                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Instruction, Environment.NewLine);
+
+                var nicknamesList = FileHandler.GetListOfLastNicknames();
+                if (nicknamesList.Any())
+                {
+                    foreach (var nickname in nicknamesList)
+                    {
+                        Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot, position, nickname);
+                        position++;
+                    }
+                }
+
+                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Information, Environment.NewLine);
+
+                string summonerName = Console.ReadLine();
+
+                if (int.TryParse(summonerName, out int result))
+                {
+                    summonerName = nicknamesList[result - 1];
+                }
+                else
+                {
+                    await FileHandler.SaveNicknameToList(summonerName);
+                }
+
+                return summonerName;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
             }
         }
 
@@ -246,6 +304,15 @@ namespace LeagueInformer
             }
             Console.ResetColor();
             Console.ReadKey();
+        }
+
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int cmdShow);
+
+        private static void MaximizeConsoleWindow()
+        {
+            Process p = Process.GetCurrentProcess();
+            ShowWindow(p.MainWindowHandle, 3);
         }
     }
 }
