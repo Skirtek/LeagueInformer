@@ -108,14 +108,16 @@ namespace LeagueInformer
                 return;
             }
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(result.IsSuccess ?
-                $"Nazwa przywoływacza: {result.SummonerLeagueInfo.summonerName} " +
+                $"\nNazwa przywoływacza: {result.SummonerLeagueInfo.summonerName} " +
                 $"{Environment.NewLine}Nazwa ligi: {result.SummonerLeagueInfo.leagueName} " +
                 $"{Environment.NewLine}Tier: {result.SummonerLeagueInfo.tier} " +
                 $"{Environment.NewLine}Ranga: {result.SummonerLeagueInfo.rank} " +
                 $"{Environment.NewLine}Wygrane: {result.SummonerLeagueInfo.wins} " +
                 $"{Environment.NewLine}Przegrane: {result.SummonerLeagueInfo.losses} " +
                 $"{Environment.NewLine}Typ kolejki: {result.SummonerLeagueInfo.queueType}" : result.Message);
+            Console.ResetColor();
         }
 
         private static async Task GetSummonerLeagueInfo()
@@ -220,12 +222,17 @@ namespace LeagueInformer
                 return;
             }
 
-            Console.WriteLine(AppResources.GetServerStatus_DataForServer, Environment.NewLine, response.Name, Environment.NewLine);
+            Console.WriteLine(AppResources.GetServerStatus_DataForServer, Environment.NewLine,
+                response.Name, Environment.NewLine);
 
             foreach (var serviceStatus in response.ServicesStatuses)
             {
                 Console.WriteLine(serviceStatus.Name);
+                Console.ForegroundColor = serviceStatus.ServerStatusState == Enums.ServerStatus.Online 
+                    ? ConsoleColor.Green : ConsoleColor.Red;
+
                 Console.WriteLine(serviceStatus.ServerStatusState);
+                Console.ResetColor();
                 Console.WriteLine();
             }
         }
@@ -237,7 +244,6 @@ namespace LeagueInformer
                 Console.ForegroundColor = role.Value;
                 Console.WriteLine(role.Key);
             }
-
             Console.ResetColor();
             Console.ReadKey();
         }
