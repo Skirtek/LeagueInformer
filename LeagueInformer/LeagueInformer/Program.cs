@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using LeagueInformer.Models;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
 
@@ -14,6 +15,7 @@ namespace LeagueInformer
         private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
         private static readonly ServerService ServerService = new ServerService();
         private static readonly GetLeagueInfoService LeagueInfoService = new GetLeagueInfoService();
+        private static readonly GetSummonerGame SummonerGameService = new GetSummonerGame();
 
         public static void Main(string[] args)
         {
@@ -42,12 +44,13 @@ namespace LeagueInformer
                         case "5":
                             AboutApp();
                             break;
-                        case "7":
-                            GetSummonetGame();
-                            break;
                         case "6":
                             Environment.Exit(1);
                             break;
+                        case "7":
+                            GetSummonerGame();
+                            break;
+
                         default:
                             Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
                             break;
@@ -239,9 +242,39 @@ namespace LeagueInformer
                 Console.WriteLine();
             }
         }
-        private static async Task GetSummonetGame()
+        private static async Task GetSummonerGame()
         {
-        
+            Console.Write("wpisz nazwe prywoływacza na serwerze EUNE: ");
+            string summonerName = Console.ReadLine();
+
+            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            if (!summonerResponse.IsSuccess)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(summonerResponse.Message)
+                    ? AppResources.Error_Undefined
+                    : summonerResponse.Message);
+                return;
+            }
+
+            string summonerId = summonerResponse.Id;
+            var result = await SummonerGameService.GetSummonerGameInformation(summonerId);
+
+            if (!result.IsSuccess)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(result.Message)
+                    ? AppResources.Error_Undefined
+                    : result.Message);
+                return;
+            }
+
+            //Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(result.IsSuccess ?
+                $"\nNazwa przywoływacza: {result.SummonerGame.summonerName} " +
+                $"{Environment.NewLine}Rodzaj gry: {result.SummonerGame.gameMode} " : result.Message);
+            //Console.ResetColor();
+
         }
 
         private static void AboutApp()

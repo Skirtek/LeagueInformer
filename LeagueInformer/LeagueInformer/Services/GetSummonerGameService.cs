@@ -16,7 +16,7 @@ namespace LeagueInformer.Services
         {
             try
             {
-                //TODO Do naprawy pobieranie w ramach bugfixa
+                
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
                     $"https://eun1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{id}"));
 
@@ -34,14 +34,6 @@ namespace LeagueInformer.Services
             }
         }
 
-        public static string GetChampionForId(string id)
-        {
-            return id != null
-                ? int.TryParse(id, out var championId) && Enum.IsDefined(typeof(Champions), championId)
-                    ? ((Champions)championId).ToString()
-                    : Champions.Nieznany.ToString()
-                : Champions.Nieznany.ToString();
-        }
 
         //TODO W ramach sprzątania zrobić z tego metodę generyczną
         private string Error_Handler(string message)
