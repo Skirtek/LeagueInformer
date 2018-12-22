@@ -12,12 +12,12 @@ namespace LeagueInformer.Services
     {
         private readonly ApiClient _apiClient = new ApiClient();
 
-        public async Task<LeagueOfSummoner> GetLeagueOfSummonerInformation(string id)
+        public async Task<LeagueOfSummoner> GetLeagueOfSummonerInformation(string id, string region = "eun1")
         {
             try
             {
                 JArray response = JArray.Parse(await _apiClient.GetJsonFromUrl(
-                   $"https://eun1.api.riotgames.com/lol/league/v4/positions/by-summoner/{id}?api_key={AppSettings.AuthorizationApiKey}"));
+                   $"https://{region}.api.riotgames.com/lol/league/v4/positions/by-summoner/{id}?api_key={AppSettings.AuthorizationApiKey}"));
 
                 var data = JObject.FromObject(response[0]).ToObject<SummonerLeagueInfo>();
                 return new LeagueOfSummoner

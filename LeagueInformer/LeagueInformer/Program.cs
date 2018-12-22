@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using LeagueInformer.Models;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
 using LeagueInformer.Utils;
@@ -12,6 +13,7 @@ namespace LeagueInformer
 {
     public class Program
     {
+        //TODO dodać regiony dla większej czytelności w ramach porządkowania kodu
         private static readonly ConnectionService ConnectionService = new ConnectionService();
         private static readonly GetSummonerService SummonerService = new GetSummonerService();
         private static readonly GetMastersService MastersService = new GetMastersService();
@@ -99,6 +101,15 @@ namespace LeagueInformer
 
         private static async Task GetLeagueOfSummoner()
         {
+            var chosenServer = PrintListOfServers();
+
+            if (!chosenServer.IsSuccess)
+            {
+                return;
+            }
+
+            string regionCode = chosenServer.RegionCode;
+
             Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
             string summonerName = await PrintListOfSavedNicknames();
 
@@ -108,7 +119,7 @@ namespace LeagueInformer
                 return;
             }
 
-            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
             if (!summonerResponse.IsSuccess)
             {
                 Console.WriteLine(
@@ -119,7 +130,7 @@ namespace LeagueInformer
             }
 
             string summonerId = summonerResponse.Id;
-            var result = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summonerId);
+            var result = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summonerId, regionCode);
 
             if (!result.IsSuccess)
             {
@@ -144,6 +155,15 @@ namespace LeagueInformer
 
         private static async Task GetSummonerLeagueInfo()
         {
+            var chosenServer = PrintListOfServers();
+
+            if (!chosenServer.IsSuccess)
+            {
+                return;
+            }
+
+            string regionCode = chosenServer.RegionCode;
+
             Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
 
             string summonerName = await PrintListOfSavedNicknames();
@@ -154,7 +174,7 @@ namespace LeagueInformer
                 return;
             }
 
-            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName);
+            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName, regionCode);
 
             if (!response.IsSuccess)
             {
@@ -226,24 +246,14 @@ namespace LeagueInformer
 
         private static async Task GetSummonerHistory()
         {
-            Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
-            int position = 1;
-            foreach (var server in AppSettings.ServerSpectateAddresses)
-            {
-                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot,
-                    position,
-                    server.ServerName);
-                position++;
-            }
+            var chosenServer = PrintListOfServers();
 
-            bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
-            if (!getPosition || pos > AppSettings.ServerSpectateAddresses.Count)
+            if (!chosenServer.IsSuccess)
             {
-                Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
                 return;
             }
 
-            string regionCode = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerCode;
+            string regionCode = chosenServer.RegionCode;
 
             Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
 
@@ -279,7 +289,7 @@ namespace LeagueInformer
             }
 
             var matchList = response.Games.GetRange(0, 10).ToList();
-            position = 1;
+            int position = 1;
 
             Console.WriteLine(AppResources.GetSummonerHistory_LastTenMatchesInfo,
                 Environment.NewLine,
@@ -300,7 +310,16 @@ namespace LeagueInformer
 
         private static async Task GetBestMasters()
         {
-            var response = await MastersService.GetListOfMasterLeague();
+            var chosenServer = PrintListOfServers();
+
+            if (!chosenServer.IsSuccess)
+            {
+                return;
+            }
+
+            string regionCode = chosenServer.RegionCode;
+
+            var response = await MastersService.GetListOfMasterLeague(regionCode);
 
             if (!response.IsSuccess)
             {
@@ -382,24 +401,14 @@ namespace LeagueInformer
         }
         private static async Task GetSummonerGame()
         {
-            Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
-            int position = 1;
-            foreach (var server in AppSettings.ServerSpectateAddresses)
+            var chosenServer = PrintListOfServers();
+            if (!chosenServer.IsSuccess)
             {
-                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot,
-                    position,
-                    server.ServerName);
-                position++;
-            }
-
-            bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
-            if (!getPosition || pos > AppSettings.ServerSpectateAddresses.Count)
-            {
-                Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
                 return;
             }
 
-            string regionCode = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerCode;
+            string regionCode = chosenServer.RegionCode;
+            int pos = chosenServer.Position;
 
             Console.Write(AppResources.GetSummonerGame_GiveSummonerNick,
                 AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerName);
@@ -474,6 +483,36 @@ namespace LeagueInformer
             }
             Console.ResetColor();
             Console.ReadKey();
+        }
+
+        private static ChosenServer PrintListOfServers()
+        {
+            Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
+            int position = 1;
+            foreach (var server in AppSettings.ServerSpectateAddresses)
+            {
+                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot,
+                    position,
+                    server.ServerName);
+                position++;
+            }
+
+            bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
+            if (!getPosition || pos > AppSettings.ServerSpectateAddresses.Count)
+            {
+                Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
+                return new ChosenServer
+                {
+                    IsSuccess = false
+                };
+            }
+
+            return new ChosenServer
+            {
+                RegionCode = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerCode,
+                Position = pos,
+                IsSuccess = true
+            };
         }
 
         [DllImport("user32.dll")]

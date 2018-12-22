@@ -9,6 +9,6 @@ namespace LeagueInformer.Interfaces
         /// Returns league details about master league
         /// </summary>
         /// <returns></returns>
-        Task<MastersList> GetListOfMasterLeague();
+        Task<MastersList> GetListOfMasterLeague(string regionCode);
     }
 }
