@@ -163,7 +163,7 @@ namespace LeagueInformer.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Ups!
-        ///    Aplikacja nie może przetworzyć danych.
+        ///Aplikacja nie może przetworzyć danych{0}.
         /// </summary>
         internal static string Error_RequestAppError {
             get {
@@ -173,7 +173,7 @@ namespace LeagueInformer.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Upłynął czas przetwarzania żądania.
-        ///    Prawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}.
+        ///Prawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}.
         /// </summary>
         internal static string Error_RequestTimedOut {
             get {
@@ -182,7 +182,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Serwery Riot Games nie odpowiadają..
+        ///   Looks up a localized string similar to Serwery Riot Games nie odpowiadają.{0}.
         /// </summary>
         internal static string Error_RiotServersAreDown {
             get {

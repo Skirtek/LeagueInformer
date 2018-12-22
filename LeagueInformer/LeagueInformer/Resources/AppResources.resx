@@ -139,14 +139,14 @@ Spróbuj ponownie później :)
   </data>
   <data name="Error_RequestAppError" xml:space="preserve">
     <value>Ups!
-    Aplikacja nie może przetworzyć danych</value>
+Aplikacja nie może przetworzyć danych{0}</value>
   </data>
   <data name="Error_RequestTimedOut" xml:space="preserve">
     <value>Upłynął czas przetwarzania żądania.
-    Prawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}</value>
+Prawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}</value>
   </data>
   <data name="Error_RiotServersAreDown" xml:space="preserve">
-    <value>Serwery Riot Games nie odpowiadają.</value>
+    <value>Serwery Riot Games nie odpowiadają.{0}</value>
   </data>
   <data name="Error_Undefined" xml:space="preserve">
     <value>Wystąpił nieznany błąd,spróbuj ponownie później</value>

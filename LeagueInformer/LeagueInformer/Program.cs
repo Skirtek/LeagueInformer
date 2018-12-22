@@ -61,7 +61,6 @@ namespace LeagueInformer
                         case "8":
                             Environment.Exit(1);
                             break;
-
                         default:
                             Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
                             break;
