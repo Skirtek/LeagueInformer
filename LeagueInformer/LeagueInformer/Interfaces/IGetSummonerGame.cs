@@ -8,6 +8,6 @@ namespace LeagueInformer.Interfaces
         /// <summary>
         /// Gets information about game where is summoner with given nickname
         /// </summary>
-        Task<SummonerGame> GetSummonerGameInformation(string id);
+        Task<SummonerGame> GetSummonerGameInformation(string id, string region);
     }
 }

@@ -9,6 +9,6 @@
 
         public string Message { get; set; }
 
-        public string gameMode { get; set; }
+        public SummonerGameDetails Details { get; set; }
     }
 }

@@ -5,10 +5,11 @@ namespace LeagueInformer.Interfaces
 {
    public interface IGetSummoner
    {
-        /// <summary>
-        /// Gets information about summoner with given nickname
-        /// </summary>
-        /// <param name="nickname">Nickname given by user</param>
-        Task<Summoner> GetInformationAboutSummoner(string nickname);
+       /// <summary>
+       /// Gets information about summoner with given nickname
+       /// </summary>
+       /// <param name="nickname">Nickname given by user</param>
+       /// <param name="region"></param>
+       Task<Summoner> GetInformationAboutSummoner(string nickname, string region);
    }
 }

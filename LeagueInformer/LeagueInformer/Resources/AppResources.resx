@@ -200,7 +200,7 @@ Do zobaczenia!</value>
     <value>{0}. {1}</value>
   </data>
   <data name="GetServerStatus_ChooseServerFromList" xml:space="preserve">
-    <value>{0}Wybierz z listy numer regionu, dla którego chcesz zobaczyć stan usług{1}</value>
+    <value>{0}Wybierz z listy numer regionu{1}</value>
   </data>
   <data name="Common_ChosenOption" xml:space="preserve">
     <value>{0}Wybrałeś opcję nr {1}</value>
@@ -227,12 +227,27 @@ Do zobaczenia!</value>
     <value>{0}Wybierz nazwę przywoływacza z listy lub wpisz ją ręcznie:</value>
   </data>
   <data name="GetSummonerGame_GiveSummonerNick" xml:space="preserve">
-    <value>Wpisz nazwe przywoływacza na serwerze EUNE: </value>
+    <value>Wpisz nazwe przywoływacza na serwerze {0}: </value>
   </data>
   <data name="GetSummonerGame_SummonerDontPlay" xml:space="preserve">
     <value>Przywoływacz aktualnie nie uczestniczy w żadnej rozgrywce</value>
   </data>
   <data name="MainMenu_GetSummonerGame" xml:space="preserve">
     <value>Sprawdź czy przywoływacz uczestniczy w rozgrywce</value>
+  </data>
+    <data name="GetSummonerGame__SummonerIsInGame" xml:space="preserve">
+    <value>{0}Przywoływacz {1} jest teraz w grze {2} </value>
+  </data>
+    <data name="OpenSpectateClient_CannotFindClientDirectory" xml:space="preserve">
+    <value>Nie znaleziono folderu z klientem gry.</value>
+  </data>
+    <data name="OpenSpectateClient_CannotFindRegistryKey" xml:space="preserve">
+    <value>Nie można odnaleźć ścieżki instalacji gry</value>
+  </data>
+    <data name="OpenSpectateClient_CannotCreateBatchFile" xml:space="preserve">
+    <value>Błąd uruchamiania gry, spróbuj ponownie</value>
+  </data>
+    <data name="GetSummonerGame_IfUserWantsToOpenSpectate" xml:space="preserve">
+    <value>Czy chcesz obejrzeć mecz? T/N</value>
   </data>
 </root>
