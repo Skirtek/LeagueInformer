@@ -12,19 +12,16 @@ namespace LeagueInformer.Services
     public class GetLeagueInfoService : IGetLeagueInfo
     {
         private readonly ApiClient _apiClient = new ApiClient();
-        private static readonly GetSummonerService SummonerService = new GetSummonerService();
-        private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
 
-        public async Task<LeagueList> GetListOfSummonerLeague(string summonerName, string regionCode = "eun1")
+        public async Task<LeagueList> GetListOfSummonerLeague(string summonerName, LeagueOfSummoner summonerLeagueDetails, string regionCode = "eun1")
         {
             try
             {
                 List<LeagueDetails> leagueMembersList = new List<LeagueDetails>();
-                var summoner = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
-                var summonerLeague = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summoner.Id, regionCode);
+
 
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://{regionCode}.api.riotgames.com/lol/league/v4/leagues/{summonerLeague.SummonerLeagueInfo.LeagueId}?api_key={AppSettings.AuthorizationApiKey}"));
+                    $"https://{regionCode}.api.riotgames.com/lol/league/v4/leagues/{summonerLeagueDetails.SummonerLeagueInfo.LeagueId}?api_key={AppSettings.AuthorizationApiKey}"));
 
                 if (response == null || !(response["entries"] is JArray leagueMembersArray))
                 {
@@ -44,7 +41,7 @@ namespace LeagueInformer.Services
                 {
                     IsSuccess = true,
                     LeagueDetailsResponseList = leagueMembersList,
-                    LeagueInfo = summonerLeague
+                    LeagueInfo = summonerLeagueDetails
                 };
             }
             catch (Exception ex)

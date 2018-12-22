@@ -9,6 +9,6 @@ namespace LeagueInformer.Interfaces
         /// Returns league details about given summoner league
         /// </summary>
         /// <returns></returns>
-        Task<LeagueList> GetListOfSummonerLeague(string summonerName, string regionCode);
+        Task<LeagueList> GetListOfSummonerLeague(string summonerName, LeagueOfSummoner summonerLeagueDetails, string regionCode);
     }
 }

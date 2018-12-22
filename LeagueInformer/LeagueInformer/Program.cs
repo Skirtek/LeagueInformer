@@ -115,7 +115,6 @@ namespace LeagueInformer
 
             string regionCode = chosenServer.RegionCode;
 
-            Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
             string summonerName = await PrintMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
@@ -169,8 +168,6 @@ namespace LeagueInformer
 
             string regionCode = chosenServer.RegionCode;
 
-            Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
-
             string summonerName = await PrintMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
@@ -179,7 +176,23 @@ namespace LeagueInformer
                 return;
             }
 
-            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName, regionCode);
+            var summoner = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
+
+            if (!summoner.IsSuccess)
+            {
+                Console.WriteLine(summoner.Message);
+                return;
+            }
+
+            var summonerLeague = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summoner.Id, regionCode);
+
+            if (!summonerLeague.IsSuccess)
+            {
+                Console.WriteLine(summonerLeague.Message);
+                return;
+            }
+
+            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName, summonerLeague, regionCode);
 
             if (!response.IsSuccess)
             {
@@ -222,8 +235,6 @@ namespace LeagueInformer
 
             string regionCode = chosenServer.RegionCode;
 
-            Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
-
             string summonerName = await PrintMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
@@ -249,9 +260,9 @@ namespace LeagueInformer
             if (!response.IsSuccess)
             {
                 Console.WriteLine(
-                    string.IsNullOrEmpty(summonerResponse.Message)
+                    string.IsNullOrEmpty(response.Message)
                         ? AppResources.Error_Undefined
-                        : summonerResponse.Message);
+                        : response.Message);
                 return;
             }
 

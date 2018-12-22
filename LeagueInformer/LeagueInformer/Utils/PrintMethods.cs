@@ -48,19 +48,25 @@ namespace LeagueInformer.Utils
             try
             {
                 int position = 1;
-                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Instruction, Environment.NewLine);
 
                 var nicknamesList = FileHandler.GetListOfLastNicknames();
                 if (nicknamesList.Any())
                 {
+                    Console.WriteLine(AppResources.PrintListOfSavedNicknames_Instruction, Environment.NewLine);
+
                     foreach (var nickname in nicknamesList)
                     {
                         Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot, position, nickname);
                         position++;
                     }
+
+                    Console.WriteLine(AppResources.PrintListOfSavedNicknames_Information, Environment.NewLine);
                 }
 
-                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Information, Environment.NewLine);
+                else
+                {
+                    Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
+                }
 
                 string summonerName = Console.ReadLine();
 
@@ -82,6 +88,6 @@ namespace LeagueInformer.Utils
         }
 
         private bool CheckIfPositionIsInBounds(int position) =>
-            position > AppSettings.ServerSpectateAddresses.Count && position > 1;
+            position < AppSettings.ServerSpectateAddresses.Count && position > 1;
     }
 }
