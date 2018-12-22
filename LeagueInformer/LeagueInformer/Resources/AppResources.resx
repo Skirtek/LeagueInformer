@@ -235,6 +235,9 @@ Do zobaczenia!</value>
   <data name="MainMenu_GetSummonerGame" xml:space="preserve">
     <value>Sprawdź czy przywoływacz uczestniczy w rozgrywce</value>
   </data>
+  <data name="MainMenu_GetSummonerHistory" xml:space="preserve">
+    <value>Sprawdź historię gier przywoływacza</value>
+  </data>
     <data name="GetSummonerGame__SummonerIsInGame" xml:space="preserve">
     <value>{0}Przywoływacz {1} jest teraz w grze {2} </value>
   </data>
@@ -249,5 +252,11 @@ Do zobaczenia!</value>
   </data>
     <data name="GetSummonerGame_IfUserWantsToOpenSpectate" xml:space="preserve">
     <value>Czy chcesz obejrzeć mecz? T/N</value>
+  </data>
+    <data name="GetSummonerHistory_LastTenMatchesInfo" xml:space="preserve">
+    <value>{0}Ostatnie 10 meczy dla przywoływacza {1}:{2}</value>
+  </data>
+    <data name="GetSummonerHistory_MatchFormat" xml:space="preserve">
+    <value>{0}. {1}, {2}{3}</value>
   </data>
 </root>

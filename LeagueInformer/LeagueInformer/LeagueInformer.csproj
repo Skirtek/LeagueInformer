@@ -58,8 +58,11 @@
     <Compile Include="Interfaces\IGetMasters.cs" />
     <Compile Include="Interfaces\IGetSummoner.cs" />
     <Compile Include="Interfaces\IGetSummonerGame.cs" />
+    <Compile Include="Interfaces\IGetLastGames.cs" />
     <Compile Include="Interfaces\IServerService.cs" />
     <Compile Include="Interfaces\ISpectator.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GamesResponse.cs" />
     <Compile Include="Models\LeagueDetails.cs" />
     <Compile Include="Models\LeagueList.cs" />
     <Compile Include="Models\LeagueOfSummoner.cs" />
@@ -81,6 +84,7 @@
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\FileHandler.cs" />
+    <Compile Include="Services\GetLastGamesService.cs" />
     <Compile Include="Services\GetLeagueInfoService.cs" />
     <Compile Include="Services\GetMastersService.cs" />
     <Compile Include="Services\GetLeagueOfSummonerService.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="Services\GetSummonerService.cs" />
     <Compile Include="Services\ServerService.cs" />
     <Compile Include="Services\Spectator.cs" />
+    <Compile Include="Utils\DateHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
