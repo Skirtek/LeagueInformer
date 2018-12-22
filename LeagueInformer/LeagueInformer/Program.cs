@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
+using LeagueInformer.Utils;
 using Newtonsoft.Json.Linq;
 
 namespace LeagueInformer
@@ -20,6 +21,8 @@ namespace LeagueInformer
         private static readonly GetSummonerGame SummonerGameService = new GetSummonerGame();
         private static readonly FileHandler FileHandler = new FileHandler();
         private static readonly Spectator Spectator = new Spectator();
+        private static readonly GetLastGamesService LastGameService = new GetLastGamesService();
+        private static readonly DateHandler DateHandler = new DateHandler();
 
         public static void Main(string[] args)
         {
@@ -44,15 +47,18 @@ namespace LeagueInformer
                             GetSummonerLeagueInfo().Wait();
                             break;
                         case "4":
-                            GetServerStatus().Wait();
+                            GetSummonerHistory().Wait();
                             break;
                         case "5":
                             GetSummonerGame().Wait();
                             break;
                         case "6":
-                            AboutApp();
+                            GetServerStatus().Wait();
                             break;
                         case "7":
+                            AboutApp();
+                            break;
+                        case "8":
                             Environment.Exit(1);
                             break;
 
@@ -60,7 +66,7 @@ namespace LeagueInformer
                             Console.WriteLine(AppResources.Common_OptionIsNotAvailable);
                             break;
                     }
-                } while (option != null && option != "7");
+                } while (option != null && option != "8");
             }
             else
             {
@@ -216,6 +222,80 @@ namespace LeagueInformer
             catch (Exception ex)
             {
                 return string.Empty;
+            }
+        }
+
+        private static async Task GetSummonerHistory()
+        {
+            Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
+            int position = 1;
+            foreach (var server in AppSettings.ServerSpectateAddresses)
+            {
+                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot,
+                    position,
+                    server.ServerName);
+                position++;
+            }
+
+            bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
+            if (!getPosition && pos > AppSettings.ServerSpectateAddresses.Count)
+            {
+                Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
+                return;
+            }
+
+            string regionCode = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerCode;
+
+            Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
+
+            string summonerName = await PrintListOfSavedNicknames();
+
+            if (string.IsNullOrEmpty(summonerName))
+            {
+                Console.WriteLine(AppResources.Error_SummonerNameCannotBeEmpty);
+                return;
+            }
+
+            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            if (!summonerResponse.IsSuccess)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(summonerResponse.Message)
+                        ? AppResources.Error_Undefined
+                        : summonerResponse.Message);
+                return;
+            }
+
+            string accountId = summonerResponse.AccountId;
+
+            var response = await LastGameService.GetLastTenGames(accountId, regionCode);
+
+            if (!response.IsSuccess)
+            {
+                Console.WriteLine(
+                    string.IsNullOrEmpty(summonerResponse.Message)
+                        ? AppResources.Error_Undefined
+                        : summonerResponse.Message);
+                return;
+            }
+
+            var matchList = response.Games.GetRange(0, 10).ToList();
+            position = 1;
+
+            Console.WriteLine(AppResources.GetSummonerHistory_LastTenMatchesInfo,
+                Environment.NewLine,
+                summonerName,
+                Environment.NewLine);
+
+            foreach (var match in matchList)
+            {
+                string lane = match.Lane != "NONE" ? match.Lane + ", " : string.Empty;
+                Console.WriteLine(AppResources.GetSummonerHistory_MatchFormat,
+                    position,
+                    SummonerService.GetChampionForId(match.Champion),
+                    lane,
+                    DateHandler.ParseTimeToDate(match.Date));
+                position++;
             }
         }
 

@@ -25,7 +25,8 @@ namespace LeagueInformer.Services
                         IsSuccess = true,
                         Name = response.GetValue("name").ToString(),
                         Puuid = response.GetValue("puuid").ToString(),
-                        Id = response.GetValue("id").ToString()
+                        Id = response.GetValue("id").ToString(),
+                        AccountId = response.GetValue("accountId").ToString()
                     };
             }
             catch (Exception ex)
@@ -34,7 +35,7 @@ namespace LeagueInformer.Services
             }
         }
 
-        public static string GetChampionForId(string id)
+        public string GetChampionForId(string id)
         {
             return id != null
                 ? int.TryParse(id, out var championId) && Enum.IsDefined(typeof(Champions), championId)

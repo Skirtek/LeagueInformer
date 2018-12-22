@@ -313,6 +313,24 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}Ostatnie 10 meczy dla przywoływacza {1}:{2}.
+        /// </summary>
+        internal static string GetSummonerHistory_LastTenMatchesInfo {
+            get {
+                return ResourceManager.GetString("GetSummonerHistory_LastTenMatchesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}. {1}, {2}{3}.
+        /// </summary>
+        internal static string GetSummonerHistory_MatchFormat {
+            get {
+                return ResourceManager.GetString("GetSummonerHistory_MatchFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Podaj nick przywoływacza:.
         /// </summary>
         internal static string GetSummonerLeagueInfo_GiveSummonerNick {
@@ -400,6 +418,15 @@ namespace LeagueInformer.Resources {
         internal static string MainMenu_GetSummonerGame {
             get {
                 return ResourceManager.GetString("MainMenu_GetSummonerGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprawdź historię gier przywoływacza.
+        /// </summary>
+        internal static string MainMenu_GetSummonerHistory {
+            get {
+                return ResourceManager.GetString("MainMenu_GetSummonerHistory", resourceCulture);
             }
         }
         
