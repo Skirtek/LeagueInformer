@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using LeagueInformer.Api;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
+using LeagueInformer.Utils;
+using LeagueInformer.Utils.Interfaces;
 using Newtonsoft.Json.Linq;
 
 namespace LeagueInformer.Services
@@ -11,6 +13,7 @@ namespace LeagueInformer.Services
     public class GetLastGamesService : IGetLastGames
     {
         private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IErrorHandler _errorHandler = new ErrorHandler();
 
         public async Task<GamesResponse> GetLastTenGames(string accountId, string regionCode)
         {
@@ -55,7 +58,7 @@ namespace LeagueInformer.Services
                 return new GamesResponse
                 {
                     IsSuccess = false,
-                    Message = ex.Message
+                    Message = _errorHandler.Error_Handler(ex.Message)
                 };
             }
         }
