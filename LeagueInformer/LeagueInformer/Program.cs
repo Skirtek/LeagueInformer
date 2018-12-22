@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using LeagueInformer.Models;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
+using Newtonsoft.Json.Linq;
 
 namespace LeagueInformer
 {
@@ -19,6 +19,7 @@ namespace LeagueInformer
         private static readonly GetLeagueInfoService LeagueInfoService = new GetLeagueInfoService();
         private static readonly GetSummonerGame SummonerGameService = new GetSummonerGame();
         private static readonly FileHandler FileHandler = new FileHandler();
+        private static readonly Spectator Spectator = new Spectator();
 
         public static void Main(string[] args)
         {
@@ -272,14 +273,14 @@ namespace LeagueInformer
             }
 
             bool getValue = AppSettings.ServerAddresses.TryGetValue(
-                AppSettings.ServerAddresses.Keys.ElementAt(pos - 1), out string str);
+                AppSettings.ServerAddresses.Keys.ElementAt(pos - 1), out string regionCode);
             if (!getValue)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
                 return;
             }
 
-            var response = await ServerService.GetServerStatus(str);
+            var response = await ServerService.GetServerStatus(regionCode);
             if (!response.IsSuccess)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
@@ -302,10 +303,30 @@ namespace LeagueInformer
         }
         private static async Task GetSummonerGame()
         {
-            Console.Write(AppResources.GetSummonerGame_GiveSummonerNick);
+            Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
+            int position = 1;
+            foreach (var server in AppSettings.ServerSpectateAddresses)
+            {
+                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot,
+                    position,
+                    server.ServerName);
+                position++;
+            }
+
+            bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
+            if (!getPosition && pos > AppSettings.ServerSpectateAddresses.Count)
+            {
+                Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
+                return;
+            }
+
+            string regionCode = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerCode;
+
+            Console.Write(AppResources.GetSummonerGame_GiveSummonerNick,
+                AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerName);
             string summonerName = Console.ReadLine();
 
-            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
             if (!summonerResponse.IsSuccess)
             {
                 Console.WriteLine(
@@ -316,7 +337,7 @@ namespace LeagueInformer
             }
 
             string summonerId = summonerResponse.Id;
-            var result = await SummonerGameService.GetSummonerGameInformation(summonerId);
+            var result = await SummonerGameService.GetSummonerGameInformation(summonerId, regionCode);
 
             if (!result.IsSuccess)
             {
@@ -327,13 +348,42 @@ namespace LeagueInformer
                 return;
             }
 
-            Console.WriteLine(result.IsSuccess ?
-                $"{Environment.NewLine}Przywoływacz {summonerName} " + 
-                $"jest teraz w grze {result.gameMode} " : result.Message);
+            Console.WriteLine(
+                AppResources.GetSummonerGame__SummonerIsInGame,
+                Environment.NewLine,
+                summonerName,
+                result.Details.GameMode);
 
+            Console.WriteLine(AppResources.GetSummonerGame_IfUserWantsToOpenSpectate);
+
+            if (Console.ReadLine() != "T")
+            {
+                Console.WriteLine(AppResources.ClickToContinue);
+                Console.ReadKey();
+                return;
+            }
+
+            string serverAddress = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerAddress;
+            string serverPort = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).Port;
+
+            var encryptionKey = result.Details.Observers.ToObject<JObject>().GetValue("encryptionKey").ToObject<string>();
+            bool wasClientOpened = Spectator.OpenSpectateClient(
+                encryptionKey,
+                result.Details,
+                regionCode.ToUpper(),
+                serverAddress,
+                serverPort);
+
+            if (!wasClientOpened)
+            {
+                Console.WriteLine(AppResources.ClickToContinue);
+                Console.ReadKey();
+                return;
+            }
+
+            Process.Start(AppSettings.PathToSaveBatchFile);
             Console.WriteLine(AppResources.ClickToContinue);
             Console.ReadKey();
-
         }
 
         private static void AboutApp()

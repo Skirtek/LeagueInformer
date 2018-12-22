@@ -250,7 +250,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}Wybierz z listy numer regionu, dla którego chcesz zobaczyć stan usług{1}.
+        ///   Looks up a localized string similar to {0}Wybierz z listy numer regionu{1}.
         /// </summary>
         internal static string GetServerStatus_ChooseServerFromList {
             get {
@@ -277,11 +277,29 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wpisz nazwe przywoływacza na serwerze EUNE: .
+        ///   Looks up a localized string similar to {0}Przywoływacz {1} jest teraz w grze {2} .
+        /// </summary>
+        internal static string GetSummonerGame__SummonerIsInGame {
+            get {
+                return ResourceManager.GetString("GetSummonerGame__SummonerIsInGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wpisz nazwe przywoływacza na serwerze {0}: .
         /// </summary>
         internal static string GetSummonerGame_GiveSummonerNick {
             get {
                 return ResourceManager.GetString("GetSummonerGame_GiveSummonerNick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Czy chcesz obejrzeć mecz? T/N.
+        /// </summary>
+        internal static string GetSummonerGame_IfUserWantsToOpenSpectate {
+            get {
+                return ResourceManager.GetString("GetSummonerGame_IfUserWantsToOpenSpectate", resourceCulture);
             }
         }
         
@@ -391,6 +409,33 @@ namespace LeagueInformer.Resources {
         internal static string MainMenu_GetSummonerLeagueInfo {
             get {
                 return ResourceManager.GetString("MainMenu_GetSummonerLeagueInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Błąd uruchamiania gry, spróbuj ponownie.
+        /// </summary>
+        internal static string OpenSpectateClient_CannotCreateBatchFile {
+            get {
+                return ResourceManager.GetString("OpenSpectateClient_CannotCreateBatchFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie znaleziono folderu z klientem gry..
+        /// </summary>
+        internal static string OpenSpectateClient_CannotFindClientDirectory {
+            get {
+                return ResourceManager.GetString("OpenSpectateClient_CannotFindClientDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie można odnaleźć ścieżki instalacji gry.
+        /// </summary>
+        internal static string OpenSpectateClient_CannotFindRegistryKey {
+            get {
+                return ResourceManager.GetString("OpenSpectateClient_CannotFindRegistryKey", resourceCulture);
             }
         }
         
