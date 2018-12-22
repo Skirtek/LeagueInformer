@@ -3,32 +3,35 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using LeagueInformer.Models;
+using LeagueInformer.Interfaces;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
 using LeagueInformer.Utils;
+using LeagueInformer.Utils.Interfaces;
 using Newtonsoft.Json.Linq;
 
 namespace LeagueInformer
 {
     public class Program
     {
-        //TODO dodać regiony dla większej czytelności w ramach porządkowania kodu
-        private static readonly ConnectionService ConnectionService = new ConnectionService();
-        private static readonly GetSummonerService SummonerService = new GetSummonerService();
-        private static readonly GetMastersService MastersService = new GetMastersService();
-        private static readonly GetLeagueOfSummoner LeagueOfSummonerService = new GetLeagueOfSummoner();
-        private static readonly ServerService ServerService = new ServerService();
-        private static readonly GetLeagueInfoService LeagueInfoService = new GetLeagueInfoService();
-        private static readonly GetSummonerGame SummonerGameService = new GetSummonerGame();
-        private static readonly FileHandler FileHandler = new FileHandler();
-        private static readonly Spectator Spectator = new Spectator();
-        private static readonly GetLastGamesService LastGameService = new GetLastGamesService();
+        #region Interfaces 
+        private static readonly IConnection Connection = new ConnectionService();
+        private static readonly IGetSummoner SummonerService = new GetSummonerService();
+        private static readonly IGetMasters MastersService = new GetMastersService();
+        private static readonly IGetLeagueOfSummonerInformation LeagueOfSummonerService = new GetLeagueOfSummoner();
+        private static readonly IServerService ServerService = new ServerService();
+        private static readonly IGetLeagueInfo LeagueInfoService = new GetLeagueInfoService();
+        private static readonly IGetSummonerGame SummonerGameService = new GetSummonerGame();
+        private static readonly ISpectator Spectator = new Spectator();
+        private static readonly IGetLastGames LastGameService = new GetLastGamesService();
+        private static readonly IPrintMethods PrintMethods = new PrintMethods();
         private static readonly DateHandler DateHandler = new DateHandler();
+        #endregion
 
+        #region Main
         public static void Main(string[] args)
         {
-            if (ConnectionService.HasInternetConnection())
+            if (Connection.HasInternetConnection())
             {
                 string option;
                 do
@@ -75,7 +78,9 @@ namespace LeagueInformer
                 ExitApp();
             }
         }
+        #endregion
 
+        #region PrivateMethods
         private static void MainMenu()
         {
             int iterator = 1;
@@ -101,7 +106,7 @@ namespace LeagueInformer
 
         private static async Task GetLeagueOfSummoner()
         {
-            var chosenServer = PrintListOfServers();
+            var chosenServer = PrintMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -111,7 +116,7 @@ namespace LeagueInformer
             string regionCode = chosenServer.RegionCode;
 
             Console.Write(AppResources.GetLeagueOfSummoner_EnterName);
-            string summonerName = await PrintListOfSavedNicknames();
+            string summonerName = await PrintMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
             {
@@ -143,19 +148,19 @@ namespace LeagueInformer
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(result.IsSuccess ?
-                $"{Environment.NewLine}Nazwa przywoływacza: {result.SummonerLeagueInfo.summonerName} " +
-                $"{Environment.NewLine}Nazwa ligi: {result.SummonerLeagueInfo.leagueName} " +
-                $"{Environment.NewLine}Tier: {result.SummonerLeagueInfo.tier} " +
-                $"{Environment.NewLine}Ranga: {result.SummonerLeagueInfo.rank} " +
-                $"{Environment.NewLine}Wygrane: {result.SummonerLeagueInfo.wins} " +
-                $"{Environment.NewLine}Przegrane: {result.SummonerLeagueInfo.losses} " +
-                $"{Environment.NewLine}Typ kolejki: {result.SummonerLeagueInfo.queueType}" : result.Message);
+                $"{Environment.NewLine}Nazwa przywoływacza: {result.SummonerLeagueInfo.SummonerName} " +
+                $"{Environment.NewLine}Nazwa ligi: {result.SummonerLeagueInfo.LeagueName} " +
+                $"{Environment.NewLine}Tier: {result.SummonerLeagueInfo.Tier} " +
+                $"{Environment.NewLine}Ranga: {result.SummonerLeagueInfo.Rank} " +
+                $"{Environment.NewLine}Wygrane: {result.SummonerLeagueInfo.Wins} " +
+                $"{Environment.NewLine}Przegrane: {result.SummonerLeagueInfo.Losses} " +
+                $"{Environment.NewLine}Typ kolejki: {result.SummonerLeagueInfo.QueueType}" : result.Message);
             Console.ResetColor();
         }
 
         private static async Task GetSummonerLeagueInfo()
         {
-            var chosenServer = PrintListOfServers();
+            var chosenServer = PrintMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -166,7 +171,7 @@ namespace LeagueInformer
 
             Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
 
-            string summonerName = await PrintListOfSavedNicknames();
+            string summonerName = await PrintMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
             {
@@ -185,8 +190,8 @@ namespace LeagueInformer
             var sortedMembers = response.LeagueDetailsResponseList.OrderByDescending(x => x.Points).ToList();
             int position = 1;
             Console.WriteLine(AppResources.Common_TwoVerbatimStrings,
-                response.LeagueInfo.SummonerLeagueInfo.leagueName,
-                response.LeagueInfo.SummonerLeagueInfo.rank);
+                response.LeagueInfo.SummonerLeagueInfo.LeagueName,
+                response.LeagueInfo.SummonerLeagueInfo.Rank);
             foreach (var member in sortedMembers)
             {
                 Console.ForegroundColor = member.SummonerName == summonerName
@@ -206,47 +211,9 @@ namespace LeagueInformer
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private static async Task<string> PrintListOfSavedNicknames()
-        {
-            try
-            {
-                int position = 1;
-                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Instruction, Environment.NewLine);
-
-                var nicknamesList = FileHandler.GetListOfLastNicknames();
-                if (nicknamesList.Any())
-                {
-                    foreach (var nickname in nicknamesList)
-                    {
-                        Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot, position, nickname);
-                        position++;
-                    }
-                }
-
-                Console.WriteLine(AppResources.PrintListOfSavedNicknames_Information, Environment.NewLine);
-
-                string summonerName = Console.ReadLine();
-
-                if (int.TryParse(summonerName, out int result))
-                {
-                    summonerName = nicknamesList[result - 1];
-                }
-                else
-                {
-                    await FileHandler.SaveNicknameToList(summonerName);
-                }
-
-                return summonerName;
-            }
-            catch (Exception ex)
-            {
-                return string.Empty;
-            }
-        }
-
         private static async Task GetSummonerHistory()
         {
-            var chosenServer = PrintListOfServers();
+            var chosenServer = PrintMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -257,7 +224,7 @@ namespace LeagueInformer
 
             Console.WriteLine(AppResources.GetSummonerLeagueInfo_GiveSummonerNick);
 
-            string summonerName = await PrintListOfSavedNicknames();
+            string summonerName = await PrintMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
             {
@@ -310,7 +277,7 @@ namespace LeagueInformer
 
         private static async Task GetBestMasters()
         {
-            var chosenServer = PrintListOfServers();
+            var chosenServer = PrintMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -401,7 +368,7 @@ namespace LeagueInformer
         }
         private static async Task GetSummonerGame()
         {
-            var chosenServer = PrintListOfServers();
+            var chosenServer = PrintMethods.PrintListOfSpectateServers();
             if (!chosenServer.IsSuccess)
             {
                 return;
@@ -484,37 +451,9 @@ namespace LeagueInformer
             Console.ResetColor();
             Console.ReadKey();
         }
+        #endregion
 
-        private static ChosenServer PrintListOfServers()
-        {
-            Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
-            int position = 1;
-            foreach (var server in AppSettings.ServerSpectateAddresses)
-            {
-                Console.WriteLine(AppResources.Common_TwoVerbatimStringWithDot,
-                    position,
-                    server.ServerName);
-                position++;
-            }
-
-            bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
-            if (!getPosition || pos > AppSettings.ServerSpectateAddresses.Count)
-            {
-                Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
-                return new ChosenServer
-                {
-                    IsSuccess = false
-                };
-            }
-
-            return new ChosenServer
-            {
-                RegionCode = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerCode,
-                Position = pos,
-                IsSuccess = true
-            };
-        }
-
+        #region HelperMethods
         [DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr hWnd, int cmdShow);
 
@@ -523,5 +462,6 @@ namespace LeagueInformer
             Process p = Process.GetCurrentProcess();
             ShowWindow(p.MainWindowHandle, 3);
         }
+        #endregion
     }
 }
