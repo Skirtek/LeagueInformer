@@ -106,7 +106,9 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \nSpróbuj ponownie później :).
+        ///   Looks up a localized string similar to 
+        ///Spróbuj ponownie później :)
+        ///.
         /// </summary>
         internal static string Common_TryAgainLater {
             get {
@@ -160,7 +162,8 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ups!\nAplikacja nie może przetworzyć danych.
+        ///   Looks up a localized string similar to Ups!
+        ///    Aplikacja nie może przetworzyć danych.
         /// </summary>
         internal static string Error_RequestAppError {
             get {
@@ -169,7 +172,8 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upłynął czas przetwarzania żądania.\nPrawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}.
+        ///   Looks up a localized string similar to Upłynął czas przetwarzania żądania.
+        ///    Prawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}.
         /// </summary>
         internal static string Error_RequestTimedOut {
             get {

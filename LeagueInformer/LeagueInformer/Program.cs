@@ -133,7 +133,7 @@ namespace LeagueInformer
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(result.IsSuccess ?
-                $"\nNazwa przywoływacza: {result.SummonerLeagueInfo.summonerName} " +
+                $"{Environment.NewLine}Nazwa przywoływacza: {result.SummonerLeagueInfo.summonerName} " +
                 $"{Environment.NewLine}Nazwa ligi: {result.SummonerLeagueInfo.leagueName} " +
                 $"{Environment.NewLine}Tier: {result.SummonerLeagueInfo.tier} " +
                 $"{Environment.NewLine}Ranga: {result.SummonerLeagueInfo.rank} " +

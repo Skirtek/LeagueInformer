@@ -10,9 +10,10 @@ namespace LeagueInformer
     {
         public const string CheckInternetConnectionString = "http://clients3.google.com/generate_204";
         public const string AuthorizationApiKey = "RGAPI-2958ec04-0412-63bf-1ddc-2aba3fe0bfbe";
-        public const string PathToSaveBatchFile = @"C:\temp\runGame.bat";
+        public const string PathToSaveBatchFile = @"C:{Tabulator}emp\runGame.bat";
+        private const string Tabulator = "\t";
 
-        public static readonly string PathToSaveNicknameFile = 
+        public static readonly string PathToSaveNicknameFile =
             Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 "LeagueInformerNicknames.txt");
@@ -151,13 +152,13 @@ namespace LeagueInformer
 
         public static readonly Dictionary<string, ConsoleColor> AboutAppProjectRoles = new Dictionary<string, ConsoleColor>
         {
-            {"\tLeague Informer", ConsoleColor.Yellow},
-            {$"{Environment.NewLine}\tApp version {Environment.NewLine}\t1.0.0{Environment.NewLine}", ConsoleColor.DarkYellow },
-            {$"\tProject Owner{Environment.NewLine}\tBartosz Mróz{Environment.NewLine}", ConsoleColor.DarkRed},
-            {$"\tCEO{Environment.NewLine}\tBartosz Mróz{Environment.NewLine}", ConsoleColor.Red },
-            {$"\tUX Designer{Environment.NewLine}\tBartosz Mróz{Environment.NewLine}\tUI Designer{Environment.NewLine}Bartosz Mróz\tFilip Nowicki{Environment.NewLine}", ConsoleColor.Green},
-            {$"{Environment.NewLine}\tDevelopers{Environment.NewLine}Bartosz Mróz\tFilip Nowicki{Environment.NewLine}Robert Dobiała\tIgor Drążkowski{Environment.NewLine}", ConsoleColor.Blue},
-            {$"\tTesters{Environment.NewLine}Bartosz Mróz\t Filip Nowicki", ConsoleColor.Gray},
+            {$"{Tabulator}League Informer", ConsoleColor.Yellow},
+            {$"{Environment.NewLine}{Tabulator}App version {Environment.NewLine}{Tabulator}1.0.0{Environment.NewLine}", ConsoleColor.DarkYellow },
+            {$"{Tabulator}Project Owner{Environment.NewLine}{Tabulator}Bartosz Mróz{Environment.NewLine}", ConsoleColor.DarkRed},
+            {$"{Tabulator}CEO{Environment.NewLine}{Tabulator}Bartosz Mróz{Environment.NewLine}", ConsoleColor.Red },
+            {$"{Tabulator}UX Designer{Environment.NewLine}{Tabulator}Bartosz Mróz{Environment.NewLine}{Tabulator}UI Designer{Environment.NewLine}Bartosz Mróz{Tabulator}Filip Nowicki{Environment.NewLine}", ConsoleColor.Green},
+            {$"{Environment.NewLine}{Tabulator}Developers{Environment.NewLine}Bartosz Mróz{Tabulator}Filip Nowicki{Environment.NewLine}Robert Dobiała{Tabulator}Igor Drążkowski{Environment.NewLine}", ConsoleColor.Blue},
+            {$"{Tabulator}Testers{Environment.NewLine}Bartosz Mróz{Tabulator} Filip Nowicki", ConsoleColor.Gray},
             {$"{Environment.NewLine}{AppResources.ClickToContinue}", ConsoleColor.Yellow }
         };
     }
