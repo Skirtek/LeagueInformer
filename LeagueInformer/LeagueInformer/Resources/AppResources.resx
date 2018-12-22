@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_ExitApp" xml:space="preserve">
+    <value>Naciśnij ENTER, aby zakończyć działanie programu</value>
+  </data>
+  <data name="Common_OptionIsNotAvailable" xml:space="preserve">
+    <value>Wybrana opcja jest niedostępna</value>
+  </data>
+  <data name="Common_TryAgainLater" xml:space="preserve">
+    <value>
+Spróbuj ponownie później :)
+</value>
+  </data>
+  <data name="Error_DownloadingData" xml:space="preserve">
+    <value>Wystąpił błąd pobierania danych z serwerów Riot Games,spróbuj ponownie później</value>
+  </data>
+  <data name="Error_PlayerNotFound" xml:space="preserve">
+    <value>Nie znaleziono przywoływacza o podanym nicku</value>
+  </data>
+  <data name="Error_PlayerWithoutGamesHistory" xml:space="preserve">
+    <value>Wybrany gracz nie posiada historii gier</value>
+  </data>
+  <data name="Error_RequestAppError" xml:space="preserve">
+    <value>Ups!
+Aplikacja nie może przetworzyć danych{0}</value>
+  </data>
+  <data name="Error_RequestTimedOut" xml:space="preserve">
+    <value>Upłynął czas przetwarzania żądania.
+Prawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowiadają.{0}</value>
+  </data>
+  <data name="Error_RiotServersAreDown" xml:space="preserve">
+    <value>Serwery Riot Games nie odpowiadają.{0}</value>
+  </data>
+  <data name="Error_Undefined" xml:space="preserve">
+    <value>Wystąpił nieznany błąd,spróbuj ponownie później</value>
+  </data>
+  <data name="MainMenu_GetMasterList" xml:space="preserve">
+    <value>Zobacz statystyki 10 najlepszych Masterów na wybranym serwerze</value>
+  </data>
+  <data name="Main_ChooseFunction" xml:space="preserve">
+    <value>Wybierz interesującą Cię funkcję:</value>
+  </data>
+  <data name="Main_NoInternetConnection" xml:space="preserve">
+    <value>Aby używać aplikacji konieczne jest połączenie z internetem.
+Do zobaczenia!</value>
+  </data>
+  <data name="Main_Quit" xml:space="preserve">
+    <value>Wyjdź</value>
+  </data>
+  <data name="Main_WelcomeUser" xml:space="preserve">
+    <value>Witaj w League Informer!</value>
+  </data>
+  <data name="Common_StatisticsPatten" xml:space="preserve">
+    <value>{0}. {1}, {2} wygranych meczów, {3} przegranych meczów, {4}LP</value>
+  </data>
+  <data name="GetBestMasters_HasHotStreak" xml:space="preserve">
+    <value>Gracz ma gorącą serię</value>
+  </data>
+  <data name="GetBestMasters_HasNotHotStreak" xml:space="preserve">
+    <value>Gracz nie ma gorącej serii</value>
+  </data>
+  <data name="GetBestMasters_IsNotVeteran" xml:space="preserve">
+    <value>Gracz nie rozegrał ponad 100 gier w tej lidze</value>
+  </data>
+  <data name="GetBestMasters_IsVeteran" xml:space="preserve">
+    <value>Gracz rozegrał ponad 100 gier w tej lidze</value>
+  </data>
+  <data name="MainManu_AboutApp" xml:space="preserve">
+    <value>O aplikacji</value>
+  </data>
+  <data name="GetLeagueOfSummoner_EnterName" xml:space="preserve">
+    <value>Podaj nazwe Przywoływacza: </value>
+  </data>
+  <data name="MainMenu_GetLeagueOfSummoner" xml:space="preserve">
+    <value>Pobierz informacje o wybranym przywoływaczu</value>
+  </data>
+  <data name="ClickToContinue" xml:space="preserve">
+    <value>* * * Wciśnij dowolny klawisz aby kontynuować * * *</value>
+  </data>
+  <data name="GetServerStatus_DataForServer" xml:space="preserve">
+    <value>{0}Dane dla serwera {1}{2}</value>
+  </data>
+  <data name="MainMenu_GetServerStatus" xml:space="preserve">
+    <value>Sprawdź status usług wybranego serwera gry</value>
+  </data>
+  <data name="Common_TwoVerbatimStringWithDot" xml:space="preserve">
+    <value>{0}. {1}</value>
+  </data>
+  <data name="GetServerStatus_ChooseServerFromList" xml:space="preserve">
+    <value>{0}Wybierz z listy numer regionu{1}</value>
+  </data>
+  <data name="Common_ChosenOption" xml:space="preserve">
+    <value>{0}Wybrałeś opcję nr {1}</value>
+  </data>
+  <data name="GetServerStatus_ParsingFailed" xml:space="preserve">
+    <value>Wystąpił błąd, prawdopodobnie wpisałeś nieprawidłową wartość, spróbuj jeszcze raz</value>
+  </data>
+  <data name="GetSummonerLeagueInfo_GiveSummonerNick" xml:space="preserve">
+    <value>Podaj nick przywoływacza:</value>
+  </data>
+  <data name="Common_TwoVerbatimStrings" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="MainMenu_GetSummonerLeagueInfo" xml:space="preserve">
+    <value>Pobierz informacje o lidze wybranego przywoływacza</value>
+  </data>
+  <data name="Error_SummonerNameCannotBeEmpty" xml:space="preserve">
+    <value>Nazwa przywoływacza nie może być pusta</value>
+  </data>
+    <data name="PrintListOfSavedNicknames_Information" xml:space="preserve">
+    <value>{0}Informacja: Aby wybrać nazwę z listy wpisz żądany numer</value>
+  </data>
+    <data name="PrintListOfSavedNicknames_Instruction" xml:space="preserve">
+    <value>{0}Wybierz nazwę przywoływacza z listy lub wpisz ją ręcznie:</value>
+  </data>
+  <data name="GetSummonerGame_GiveSummonerNick" xml:space="preserve">
+    <value>Wpisz nazwe przywoływacza na serwerze {0}: </value>
+  </data>
+  <data name="GetSummonerGame_SummonerDontPlay" xml:space="preserve">
+    <value>Przywoływacz aktualnie nie uczestniczy w żadnej rozgrywce</value>
+  </data>
+  <data name="MainMenu_GetSummonerGame" xml:space="preserve">
+    <value>Sprawdź czy przywoływacz uczestniczy w rozgrywce</value>
+  </data>
+  <data name="MainMenu_GetSummonerHistory" xml:space="preserve">
+    <value>Sprawdź historię gier przywoływacza</value>
+  </data>
+    <data name="GetSummonerGame__SummonerIsInGame" xml:space="preserve">
+    <value>{0}Przywoływacz {1} jest teraz w grze {2} </value>
+  </data>
+    <data name="OpenSpectateClient_CannotFindClientDirectory" xml:space="preserve">
+    <value>Nie znaleziono folderu z klientem gry.</value>
+  </data>
+    <data name="OpenSpectateClient_CannotFindRegistryKey" xml:space="preserve">
+    <value>Nie można odnaleźć ścieżki instalacji gry</value>
+  </data>
+    <data name="OpenSpectateClient_CannotCreateBatchFile" xml:space="preserve">
+    <value>Błąd uruchamiania gry, spróbuj ponownie</value>
+  </data>
+    <data name="GetSummonerGame_IfUserWantsToOpenSpectate" xml:space="preserve">
+    <value>Czy chcesz obejrzeć mecz? T/N</value>
+  </data>
+    <data name="GetSummonerHistory_LastTenMatchesInfo" xml:space="preserve">
+    <value>{0}Ostatnie 10 meczy dla przywoływacza {1}:{2}</value>
+  </data>
+    <data name="GetSummonerHistory_MatchFormat" xml:space="preserve">
+    <value>{0}. {1}, {2}{3}</value>
+  </data>
+</root>
