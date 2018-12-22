@@ -13,13 +13,13 @@ namespace LeagueInformer.Services
     {
         private readonly ApiClient _apiClient = new ApiClient();
 
-        public async Task<MastersList> GetListOfMasterLeague() //Zbieramy tylko dla EUNE, wiec nie pobieramy serwera poki co
+        public async Task<MastersList> GetListOfMasterLeague(string regionCode = "eun1")
         {
             try
             {
                 List<Masters> mastersList = new List<Masters>();
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://eun1.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key={AppSettings.AuthorizationApiKey}"));
+                    $"https://{regionCode}.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key={AppSettings.AuthorizationApiKey}"));
 
                 if (response == null || !(response["entries"] is JArray mastersArray))
                 {

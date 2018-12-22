@@ -61,6 +61,7 @@
     <Compile Include="Interfaces\IGetLastGames.cs" />
     <Compile Include="Interfaces\IServerService.cs" />
     <Compile Include="Interfaces\ISpectator.cs" />
+    <Compile Include="Models\ChosenServer.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GamesResponse.cs" />
     <Compile Include="Models\LeagueDetails.cs" />

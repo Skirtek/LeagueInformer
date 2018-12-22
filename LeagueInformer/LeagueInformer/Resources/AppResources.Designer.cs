@@ -390,7 +390,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Informacje o przywoływaczu na serwerze EUNE.
+        ///   Looks up a localized string similar to Pobierz informacje o wybranym przywoływaczu.
         /// </summary>
         internal static string MainMenu_GetLeagueOfSummoner {
             get {
@@ -399,7 +399,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zobacz statystyki 10 najlepszych Masterów na serwerze EUNE.
+        ///   Looks up a localized string similar to Zobacz statystyki 10 najlepszych Masterów na wybranym serwerze.
         /// </summary>
         internal static string MainMenu_GetMasterList {
             get {

@@ -152,7 +152,7 @@ Prawdopodobnie straciłeś połączenie z internetem lub serwery Riot nie odpowi
     <value>Wystąpił nieznany błąd,spróbuj ponownie później</value>
   </data>
   <data name="MainMenu_GetMasterList" xml:space="preserve">
-    <value>Zobacz statystyki 10 najlepszych Masterów na serwerze EUNE</value>
+    <value>Zobacz statystyki 10 najlepszych Masterów na wybranym serwerze</value>
   </data>
   <data name="Main_ChooseFunction" xml:space="preserve">
     <value>Wybierz interesującą Cię funkcję:</value>
@@ -189,7 +189,7 @@ Do zobaczenia!</value>
     <value>Podaj nazwe Przywoływacza: </value>
   </data>
   <data name="MainMenu_GetLeagueOfSummoner" xml:space="preserve">
-    <value>Informacje o przywoływaczu na serwerze EUNE</value>
+    <value>Pobierz informacje o wybranym przywoływaczu</value>
   </data>
   <data name="ClickToContinue" xml:space="preserve">
     <value>* * * Wciśnij dowolny klawisz aby kontynuować * * *</value>
