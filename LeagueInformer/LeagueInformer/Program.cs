@@ -238,7 +238,7 @@ namespace LeagueInformer
             }
 
             bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
-            if (!getPosition && pos > AppSettings.ServerSpectateAddresses.Count)
+            if (!getPosition || pos > AppSettings.ServerSpectateAddresses.Count)
             {
                 Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
                 return;
@@ -346,7 +346,7 @@ namespace LeagueInformer
             }
 
             bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
-            if (!getPosition)
+            if (!getPosition || pos > AppSettings.ServerAddresses.Count)
             {
                 Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
                 return;
@@ -394,7 +394,7 @@ namespace LeagueInformer
             }
 
             bool getPosition = int.TryParse(Console.ReadLine(), out int pos);
-            if (!getPosition && pos > AppSettings.ServerSpectateAddresses.Count)
+            if (!getPosition || pos > AppSettings.ServerSpectateAddresses.Count)
             {
                 Console.WriteLine(AppResources.GetServerStatus_ParsingFailed);
                 return;
