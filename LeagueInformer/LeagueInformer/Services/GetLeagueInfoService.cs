@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
 using LeagueInformer.Enums;
@@ -13,15 +14,14 @@ namespace LeagueInformer.Services
     {
         private readonly ApiClient _apiClient = new ApiClient();
 
-        public async Task<LeagueList> GetListOfSummonerLeague(string summonerName, LeagueOfSummoner summonerLeagueDetails, string regionCode = "eun1")
+        public async Task<LeagueList> GetListOfSummonerLeague(string summonerName, LeagueOfSummoner summonerLeagueDetails, string leagueId, string regionCode = "eun1")
         {
             try
             {
                 List<LeagueDetails> leagueMembersList = new List<LeagueDetails>();
 
-
                 JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://{regionCode}.api.riotgames.com/lol/league/v4/leagues/{summonerLeagueDetails.SummonerLeagueInfo.LeagueId}?api_key={AppSettings.AuthorizationApiKey}"));
+                    $"https://{regionCode}.api.riotgames.com/lol/league/v4/leagues/{leagueId}?api_key={AppSettings.AuthorizationApiKey}"));
 
                 if (response == null || !(response["entries"] is JArray leagueMembersArray))
                 {

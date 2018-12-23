@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
 using LeagueInformer.Interfaces;
@@ -18,14 +19,28 @@ namespace LeagueInformer.Services
         {
             try
             {
+                var queueList = new List<SummonerLeagueInfo>();
                 JArray response = JArray.Parse(await _apiClient.GetJsonFromUrl(
                    $"https://{region}.api.riotgames.com/lol/league/v4/positions/by-summoner/{id}?api_key={AppSettings.AuthorizationApiKey}"));
 
-                var data = JObject.FromObject(response[0]).ToObject<SummonerLeagueInfo>();
+                if (response.Count < 1)
+                {
+                    return new LeagueOfSummoner
+                    {
+                        IsSuccess = false,
+                        Message = _errorHandler.Error_Handler("404")
+                    };
+                }
+
+                foreach (var queue in response)
+                {
+                    queueList.Add(queue.ToObject<SummonerLeagueInfo>());
+                }
+
                 return new LeagueOfSummoner
                 {
                     IsSuccess = true,
-                    SummonerLeagueInfo = data
+                    SummonerLeagueInfoList = queueList
                 };
             }
             catch (Exception ex)

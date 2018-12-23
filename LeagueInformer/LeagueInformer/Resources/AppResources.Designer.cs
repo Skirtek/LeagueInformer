@@ -245,11 +245,92 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Na wybranym serwerze nie ma minimum 10 masterów.
+        /// </summary>
+        internal static string GetBestMasters_NotEnoughMasters {
+            get {
+                return ResourceManager.GetString("GetBestMasters_NotEnoughMasters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Podaj nazwe Przywoływacza: .
         /// </summary>
         internal static string GetLeagueOfSummoner_EnterName {
             get {
                 return ResourceManager.GetString("GetLeagueOfSummoner_EnterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Nazwa ligi: {1} .
+        /// </summary>
+        internal static string GetLeagueOfSummoner_LeagueName {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_LeagueName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Przegrane: {1} .
+        /// </summary>
+        internal static string GetLeagueOfSummoner_Losses {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_Losses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gracz nie bierze udziału w żadnych rozgrywkach.
+        /// </summary>
+        internal static string GetLeagueOfSummoner_PlayerDoesntParticipatesInAnyGames {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_PlayerDoesntParticipatesInAnyGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Typ kolejki: {1}.
+        /// </summary>
+        internal static string GetLeagueOfSummoner_QueueType {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_QueueType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Ranga: {1} .
+        /// </summary>
+        internal static string GetLeagueOfSummoner_Rank {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_Rank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Nazwa przywoływacza: {1} .
+        /// </summary>
+        internal static string GetLeagueOfSummoner_SummonerName {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_SummonerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Tier: {1} .
+        /// </summary>
+        internal static string GetLeagueOfSummoner_Tier {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_Tier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Wygrane: {1} .
+        /// </summary>
+        internal static string GetLeagueOfSummoner_Wins {
+            get {
+                return ResourceManager.GetString("GetLeagueOfSummoner_Wins", resourceCulture);
             }
         }
         
@@ -281,7 +362,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}Przywoływacz {1} jest teraz w grze {2} .
+        ///   Looks up a localized string similar to {0}Przywoływacz {1} jest teraz w {2} .
         /// </summary>
         internal static string GetSummonerGame__SummonerIsInGame {
             get {
@@ -317,6 +398,15 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to nieznanym trybie gry.
+        /// </summary>
+        internal static string GetSummonerGame_UndefinedGameType {
+            get {
+                return ResourceManager.GetString("GetSummonerGame_UndefinedGameType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}Ostatnie 10 meczy dla przywoływacza {1}:{2}.
         /// </summary>
         internal static string GetSummonerHistory_LastTenMatchesInfo {
@@ -326,11 +416,20 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}. {1}, {2}{3}.
+        ///   Looks up a localized string similar to {0}. {1}, {2}, {3}, {4}.
         /// </summary>
         internal static string GetSummonerHistory_MatchFormat {
             get {
                 return ResourceManager.GetString("GetSummonerHistory_MatchFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieznany sezon.
+        /// </summary>
+        internal static string GetSummonerHistory_UndefinedSeason {
+            get {
+                return ResourceManager.GetString("GetSummonerHistory_UndefinedSeason", resourceCulture);
             }
         }
         
@@ -340,6 +439,15 @@ namespace LeagueInformer.Resources {
         internal static string GetSummonerLeagueInfo_GiveSummonerNick {
             get {
                 return ResourceManager.GetString("GetSummonerLeagueInfo_GiveSummonerNick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gracz nie bierze udziału w rozgrywkach rankingowych.
+        /// </summary>
+        internal static string GetSummonerLeagueInfo_PlayerDoesntParticipateInRankedGames {
+            get {
+                return ResourceManager.GetString("GetSummonerLeagueInfo_PlayerDoesntParticipateInRankedGames", resourceCulture);
             }
         }
         
