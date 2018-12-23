@@ -88,6 +88,6 @@ namespace LeagueInformer.Utils
         }
 
         private bool CheckIfPositionIsInBounds(int position) =>
-            position < AppSettings.ServerSpectateAddresses.Count && position > 1;
+            position < AppSettings.ServerSpectateAddresses.Count && position > 0;
     }
 }

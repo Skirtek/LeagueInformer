@@ -14,7 +14,7 @@ namespace LeagueInformer
 {
     public class Program
     {
-        #region Interfaces 
+        #region Imports 
         private static readonly IConnection Connection = new ConnectionService();
         private static readonly IGetSummoner SummonerService = new GetSummonerService();
         private static readonly IGetMasters MastersService = new GetMastersService();
@@ -26,6 +26,7 @@ namespace LeagueInformer
         private static readonly IGetLastGames LastGameService = new GetLastGamesService();
         private static readonly IPrintMethods PrintMethods = new PrintMethods();
         private static readonly DateHandler DateHandler = new DateHandler();
+        private static readonly LeagueConstants Constants = new LeagueConstants();
         #endregion
 
         #region Main
@@ -145,15 +146,25 @@ namespace LeagueInformer
                 return;
             }
 
+            if (result.SummonerLeagueInfoList.Count == 0)
+            {
+                Console.WriteLine(AppResources.GetLeagueOfSummoner_PlayerDoesntParticipatesInAnyGames);
+                return;
+            }
+
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(result.IsSuccess ?
-                $"{Environment.NewLine}Nazwa przywoływacza: {result.SummonerLeagueInfo.SummonerName} " +
-                $"{Environment.NewLine}Nazwa ligi: {result.SummonerLeagueInfo.LeagueName} " +
-                $"{Environment.NewLine}Tier: {result.SummonerLeagueInfo.Tier} " +
-                $"{Environment.NewLine}Ranga: {result.SummonerLeagueInfo.Rank} " +
-                $"{Environment.NewLine}Wygrane: {result.SummonerLeagueInfo.Wins} " +
-                $"{Environment.NewLine}Przegrane: {result.SummonerLeagueInfo.Losses} " +
-                $"{Environment.NewLine}Typ kolejki: {result.SummonerLeagueInfo.QueueType}" : result.Message);
+            foreach (var queue in result.SummonerLeagueInfoList)
+            {
+                Console.WriteLine(
+                    string.Format(AppResources.GetLeagueOfSummoner_SummonerName, Environment.NewLine, queue.SummonerName) +
+                    string.Format(AppResources.GetLeagueOfSummoner_LeagueName, Environment.NewLine, queue.LeagueName) +
+                    string.Format(AppResources.GetLeagueOfSummoner_Tier, Environment.NewLine, queue.Tier) +
+                    string.Format(AppResources.GetLeagueOfSummoner_Rank, Environment.NewLine, queue.Rank) +
+                    string.Format(AppResources.GetLeagueOfSummoner_Wins, Environment.NewLine, queue.Wins) +
+                    string.Format(AppResources.GetLeagueOfSummoner_Losses, Environment.NewLine, queue.Losses) +
+                    string.Format(AppResources.GetLeagueOfSummoner_QueueType, Environment.NewLine, queue.QueueType));
+            }
+
             Console.ResetColor();
         }
 
@@ -192,7 +203,8 @@ namespace LeagueInformer
                 return;
             }
 
-            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName, summonerLeague, regionCode);
+            var rankedLeagueInfo = summonerLeague.SummonerLeagueInfoList.First(x => x.QueueType == "RANKED_SOLO_5x5");
+            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName, summonerLeague, rankedLeagueInfo.LeagueId, regionCode);
 
             if (!response.IsSuccess)
             {
@@ -200,11 +212,17 @@ namespace LeagueInformer
                 return;
             }
 
+            if (response.LeagueDetailsResponseList.Count == 0)
+            {
+                Console.WriteLine(AppResources.GetSummonerLeagueInfo_PlayerDoesntParticipateInRankedGames);
+                return;
+            }
+
             var sortedMembers = response.LeagueDetailsResponseList.OrderByDescending(x => x.Points).ToList();
             int position = 1;
             Console.WriteLine(AppResources.Common_TwoVerbatimStrings,
-                response.LeagueInfo.SummonerLeagueInfo.LeagueName,
-                response.LeagueInfo.SummonerLeagueInfo.Rank);
+                rankedLeagueInfo.LeagueName,
+                rankedLeagueInfo.Rank);
             foreach (var member in sortedMembers)
             {
                 Console.ForegroundColor = member.SummonerName == summonerName
@@ -276,11 +294,18 @@ namespace LeagueInformer
 
             foreach (var match in matchList)
             {
-                string lane = match.Lane != "NONE" ? match.Lane + ", " : string.Empty;
+                string seasonName = Constants.SeasonsDictionary.TryGetValue(match.SeasonId, out string season)
+                    ? season
+                    : AppResources.GetSummonerHistory_UndefinedSeason;
+
+                var gameMode = Constants.GameModes.First(x => x.ModeId == match.QueueId);
+
                 Console.WriteLine(AppResources.GetSummonerHistory_MatchFormat,
                     position,
                     SummonerService.GetChampionForId(match.Champion),
-                    lane,
+                    gameMode.MapName,
+                    gameMode.GameType,
+                    seasonName,
                     DateHandler.ParseTimeToDate(match.Date));
                 position++;
             }
@@ -302,6 +327,12 @@ namespace LeagueInformer
             if (!response.IsSuccess)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
+                return;
+            }
+
+            if (response.MastersResponseList.Count < 10)
+            {
+                Console.WriteLine(AppResources.GetBestMasters_NotEnoughMasters);
                 return;
             }
 
@@ -414,11 +445,15 @@ namespace LeagueInformer
                 return;
             }
 
+            string gameMode = Constants.GameModesDictionary.TryGetValue(result.Details.GameMode, out string mode)
+                ? mode
+                : AppResources.GetSummonerGame_UndefinedGameType;
+
             Console.WriteLine(
                 AppResources.GetSummonerGame__SummonerIsInGame,
                 Environment.NewLine,
                 summonerName,
-                result.Details.GameMode);
+                gameMode);
 
             Console.WriteLine(AppResources.GetSummonerGame_IfUserWantsToOpenSpectate);
 

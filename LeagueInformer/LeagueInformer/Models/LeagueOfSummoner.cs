@@ -1,4 +1,6 @@
-﻿namespace LeagueInformer.Models
+﻿using System.Collections.Generic;
+
+namespace LeagueInformer.Models
 {
     public class LeagueOfSummoner
     {
@@ -9,6 +11,6 @@
         
         public string Message { get; set; }
 
-        public SummonerLeagueInfo SummonerLeagueInfo { get; set; }
+        public List<SummonerLeagueInfo> SummonerLeagueInfoList { get; set; }
     }
 }

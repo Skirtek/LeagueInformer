@@ -243,7 +243,7 @@ Do zobaczenia!</value>
     <value>Sprawdź historię gier przywoływacza</value>
   </data>
     <data name="GetSummonerGame__SummonerIsInGame" xml:space="preserve">
-    <value>{0}Przywoływacz {1} jest teraz w grze {2} </value>
+    <value>{0}Przywoływacz {1} jest teraz w {2} </value>
   </data>
     <data name="OpenSpectateClient_CannotFindClientDirectory" xml:space="preserve">
     <value>Nie znaleziono folderu z klientem gry.</value>
@@ -261,6 +261,42 @@ Do zobaczenia!</value>
     <value>{0}Ostatnie 10 meczy dla przywoływacza {1}:{2}</value>
   </data>
     <data name="GetSummonerHistory_MatchFormat" xml:space="preserve">
-    <value>{0}. {1}, {2}{3}</value>
+    <value>{0}. {1}, {2}, {3}, {4}, {5}</value>
+  </data>
+    <data name="GetBestMasters_NotEnoughMasters" xml:space="preserve">
+    <value>Na wybranym serwerze nie ma minimum 10 masterów</value>
+  </data>
+    <data name="GetSummonerLeagueInfo_PlayerDoesntParticipateInRankedGames" xml:space="preserve">
+    <value>Gracz nie bierze udziału w rozgrywkach rankingowych</value>
+  </data>
+    <data name="GetLeagueOfSummoner_PlayerDoesntParticipatesInAnyGames" xml:space="preserve">
+    <value>Gracz nie bierze udziału w żadnych rozgrywkach</value>
+  </data>
+    <data name="GetLeagueOfSummoner_SummonerName" xml:space="preserve">
+    <value>{0}Nazwa przywoływacza: {1} </value>
+  </data>
+    <data name="GetLeagueOfSummoner_LeagueName" xml:space="preserve">
+    <value>{0}Nazwa ligi: {1} </value>
+  </data>
+    <data name="GetLeagueOfSummoner_Tier" xml:space="preserve">
+    <value>{0}Tier: {1} </value>
+  </data>
+    <data name="GetLeagueOfSummoner_Rank" xml:space="preserve">
+    <value>{0}Ranga: {1} </value>
+  </data>
+    <data name="GetLeagueOfSummoner_Wins" xml:space="preserve">
+    <value>{0}Wygrane: {1} </value>
+  </data>
+    <data name="GetLeagueOfSummoner_Losses" xml:space="preserve">
+    <value>{0}Przegrane: {1} </value>
+  </data>
+    <data name="GetLeagueOfSummoner_QueueType" xml:space="preserve">
+    <value>{0}Typ kolejki: {1}</value>
+  </data>
+  <data name="GetSummonerGame_UndefinedGameType" xml:space="preserve">
+    <value>nieznanym trybie gry</value>
+  </data>
+  <data name="GetSummonerHistory_UndefinedSeason" xml:space="preserve">
+    <value>Nieznany sezon</value>
   </data>
 </root>
