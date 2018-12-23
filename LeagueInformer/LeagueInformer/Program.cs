@@ -298,11 +298,13 @@ namespace LeagueInformer
                     ? season
                     : AppResources.GetSummonerHistory_UndefinedSeason;
 
+                var gameMode = Constants.GameModes.First(x => x.ModeId == match.QueueId);
                 //TODO tryb gry, mapa
                 Console.WriteLine(AppResources.GetSummonerHistory_MatchFormat,
                     position,
                     SummonerService.GetChampionForId(match.Champion),
-                    match.QueueId,
+                    gameMode.MapName,
+                    gameMode.GameType,
                     seasonName,
                     DateHandler.ParseTimeToDate(match.Date));
                 position++;

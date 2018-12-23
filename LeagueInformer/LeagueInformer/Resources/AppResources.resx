@@ -261,7 +261,7 @@ Do zobaczenia!</value>
     <value>{0}Ostatnie 10 meczy dla przywoływacza {1}:{2}</value>
   </data>
     <data name="GetSummonerHistory_MatchFormat" xml:space="preserve">
-    <value>{0}. {1}, {2}, {3}, {4}</value>
+    <value>{0}. {1}, {2}, {3}, {4}, {5}</value>
   </data>
     <data name="GetBestMasters_NotEnoughMasters" xml:space="preserve">
     <value>Na wybranym serwerze nie ma minimum 10 masterów</value>
