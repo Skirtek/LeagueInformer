@@ -25,7 +25,7 @@ namespace LeagueInformer
         private static readonly ISpectator Spectator = new Spectator();
         private static readonly IGetLastGames LastGameService = new GetLastGamesService();
         private static readonly IPrintMethods PrintMethods = new PrintMethods();
-        private static readonly DateHandler DateHandler = new DateHandler();
+        private static readonly IDateHandler DateHandler = new DateHandler();
         private static readonly LeagueConstants Constants = new LeagueConstants();
         #endregion
 

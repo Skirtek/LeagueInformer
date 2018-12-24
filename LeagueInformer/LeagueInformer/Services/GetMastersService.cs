@@ -11,7 +11,14 @@ namespace LeagueInformer.Services
 {
     public class GetMastersService : IGetMasters
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public GetMastersService()
+        {
+            _apiClient = new ApiClient();
+        }
+        #endregion
 
         public async Task<MastersList> GetListOfMasterLeague(string regionCode = "eun1")
         {

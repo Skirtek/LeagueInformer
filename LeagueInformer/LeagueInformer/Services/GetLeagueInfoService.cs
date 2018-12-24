@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
 using LeagueInformer.Enums;
@@ -12,7 +11,14 @@ namespace LeagueInformer.Services
 {
     public class GetLeagueInfoService : IGetLeagueInfo
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public GetLeagueInfoService()
+        {
+            _apiClient = new ApiClient();
+        }
+        #endregion
 
         public async Task<LeagueList> GetListOfSummonerLeague(string summonerName, LeagueOfSummoner summonerLeagueDetails, string leagueId, string regionCode = "eun1")
         {

@@ -9,7 +9,14 @@ namespace LeagueInformer.Services
 {
     public class GetSummonerGame : IGetSummonerGame
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public GetSummonerGame()
+        {
+            _apiClient = new ApiClient();
+        }
+        #endregion
 
         public async Task<SummonerGame> GetSummonerGameInformation(string id, string region = "eun1")
         {
