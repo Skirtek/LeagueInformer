@@ -457,7 +457,7 @@ namespace LeagueInformer
 
             Console.WriteLine(AppResources.GetSummonerGame_IfUserWantsToOpenSpectate);
 
-            if (Console.ReadLine() != "T")
+            if (Console.ReadLine() != "T" && Console.ReadLine() != "t")
             {
                 Console.WriteLine(AppResources.ClickToContinue);
                 Console.ReadKey();
