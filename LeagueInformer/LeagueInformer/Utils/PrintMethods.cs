@@ -14,12 +14,12 @@ namespace LeagueInformer.Utils
         private readonly IFileHandler _fileHandler;
 
         #region CTOR
-
         public PrintMethods()
         {
             _fileHandler = new FileHandler();
         }
         #endregion
+
         public ChosenServer PrintListOfSpectateServers()
         {
             Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);

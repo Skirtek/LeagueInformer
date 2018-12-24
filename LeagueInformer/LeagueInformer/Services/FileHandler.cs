@@ -40,6 +40,14 @@ namespace LeagueInformer.Services
         {
             try
             {
+                if (!CheckIfAppDirectoryExists(AppSettings.ApplicationDataPath))
+                {
+                    if (!CreateAppDirectory(AppSettings.ApplicationDataPath))
+                    {
+                        return false;
+                    }
+                }
+
                 string path = AppSettings.PathToSaveNicknameFile;
                 if (!File.Exists(path))
                 {
@@ -92,5 +100,9 @@ namespace LeagueInformer.Services
                 return false;
             }
         }
+
+        public bool CheckIfAppDirectoryExists(string path) => Directory.Exists(path);
+
+        public bool CreateAppDirectory(string path) => Directory.CreateDirectory(path).Exists;
     }
 }
