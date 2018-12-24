@@ -6,7 +6,15 @@ namespace LeagueInformer.Utils
 {
     public class ErrorHandler : IErrorHandler
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public ErrorHandler()
+        {
+            _apiClient = new ApiClient();
+        }       
+        #endregion
+
         public string Error_Handler(string message)
         {
             switch (message)

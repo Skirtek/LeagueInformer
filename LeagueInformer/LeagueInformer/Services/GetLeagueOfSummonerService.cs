@@ -12,8 +12,16 @@ namespace LeagueInformer.Services
 {
     public class GetLeagueOfSummoner : IGetLeagueOfSummonerInformation
     {
-        private readonly ApiClient _apiClient = new ApiClient();
-        private readonly IErrorHandler _errorHandler = new ErrorHandler();
+        private readonly IApiClient _apiClient;
+        private readonly IErrorHandler _errorHandler;
+
+        #region CTOR       
+        public GetLeagueOfSummoner()
+        {
+            _apiClient = new ApiClient();
+            _errorHandler = new ErrorHandler();
+        }
+        #endregion
 
         public async Task<LeagueOfSummoner> GetLeagueOfSummonerInformation(string id, string region = "eun1")
         {

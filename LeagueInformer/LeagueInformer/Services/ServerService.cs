@@ -11,7 +11,14 @@ namespace LeagueInformer.Services
 {
     public class ServerService: IServerService
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public ServerService()
+        {
+            _apiClient = new ApiClient();
+        }
+        #endregion
 
         public async Task<ServerStatusResponse> GetServerStatus(string serverName)
         {

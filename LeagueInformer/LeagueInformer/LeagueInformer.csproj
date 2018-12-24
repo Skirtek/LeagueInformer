@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiClient.cs" />
+    <Compile Include="Api\IApiClient.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="Enums\Champions.cs" />
     <Compile Include="Enums\ErrorEnum.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Services\Spectator.cs" />
     <Compile Include="Utils\DateHandler.cs" />
     <Compile Include="Utils\ErrorHandler.cs" />
+    <Compile Include="Utils\Interfaces\IDateHandler.cs" />
     <Compile Include="Utils\Interfaces\IErrorHandler.cs" />
     <Compile Include="Utils\Interfaces\IPrintMethods.cs" />
     <Compile Include="Utils\LeagueConstants.cs" />

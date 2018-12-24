@@ -5,7 +5,7 @@ using LeagueInformer.Resources;
 
 namespace LeagueInformer.Api
 {
-    public class ApiClient
+    public class ApiClient : IApiClient
     {
         private readonly HttpClient _client = new HttpClient();
 

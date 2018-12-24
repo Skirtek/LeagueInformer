@@ -11,8 +11,15 @@ namespace LeagueInformer.Utils
 {
     public class PrintMethods : IPrintMethods
     {
-        private static readonly IFileHandler FileHandler = new FileHandler();
+        private readonly IFileHandler _fileHandler;
 
+        #region CTOR
+
+        public PrintMethods()
+        {
+            _fileHandler = new FileHandler();
+        }
+        #endregion
         public ChosenServer PrintListOfSpectateServers()
         {
             Console.WriteLine(AppResources.GetServerStatus_ChooseServerFromList, Environment.NewLine, Environment.NewLine);
@@ -49,7 +56,7 @@ namespace LeagueInformer.Utils
             {
                 int position = 1;
 
-                var nicknamesList = FileHandler.GetListOfLastNicknames();
+                var nicknamesList = _fileHandler.GetListOfLastNicknames();
                 if (nicknamesList.Any())
                 {
                     Console.WriteLine(AppResources.PrintListOfSavedNicknames_Instruction, Environment.NewLine);
@@ -76,7 +83,7 @@ namespace LeagueInformer.Utils
                 }
                 else
                 {
-                    await FileHandler.SaveNicknameToList(summonerName);
+                    await _fileHandler.SaveNicknameToList(summonerName);
                 }
 
                 return summonerName;
@@ -88,6 +95,6 @@ namespace LeagueInformer.Utils
         }
 
         private bool CheckIfPositionIsInBounds(int position) =>
-            position < AppSettings.ServerSpectateAddresses.Count && position > 0;
+            position <= AppSettings.ServerSpectateAddresses.Count && position > 0;
     }
 }
