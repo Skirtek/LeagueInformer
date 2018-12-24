@@ -457,10 +457,17 @@ namespace LeagueInformer
 
             Console.WriteLine(AppResources.GetSummonerGame_IfUserWantsToOpenSpectate);
 
-            if (Console.ReadLine() != "T" && Console.ReadLine() != "t")
+            string answer = Console.ReadLine();
+
+            if (answer == null)
             {
-                Console.WriteLine(AppResources.ClickToContinue);
-                Console.ReadKey();
+                EndOption();
+                return;
+            }
+            
+            if (answer.ToLower() != "t")
+            {
+                EndOption();
                 return;
             }
 
@@ -477,12 +484,16 @@ namespace LeagueInformer
 
             if (!wasClientOpened)
             {
-                Console.WriteLine(AppResources.ClickToContinue);
-                Console.ReadKey();
+                EndOption();
                 return;
             }
 
             Process.Start(AppSettings.PathToSaveBatchFile);
+            EndOption();
+        }
+
+        private static void EndOption()
+        {
             Console.WriteLine(AppResources.ClickToContinue);
             Console.ReadKey();
         }
