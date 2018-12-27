@@ -422,7 +422,7 @@ namespace LeagueInformer
             Console.Write(AppResources.GetSummonerGame_GiveSummonerNick,
                 AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerName);
             string summonerName = Console.ReadLine();
-
+            
             var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
             if (!summonerResponse.IsSuccess)
             {
@@ -432,19 +432,21 @@ namespace LeagueInformer
                     : summonerResponse.Message);
                 return;
             }
-
+            
             string summonerId = summonerResponse.Id;
             var result = await SummonerGameService.GetSummonerGameInformation(summonerId, regionCode);
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
             if (!result.IsSuccess)
             {
                 Console.WriteLine(
                     string.IsNullOrEmpty(result.Message)
                     ? AppResources.Error_Undefined
                     : AppResources.GetSummonerGame_SummonerDontPlay);
+                Console.ResetColor();
                 return;
             }
-
+            
             string gameMode = Constants.GameModesDictionary.TryGetValue(result.Details.GameMode, out string mode)
                 ? mode
                 : AppResources.GetSummonerGame_UndefinedGameType;
@@ -456,7 +458,7 @@ namespace LeagueInformer
                 gameMode);
 
             Console.WriteLine(AppResources.GetSummonerGame_IfUserWantsToOpenSpectate);
-
+            Console.ResetColor();
             string answer = Console.ReadLine();
 
             if (answer == null)

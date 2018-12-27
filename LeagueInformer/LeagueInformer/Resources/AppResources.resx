@@ -204,7 +204,7 @@ Do zobaczenia!</value>
     <value>{0}. {1}</value>
   </data>
   <data name="GetServerStatus_ChooseServerFromList" xml:space="preserve">
-    <value>{0}Wybierz z listy numer regionu{1}</value>
+    <value>{0}Wybierz z listy numer regionu, który chcesz przeszukać{1}</value>
   </data>
   <data name="Common_ChosenOption" xml:space="preserve">
     <value>{0}Wybrałeś opcję nr {1}</value>
@@ -224,10 +224,10 @@ Do zobaczenia!</value>
   <data name="Error_SummonerNameCannotBeEmpty" xml:space="preserve">
     <value>Nazwa przywoływacza nie może być pusta</value>
   </data>
-    <data name="PrintListOfSavedNicknames_Information" xml:space="preserve">
+  <data name="PrintListOfSavedNicknames_Information" xml:space="preserve">
     <value>{0}Informacja: Aby wybrać nazwę z listy wpisz żądany numer</value>
   </data>
-    <data name="PrintListOfSavedNicknames_Instruction" xml:space="preserve">
+  <data name="PrintListOfSavedNicknames_Instruction" xml:space="preserve">
     <value>{0}Wybierz nazwę przywoływacza z listy lub wpisz ją ręcznie:</value>
   </data>
   <data name="GetSummonerGame_GiveSummonerNick" xml:space="preserve">
@@ -242,55 +242,55 @@ Do zobaczenia!</value>
   <data name="MainMenu_GetSummonerHistory" xml:space="preserve">
     <value>Sprawdź historię gier przywoływacza</value>
   </data>
-    <data name="GetSummonerGame__SummonerIsInGame" xml:space="preserve">
+  <data name="GetSummonerGame__SummonerIsInGame" xml:space="preserve">
     <value>{0}Przywoływacz {1} jest teraz w {2} </value>
   </data>
-    <data name="OpenSpectateClient_CannotFindClientDirectory" xml:space="preserve">
+  <data name="OpenSpectateClient_CannotFindClientDirectory" xml:space="preserve">
     <value>Nie znaleziono folderu z klientem gry.</value>
   </data>
-    <data name="OpenSpectateClient_CannotFindRegistryKey" xml:space="preserve">
+  <data name="OpenSpectateClient_CannotFindRegistryKey" xml:space="preserve">
     <value>Nie można odnaleźć ścieżki instalacji gry</value>
   </data>
-    <data name="OpenSpectateClient_CannotCreateBatchFile" xml:space="preserve">
+  <data name="OpenSpectateClient_CannotCreateBatchFile" xml:space="preserve">
     <value>Błąd uruchamiania gry, spróbuj ponownie</value>
   </data>
-    <data name="GetSummonerGame_IfUserWantsToOpenSpectate" xml:space="preserve">
+  <data name="GetSummonerGame_IfUserWantsToOpenSpectate" xml:space="preserve">
     <value>Czy chcesz obejrzeć mecz? T/N</value>
   </data>
-    <data name="GetSummonerHistory_LastTenMatchesInfo" xml:space="preserve">
+  <data name="GetSummonerHistory_LastTenMatchesInfo" xml:space="preserve">
     <value>{0}Ostatnie 10 meczy dla przywoływacza {1}:{2}</value>
   </data>
-    <data name="GetSummonerHistory_MatchFormat" xml:space="preserve">
+  <data name="GetSummonerHistory_MatchFormat" xml:space="preserve">
     <value>{0}. {1}, {2}, {3}, {4}, {5}</value>
   </data>
-    <data name="GetBestMasters_NotEnoughMasters" xml:space="preserve">
+  <data name="GetBestMasters_NotEnoughMasters" xml:space="preserve">
     <value>Na wybranym serwerze nie ma minimum 10 masterów</value>
   </data>
-    <data name="GetSummonerLeagueInfo_PlayerDoesntParticipateInRankedGames" xml:space="preserve">
+  <data name="GetSummonerLeagueInfo_PlayerDoesntParticipateInRankedGames" xml:space="preserve">
     <value>Gracz nie bierze udziału w rozgrywkach rankingowych</value>
   </data>
-    <data name="GetLeagueOfSummoner_PlayerDoesntParticipatesInAnyGames" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_PlayerDoesntParticipatesInAnyGames" xml:space="preserve">
     <value>Gracz nie bierze udziału w żadnych rozgrywkach</value>
   </data>
-    <data name="GetLeagueOfSummoner_SummonerName" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_SummonerName" xml:space="preserve">
     <value>{0}Nazwa przywoływacza: {1} </value>
   </data>
-    <data name="GetLeagueOfSummoner_LeagueName" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_LeagueName" xml:space="preserve">
     <value>{0}Nazwa ligi: {1} </value>
   </data>
-    <data name="GetLeagueOfSummoner_Tier" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_Tier" xml:space="preserve">
     <value>{0}Tier: {1} </value>
   </data>
-    <data name="GetLeagueOfSummoner_Rank" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_Rank" xml:space="preserve">
     <value>{0}Ranga: {1} </value>
   </data>
-    <data name="GetLeagueOfSummoner_Wins" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_Wins" xml:space="preserve">
     <value>{0}Wygrane: {1} </value>
   </data>
-    <data name="GetLeagueOfSummoner_Losses" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_Losses" xml:space="preserve">
     <value>{0}Przegrane: {1} </value>
   </data>
-    <data name="GetLeagueOfSummoner_QueueType" xml:space="preserve">
+  <data name="GetLeagueOfSummoner_QueueType" xml:space="preserve">
     <value>{0}Typ kolejki: {1}</value>
   </data>
   <data name="GetSummonerGame_UndefinedGameType" xml:space="preserve">

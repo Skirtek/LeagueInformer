@@ -335,7 +335,7 @@ namespace LeagueInformer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}Wybierz z listy numer regionu{1}.
+        ///   Looks up a localized string similar to {0}Wybierz z listy numer regionu, który chcesz przeszukać{1}.
         /// </summary>
         internal static string GetServerStatus_ChooseServerFromList {
             get {
