@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LeagueInformer.Api;
 using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
@@ -15,9 +14,9 @@ namespace LeagueInformer.Services
         private readonly IApiClient _apiClient;
 
         #region CTOR
-        public GetLeagueInfoService()
+        public GetLeagueInfoService(IApiClient apiClient)
         {
-            _apiClient = new ApiClient();
+            _apiClient = apiClient;
         }
         #endregion
 

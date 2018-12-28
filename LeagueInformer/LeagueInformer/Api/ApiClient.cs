@@ -9,9 +9,9 @@ namespace LeagueInformer.Api
     {
         private readonly IHttpClient _client;
 
-        public ApiClient()
+        public ApiClient(IHttpClient client)
         {
-            _client = new HttpClientHandler();
+            _client = client;
         }
 
         public async Task<string> GetJsonFromUrl(string url)

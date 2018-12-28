@@ -14,9 +14,9 @@ namespace LeagueInformer.Utils
         private readonly IFileHandler _fileHandler;
 
         #region CTOR
-        public PrintMethods()
+        public PrintMethods(IFileHandler fileHandler)
         {
-            _fileHandler = new FileHandler();
+            _fileHandler = fileHandler;
         }
         #endregion
 

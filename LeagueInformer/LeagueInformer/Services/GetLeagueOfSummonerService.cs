@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LeagueInformer.Api;
 using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
-using LeagueInformer.Utils;
 using LeagueInformer.Utils.Interfaces;
 using Newtonsoft.Json.Linq;
 
@@ -17,10 +15,10 @@ namespace LeagueInformer.Services
         private readonly IErrorHandler _errorHandler;
 
         #region CTOR       
-        public GetLeagueOfSummoner()
+        public GetLeagueOfSummoner(IApiClient apiClient, IErrorHandler errorHandler)
         {
-            _apiClient = new ApiClient();
-            _errorHandler = new ErrorHandler();
+            _apiClient = apiClient;
+            _errorHandler = errorHandler;
         }
         #endregion
 

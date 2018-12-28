@@ -11,9 +11,9 @@ namespace LeagueInformer.Services
     {
         private readonly IFileHandler _fileHandler;
 
-        public Spectator()
+        public Spectator(IFileHandler fileHandler)
         {
-            _fileHandler = new FileHandler();
+            _fileHandler = fileHandler;
         }
 
         public bool OpenSpectateClient(

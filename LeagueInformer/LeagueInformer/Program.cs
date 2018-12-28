@@ -3,6 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Autofac;
+using LeagueInformer.Api;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Resources;
 using LeagueInformer.Services;
@@ -14,25 +17,29 @@ namespace LeagueInformer
 {
     public class Program
     {
-        #region Imports 
-        private static readonly IConnection Connection = new ConnectionService();
-        private static readonly IGetSummoner SummonerService = new GetSummonerService();
-        private static readonly IGetMasters MastersService = new GetMastersService();
-        private static readonly IGetLeagueOfSummonerInformation LeagueOfSummonerService = new GetLeagueOfSummoner();
-        private static readonly IServerService ServerService = new ServerService();
-        private static readonly IGetLeagueInfo LeagueInfoService = new GetLeagueInfoService();
-        private static readonly IGetSummonerGame SummonerGameService = new GetSummonerGame();
-        private static readonly ISpectator Spectator = new Spectator();
-        private static readonly IGetLastGames LastGameService = new GetLastGamesService();
-        private static readonly IPrintMethods PrintMethods = new PrintMethods();
-        private static readonly IDateHandler DateHandler = new DateHandler();
+        #region Intefaces 
+        private static IConnection _connection;
+        private static IGetSummoner _summoner;
+        private static IGetMasters _masters;
+        private static IGetLeagueOfSummonerInformation _leagueOfSummoner;
+        private static IServerService _serverService;
+        private static IGetLeagueInfo _leagueInfo;
+        private static IGetSummonerGame _summonerGame;
+        private static ISpectator _spectator;
+        private static IGetLastGames _lastGames;
+        private static IPrintMethods _printMethods;
+        private static IDateHandler _dateHandler;
         private static readonly LeagueConstants Constants = new LeagueConstants();
+        private static IContainer Container { get; set; }
         #endregion
 
         #region Main
         public static void Main(string[] args)
         {
-            if (Connection.HasInternetConnection())
+
+            Container = SetDependencies();
+            ResolveDependencies();
+            if (_connection.HasInternetConnection())
             {
                 string option;
                 do
@@ -107,7 +114,7 @@ namespace LeagueInformer
 
         private static async Task GetLeagueOfSummoner()
         {
-            var chosenServer = PrintMethods.PrintListOfSpectateServers();
+            var chosenServer = _printMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -116,7 +123,7 @@ namespace LeagueInformer
 
             string regionCode = chosenServer.RegionCode;
 
-            string summonerName = await PrintMethods.PrintListOfSavedNicknames();
+            string summonerName = await _printMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
             {
@@ -124,7 +131,7 @@ namespace LeagueInformer
                 return;
             }
 
-            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
+            var summonerResponse = await _summoner.GetInformationAboutSummoner(summonerName, regionCode);
             if (!summonerResponse.IsSuccess)
             {
                 Console.WriteLine(
@@ -135,7 +142,7 @@ namespace LeagueInformer
             }
 
             string summonerId = summonerResponse.Id;
-            var result = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summonerId, regionCode);
+            var result = await _leagueOfSummoner.GetLeagueOfSummonerInformation(summonerId, regionCode);
 
             if (!result.IsSuccess)
             {
@@ -170,7 +177,7 @@ namespace LeagueInformer
 
         private static async Task GetSummonerLeagueInfo()
         {
-            var chosenServer = PrintMethods.PrintListOfSpectateServers();
+            var chosenServer = _printMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -179,7 +186,7 @@ namespace LeagueInformer
 
             string regionCode = chosenServer.RegionCode;
 
-            string summonerName = await PrintMethods.PrintListOfSavedNicknames();
+            string summonerName = await _printMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
             {
@@ -187,7 +194,7 @@ namespace LeagueInformer
                 return;
             }
 
-            var summoner = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
+            var summoner = await _summoner.GetInformationAboutSummoner(summonerName, regionCode);
 
             if (!summoner.IsSuccess)
             {
@@ -195,7 +202,7 @@ namespace LeagueInformer
                 return;
             }
 
-            var summonerLeague = await LeagueOfSummonerService.GetLeagueOfSummonerInformation(summoner.Id, regionCode);
+            var summonerLeague = await _leagueOfSummoner.GetLeagueOfSummonerInformation(summoner.Id, regionCode);
 
             if (!summonerLeague.IsSuccess)
             {
@@ -204,7 +211,7 @@ namespace LeagueInformer
             }
 
             var rankedLeagueInfo = summonerLeague.SummonerLeagueInfoList.First(x => x.QueueType == "RANKED_SOLO_5x5");
-            var response = await LeagueInfoService.GetListOfSummonerLeague(summonerName, summonerLeague, rankedLeagueInfo.LeagueId, regionCode);
+            var response = await _leagueInfo.GetListOfSummonerLeague(summonerName, summonerLeague, rankedLeagueInfo.LeagueId, regionCode);
 
             if (!response.IsSuccess)
             {
@@ -244,7 +251,7 @@ namespace LeagueInformer
 
         private static async Task GetSummonerHistory()
         {
-            var chosenServer = PrintMethods.PrintListOfSpectateServers();
+            var chosenServer = _printMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -253,7 +260,7 @@ namespace LeagueInformer
 
             string regionCode = chosenServer.RegionCode;
 
-            string summonerName = await PrintMethods.PrintListOfSavedNicknames();
+            string summonerName = await _printMethods.PrintListOfSavedNicknames();
 
             if (string.IsNullOrEmpty(summonerName))
             {
@@ -261,7 +268,7 @@ namespace LeagueInformer
                 return;
             }
 
-            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName);
+            var summonerResponse = await _summoner.GetInformationAboutSummoner(summonerName);
             if (!summonerResponse.IsSuccess)
             {
                 Console.WriteLine(
@@ -273,7 +280,7 @@ namespace LeagueInformer
 
             string accountId = summonerResponse.AccountId;
 
-            var response = await LastGameService.GetLastTenGames(accountId, regionCode);
+            var response = await _lastGames.GetLastTenGames(accountId, regionCode);
 
             if (!response.IsSuccess)
             {
@@ -302,18 +309,18 @@ namespace LeagueInformer
 
                 Console.WriteLine(AppResources.GetSummonerHistory_MatchFormat,
                     position,
-                    SummonerService.GetChampionForId(match.Champion),
+                    _summoner.GetChampionForId(match.Champion),
                     gameMode.MapName,
                     gameMode.GameType,
                     seasonName,
-                    DateHandler.ParseTimeToDate(match.Date));
+                    _dateHandler.ParseTimeToDate(match.Date));
                 position++;
             }
         }
 
         private static async Task GetBestMasters()
         {
-            var chosenServer = PrintMethods.PrintListOfSpectateServers();
+            var chosenServer = _printMethods.PrintListOfSpectateServers();
 
             if (!chosenServer.IsSuccess)
             {
@@ -322,7 +329,7 @@ namespace LeagueInformer
 
             string regionCode = chosenServer.RegionCode;
 
-            var response = await MastersService.GetListOfMasterLeague(regionCode);
+            var response = await _masters.GetListOfMasterLeague(regionCode);
 
             if (!response.IsSuccess)
             {
@@ -387,7 +394,7 @@ namespace LeagueInformer
                 return;
             }
 
-            var response = await ServerService.GetServerStatus(regionCode);
+            var response = await _serverService.GetServerStatus(regionCode);
             if (!response.IsSuccess)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
@@ -410,7 +417,7 @@ namespace LeagueInformer
         }
         private static async Task GetSummonerGame()
         {
-            var chosenServer = PrintMethods.PrintListOfSpectateServers();
+            var chosenServer = _printMethods.PrintListOfSpectateServers();
             if (!chosenServer.IsSuccess)
             {
                 return;
@@ -423,7 +430,7 @@ namespace LeagueInformer
                 AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).ServerName);
             string summonerName = Console.ReadLine();
             
-            var summonerResponse = await SummonerService.GetInformationAboutSummoner(summonerName, regionCode);
+            var summonerResponse = await _summoner.GetInformationAboutSummoner(summonerName, regionCode);
             if (!summonerResponse.IsSuccess)
             {
                 Console.WriteLine(
@@ -434,7 +441,7 @@ namespace LeagueInformer
             }
             
             string summonerId = summonerResponse.Id;
-            var result = await SummonerGameService.GetSummonerGameInformation(summonerId, regionCode);
+            var result = await _summonerGame.GetSummonerGameInformation(summonerId, regionCode);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             if (!result.IsSuccess)
@@ -477,7 +484,7 @@ namespace LeagueInformer
             string serverPort = AppSettings.ServerSpectateAddresses.ElementAt(pos - 1).Port;
 
             var encryptionKey = result.Details.Observers.ToObject<JObject>().GetValue("encryptionKey").ToObject<string>();
-            bool wasClientOpened = Spectator.OpenSpectateClient(
+            bool wasClientOpened = _spectator.OpenSpectateClient(
                 encryptionKey,
                 result.Details,
                 regionCode.ToUpper(),
@@ -520,6 +527,45 @@ namespace LeagueInformer
         {
             Process p = Process.GetCurrentProcess();
             ShowWindow(p.MainWindowHandle, 3);
+        }
+        #endregion
+
+        #region IoC
+        private static IContainer SetDependencies()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ConnectionService>().As<IConnection>();
+            builder.RegisterType<ApiClient>().As<IApiClient>();
+            builder.RegisterType<HttpClientHandler>().As<IHttpClient>();
+            builder.RegisterType<ErrorHandler>().As<IErrorHandler>();
+            builder.RegisterType<GetLeagueInfoService>().As<IGetLeagueInfo>();
+            builder.RegisterType<ConnectionService>().As<IConnection>();
+            builder.RegisterType<GetSummonerService>().As<IGetSummoner>();
+            builder.RegisterType<GetMastersService>().As<IGetMasters>();
+            builder.RegisterType<GetLeagueOfSummoner>().As<IGetLeagueOfSummonerInformation>();
+            builder.RegisterType<ServerService>().As<IServerService>();
+            builder.RegisterType<GetSummonerGame>().As<IGetSummonerGame>();
+            builder.RegisterType<Spectator>().As<ISpectator>();
+            builder.RegisterType<GetLastGamesService>().As<IGetLastGames>();
+            builder.RegisterType<PrintMethods>().As<IPrintMethods>();
+            builder.RegisterType<DateHandler>().As<IDateHandler>();
+            builder.RegisterType<FileHandler>().As<IFileHandler>();
+            return builder.Build();
+        }
+
+        private static void ResolveDependencies()
+        {
+            _leagueInfo = Container.Resolve<IGetLeagueInfo>();
+            _connection = Container.Resolve<IConnection>();
+            _summoner = Container.Resolve<IGetSummoner>();
+            _masters = Container.Resolve<IGetMasters>();
+            _leagueOfSummoner = Container.Resolve<IGetLeagueOfSummonerInformation>();
+            _serverService = Container.Resolve<IServerService>();
+            _summonerGame = Container.Resolve<IGetSummonerGame>();
+            _spectator = Container.Resolve<ISpectator>();
+            _lastGames = Container.Resolve<IGetLastGames>();
+            _printMethods = Container.Resolve<IPrintMethods>();
+            _dateHandler = Container.Resolve<IDateHandler>();
         }
         #endregion
     }

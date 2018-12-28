@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using LeagueInformer.Api;
 using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
@@ -13,9 +12,9 @@ namespace LeagueInformer.Services
         private readonly IApiClient _apiClient;
 
         #region CTOR
-        public GetSummonerGame()
+        public GetSummonerGame(IApiClient apiClient)
         {
-            _apiClient = new ApiClient();
+            _apiClient = apiClient;
         }
         #endregion
 

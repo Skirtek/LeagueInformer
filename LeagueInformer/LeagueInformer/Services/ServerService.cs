@@ -15,9 +15,9 @@ namespace LeagueInformer.Services
         private readonly IApiClient _apiClient;
 
         #region CTOR
-        public ServerService()
+        public ServerService(IApiClient apiClient)
         {
-            _apiClient = new ApiClient();
+            _apiClient = apiClient;
         }
         #endregion
 

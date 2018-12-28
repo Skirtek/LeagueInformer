@@ -1,5 +1,4 @@
-﻿using LeagueInformer.Api;
-using LeagueInformer.Api.Interfaces;
+﻿using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Utils.Interfaces;
 
@@ -10,9 +9,9 @@ namespace LeagueInformer.Utils
         private readonly IApiClient _apiClient;
 
         #region CTOR
-        public ErrorHandler()
+        public ErrorHandler(IApiClient apiClient)
         {
-            _apiClient = new ApiClient();
+            _apiClient = apiClient;
         }       
         #endregion
 

@@ -20,7 +20,7 @@ namespace LeagueInformer_UnitTests.Services
             _apiClientMock = new Mock<IApiClient>();
             _errorHandlerMock = new Mock<IErrorHandler>();
             _httpClientMock = new Mock<IHttpClient>();
-            _service = new GetLastGamesService();
+            _service = new GetLastGamesService(_apiClientMock.Object, _errorHandlerMock.Object);
         }
     }
 }
