@@ -1,4 +1,5 @@
 ﻿using LeagueInformer.Api;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Utils.Interfaces;
 

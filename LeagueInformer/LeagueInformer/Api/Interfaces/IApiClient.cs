@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using LeagueInformer.Enums;
 
-namespace LeagueInformer.Api
+namespace LeagueInformer.Api.Interfaces
 {
     public interface IApiClient
     {

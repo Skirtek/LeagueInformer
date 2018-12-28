@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
