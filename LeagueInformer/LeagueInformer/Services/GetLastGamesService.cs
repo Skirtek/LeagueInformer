@@ -27,10 +27,10 @@ namespace LeagueInformer.Services
             try
             {
                 var matchesList = new List<Game>();
-                JObject response = JObject.Parse(await _apiClient.GetJsonFromUrl(
-                    $"https://{regionCode}.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?api_key={AppSettings.AuthorizationApiKey}"));
+                string response = await _apiClient.GetJsonFromUrl(
+                    $"https://{regionCode}.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?api_key={AppSettings.AuthorizationApiKey}");
 
-                if (response == null)
+                if (string.IsNullOrEmpty(response))
                 {
                     return new GamesResponse
                     {
@@ -38,7 +38,9 @@ namespace LeagueInformer.Services
                     };
                 }
 
-                bool getMatches = response.TryGetValue("matches", out JToken matches);
+                JObject parsedResponse = JObject.Parse(response);
+
+                bool getMatches = parsedResponse.TryGetValue("matches", out JToken matches);
 
                 if (!getMatches)
                 {

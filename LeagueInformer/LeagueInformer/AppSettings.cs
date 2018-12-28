@@ -14,7 +14,7 @@ namespace LeagueInformer
 
         public static readonly string ApplicationDataPath =
             Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
                 "LeagueInformerData");
         public static readonly string PathToSaveNicknameFile =
             Path.Combine(

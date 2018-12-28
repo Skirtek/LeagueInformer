@@ -99,7 +99,7 @@ namespace LeagueInformer.Services
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -125,7 +125,7 @@ namespace LeagueInformer.Services
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

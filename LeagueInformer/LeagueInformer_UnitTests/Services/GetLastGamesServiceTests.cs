@@ -20,7 +20,19 @@ namespace LeagueInformer_UnitTests.Services
             _apiClientMock = new Mock<IApiClient>();
             _errorHandlerMock = new Mock<IErrorHandler>();
             _httpClientMock = new Mock<IHttpClient>();
-            _service = new GetLastGamesService(_apiClientMock.Object, _errorHandlerMock.Object);
+            _service = new GetLastGamesService(
+                _apiClientMock.Object,
+                _errorHandlerMock.Object);
+        }
+
+        [Fact]
+        public async void GetLastTenGames_ResponseIsEmpty_ReturnsUnsuccessful()
+        {
+            _apiClientMock.Setup(x => x.GetJsonFromUrl("abc")).ReturnsAsync(string.Empty);
+
+            var result = await _service.GetLastTenGames("1", "eun1");
+
+            Assert.False(result.IsSuccess);
         }
     }
 }

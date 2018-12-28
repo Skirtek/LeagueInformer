@@ -88,7 +88,7 @@ namespace LeagueInformer.Utils
 
                 return summonerName;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return string.Empty;
             }

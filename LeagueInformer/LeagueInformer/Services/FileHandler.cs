@@ -30,7 +30,7 @@ namespace LeagueInformer.Services
 
                 return nicknamesList;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return nicknamesList;
             }
@@ -95,7 +95,7 @@ namespace LeagueInformer.Services
                     Environment.NewLine + nickname);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
