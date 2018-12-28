@@ -1,13 +1,18 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Resources;
 
 namespace LeagueInformer.Api
 {
-    public class ApiClient
+    public class ApiClient : IApiClient
     {
-        private readonly HttpClient _client = new HttpClient();
+        private readonly IHttpClient _client;
+
+        public ApiClient(IHttpClient client)
+        {
+            _client = client;
+        }
 
         public async Task<string> GetJsonFromUrl(string url)
         {

@@ -9,6 +9,13 @@ namespace LeagueInformer.Services
 {
     public class Spectator : ISpectator
     {
+        private readonly IFileHandler _fileHandler;
+
+        public Spectator(IFileHandler fileHandler)
+        {
+            _fileHandler = fileHandler;
+        }
+
         public bool OpenSpectateClient(
             string encryptionKey,
             SummonerGameDetails details,
@@ -92,7 +99,7 @@ namespace LeagueInformer.Services
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -102,6 +109,14 @@ namespace LeagueInformer.Services
         {
             try
             {
+                if (!_fileHandler.CheckIfAppDirectoryExists(AppSettings.ApplicationDataPath))
+                {
+                    if (!_fileHandler.CreateAppDirectory(AppSettings.ApplicationDataPath))
+                    {
+                        return false;
+                    }
+                }
+
                 using (StreamWriter batchFileWriter = new StreamWriter(AppSettings.PathToSaveBatchFile))
                 {
                     batchFileWriter.Write(AppSettings.BatchFileSkeleton, path, Environment.NewLine, parameters);
@@ -110,7 +125,7 @@ namespace LeagueInformer.Services
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

@@ -17,5 +17,9 @@ namespace LeagueInformer.Interfaces
         /// <param name="nickname"></param>
         /// <returns></returns>
         Task<bool> SaveNicknameToList(string nickname);
+
+        bool CheckIfAppDirectoryExists(string path);
+
+        bool CreateAppDirectory(string path);
     }
 }

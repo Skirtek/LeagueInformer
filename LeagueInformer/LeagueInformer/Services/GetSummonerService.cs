@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using LeagueInformer.Api;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
-using LeagueInformer.Utils;
 using LeagueInformer.Utils.Interfaces;
 using Newtonsoft.Json.Linq;
 
@@ -12,8 +11,16 @@ namespace LeagueInformer.Services
 {
     public class GetSummonerService : IGetSummoner
     {
-        private readonly ApiClient _apiClient = new ApiClient();
-        private readonly IErrorHandler _errorHandler = new ErrorHandler();
+        private readonly IApiClient _apiClient;
+        private readonly IErrorHandler _errorHandler;
+
+        #region CTOR       
+        public GetSummonerService(IApiClient apiClient, IErrorHandler errorHandler)
+        {
+            _apiClient = apiClient;
+            _errorHandler = errorHandler;
+        }
+        #endregion
 
         public async Task<Summoner> GetInformationAboutSummoner(string nickname, string region = "eun1")
         {

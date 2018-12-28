@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LeagueInformer.Api;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
@@ -11,7 +11,14 @@ namespace LeagueInformer.Services
 {
     public class GetMastersService : IGetMasters
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public GetMastersService(IApiClient apiClient)
+        {
+            _apiClient = apiClient;
+        }
+        #endregion
 
         public async Task<MastersList> GetListOfMasterLeague(string regionCode = "eun1")
         {

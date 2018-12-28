@@ -10,13 +10,20 @@ namespace LeagueInformer
     {
         public const string CheckInternetConnectionString = "http://clients3.google.com/generate_204";
         public const string AuthorizationApiKey = "RGAPI-2958ec04-0412-63bf-1ddc-2aba3fe0bfbe";
-        public const string PathToSaveBatchFile = @"C:{Tabulator}emp\runGame.bat";
         private const string Tabulator = "\t";
 
+        public static readonly string ApplicationDataPath =
+            Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                "LeagueInformerData");
         public static readonly string PathToSaveNicknameFile =
             Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                ApplicationDataPath,
                 "LeagueInformerNicknames.txt");
+        public static readonly string PathToSaveBatchFile =
+            Path.Combine(
+                ApplicationDataPath,
+                "runGame.bat");
 
         public static readonly string BatchFileSkeleton =
             "cd {0}"

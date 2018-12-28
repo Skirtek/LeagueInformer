@@ -1,4 +1,4 @@
-﻿using LeagueInformer.Api;
+﻿using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Utils.Interfaces;
 
@@ -6,7 +6,15 @@ namespace LeagueInformer.Utils
 {
     public class ErrorHandler : IErrorHandler
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public ErrorHandler(IApiClient apiClient)
+        {
+            _apiClient = apiClient;
+        }       
+        #endregion
+
         public string Error_Handler(string message)
         {
             switch (message)

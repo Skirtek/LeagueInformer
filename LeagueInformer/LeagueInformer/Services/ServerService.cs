@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LeagueInformer.Api;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Enums;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
@@ -11,7 +12,14 @@ namespace LeagueInformer.Services
 {
     public class ServerService: IServerService
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public ServerService(IApiClient apiClient)
+        {
+            _apiClient = apiClient;
+        }
+        #endregion
 
         public async Task<ServerStatusResponse> GetServerStatus(string serverName)
         {

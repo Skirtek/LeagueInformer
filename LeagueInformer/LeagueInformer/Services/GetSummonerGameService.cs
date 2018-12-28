@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using LeagueInformer.Api;
+using LeagueInformer.Api.Interfaces;
 using LeagueInformer.Interfaces;
 using LeagueInformer.Models;
 using Newtonsoft.Json.Linq;
@@ -9,7 +9,14 @@ namespace LeagueInformer.Services
 {
     public class GetSummonerGame : IGetSummonerGame
     {
-        private readonly ApiClient _apiClient = new ApiClient();
+        private readonly IApiClient _apiClient;
+
+        #region CTOR
+        public GetSummonerGame(IApiClient apiClient)
+        {
+            _apiClient = apiClient;
+        }
+        #endregion
 
         public async Task<SummonerGame> GetSummonerGameInformation(string id, string region = "eun1")
         {

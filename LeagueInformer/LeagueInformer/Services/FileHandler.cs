@@ -30,7 +30,7 @@ namespace LeagueInformer.Services
 
                 return nicknamesList;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return nicknamesList;
             }
@@ -40,6 +40,14 @@ namespace LeagueInformer.Services
         {
             try
             {
+                if (!CheckIfAppDirectoryExists(AppSettings.ApplicationDataPath))
+                {
+                    if (!CreateAppDirectory(AppSettings.ApplicationDataPath))
+                    {
+                        return false;
+                    }
+                }
+
                 string path = AppSettings.PathToSaveNicknameFile;
                 if (!File.Exists(path))
                 {
@@ -87,10 +95,14 @@ namespace LeagueInformer.Services
                     Environment.NewLine + nickname);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
         }
+
+        public bool CheckIfAppDirectoryExists(string path) => Directory.Exists(path);
+
+        public bool CreateAppDirectory(string path) => Directory.CreateDirectory(path).Exists;
     }
 }

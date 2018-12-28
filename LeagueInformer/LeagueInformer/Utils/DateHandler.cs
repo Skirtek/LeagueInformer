@@ -1,14 +1,15 @@
 ﻿using System;
 using LeagueInformer.Resources;
+using LeagueInformer.Utils.Interfaces;
 
 namespace LeagueInformer.Utils
 {
-    public class DateHandler
+    public class DateHandler : IDateHandler
     {
         public string ParseTimeToDate(string time)
         {
             bool timeParse = double.TryParse(time, out double parsedTime);
-            if (!timeParse)
+            if (!timeParse || parsedTime < 0)
             {
                 Console.WriteLine(AppResources.Error_Undefined);
                 return string.Empty;
